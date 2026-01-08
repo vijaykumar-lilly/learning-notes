@@ -7,8 +7,13 @@ import {
   StepByStep
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import ArithmeticVisualizer from '@/components/visualizations/ArithmeticVisualizer'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function BasicArithmeticLesson() {
+  const navigation = getLessonNavigation('foundations', 'arithmetic')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Basic Arithmetic</h1>
@@ -16,7 +21,7 @@ export default function BasicArithmeticLesson() {
       <Definition term="Addition">
         <p>
           <strong>Addition</strong> is combining two or more numbers to find their total.
-          We use the plus sign <MathRenderer math="+" />.
+          We use the plus sign <MathRenderer math="+" /> (read as "plus").
         </p>
         <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="font-semibold mb-2">Example:</p>
@@ -24,6 +29,13 @@ export default function BasicArithmeticLesson() {
           <p className="mt-2">If you have 5 apples and get 3 more, you have 8 apples total.</p>
         </div>
       </Definition>
+
+      <ArithmeticVisualizer
+        operation="addition"
+        num1={5}
+        num2={3}
+        label="Visual: 5 + 3 = 8"
+      />
 
       <KeyConcept title="Addition Properties">
         • <strong>Order doesn't matter:</strong> <MathRenderer math="3 + 5 = 5 + 3" /> (Commutative Property)<br/>
@@ -46,7 +58,7 @@ export default function BasicArithmeticLesson() {
       <Definition term="Subtraction">
         <p>
           <strong>Subtraction</strong> is taking away one number from another.
-          We use the minus sign <MathRenderer math="-" />.
+          We use the minus sign <MathRenderer math="-" /> (read as "minus").
         </p>
         <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="font-semibold mb-2">Example:</p>
@@ -54,6 +66,13 @@ export default function BasicArithmeticLesson() {
           <p className="mt-2">If you have 9 cookies and eat 4, you have 5 left.</p>
         </div>
       </Definition>
+
+      <ArithmeticVisualizer
+        operation="subtraction"
+        num1={9}
+        num2={4}
+        label="Visual: 9 − 4 = 5"
+      />
 
       <MultipleChoiceExercise
         question={<>What is <MathRenderer math="42 - 18" />?</>}
@@ -84,6 +103,13 @@ export default function BasicArithmeticLesson() {
         </div>
       </Definition>
 
+      <ArithmeticVisualizer
+        operation="multiplication"
+        num1={4}
+        num2={3}
+        label="Visual: 4 × 3 = 12 (3 rows of 4)"
+      />
+
       <Example
         title="Multiplication Table Pattern"
         problem="Find the pattern in the 5 times table"
@@ -113,7 +139,7 @@ export default function BasicArithmeticLesson() {
       <Definition term="Division">
         <p>
           <strong>Division</strong> is splitting a number into equal parts.
-          We use <MathRenderer math="\div" /> or <MathRenderer math="/" />.
+          We use <MathRenderer math="\div" /> or <MathRenderer math="/" /> (read as "divided by").
         </p>
         <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="font-semibold mb-2">Example:</p>
@@ -121,6 +147,13 @@ export default function BasicArithmeticLesson() {
           <p className="mt-2">If you share 12 candies among 3 friends, each gets 4 candies.</p>
         </div>
       </Definition>
+
+      <ArithmeticVisualizer
+        operation="division"
+        num1={12}
+        num2={3}
+        label="Visual: 12 ÷ 3 = 4 groups"
+      />
 
       <KeyConcept title="Division and Multiplication">
         Division is the opposite of multiplication!<br/>
@@ -189,6 +222,8 @@ export default function BasicArithmeticLesson() {
           These are the foundation of all mathematics. Keep practicing your times tables!
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

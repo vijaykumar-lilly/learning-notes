@@ -7,9 +7,19 @@ import {
   Note, 
   StepByStep
 } from '@/components/lesson'
-import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import { 
+  NumericInputExercise, 
+  MultipleChoiceExercise, 
+  BalanceScale, 
+  StepByStepHighlighter,
+  InteractiveGraphPlotter 
+} from '@/components/interactive'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function LinearEquationsLesson() {
+  const navigation = getLessonNavigation('pre-algebra', 'linear-equations')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Solving Linear Equations</h1>
@@ -23,7 +33,7 @@ export default function LinearEquationsLesson() {
         </div>
         <p className="mt-3">
           where <MathRenderer math="a" />, <MathRenderer math="b" />, and <MathRenderer math="c" /> are constants, 
-          and <MathRenderer math="a \neq 0" />.
+          and <MathRenderer math="a \neq 0" /> (read as "a does not equal zero" or "a is not equal to zero").
         </p>
         <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="font-semibold mb-2">Examples:</p>
@@ -39,6 +49,13 @@ export default function LinearEquationsLesson() {
         When solving a linear equation, our goal is to <strong>isolate the variable</strong> (usually <MathRenderer math="x" />) 
         on one side of the equation to find its value.
       </KeyConcept>
+
+      <BalanceScale
+        leftValue={10}
+        rightValue={10}
+        label="⚖️ Interactive: Keep the scale balanced!"
+        showSolution={true}
+      />
 
       <Definition term="Properties for Solving Equations">
         <ul className="space-y-3">
@@ -105,6 +122,34 @@ export default function LinearEquationsLesson() {
           />
         }
         hint={<>First, add 8 to both sides to isolate the term with <MathRenderer math="x" />. Then divide by the coefficient of <MathRenderer math="x" />.</>}
+      />
+
+      <StepByStepHighlighter
+        steps={[
+          { 
+            content: <><MathRenderer math="3x + 7 = 22" /></>, 
+            explanation: "Start with the original equation" 
+          },
+          { 
+            content: <><MathRenderer math="3x + 7 - 7 = 22 - 7" /></>, 
+            explanation: "Subtract 7 from both sides (Addition Property of Equality)" 
+          },
+          { 
+            content: <><MathRenderer math="3x = 15" /></>, 
+            explanation: "Simplify both sides" 
+          },
+          { 
+            content: <><MathRenderer math="\\frac{3x}{3} = \\frac{15}{3}" /></>, 
+            explanation: "Divide both sides by 3 (Division Property of Equality)" 
+          },
+          { 
+            content: <><MathRenderer math="x = 5" /></>, 
+            explanation: "Solution! x equals 5. Always check your answer!" 
+          }
+        ]}
+        autoPlay={false}
+        autoPlayDelay={2500}
+        label="🎬 Interactive: Watch the solving process step-by-step"
       />
 
       <NumericInputExercise
@@ -297,6 +342,8 @@ export default function LinearEquationsLesson() {
           about solving systems of linear equations and linear inequalities.
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

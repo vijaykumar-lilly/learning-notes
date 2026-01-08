@@ -8,8 +8,12 @@ import {
   StepByStep
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function GeometricReasoningLesson() {
+  const navigation = getLessonNavigation('geometry', 'reasoning-proofs')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Geometric Reasoning & Proofs</h1>
@@ -92,9 +96,9 @@ export default function GeometricReasoningLesson() {
       <Definition term="Types of Angle Pairs">
         <ul className="space-y-3">
           <li>
-            <strong>Complementary Angles:</strong> Two angles whose sum is <MathRenderer math="90°" />
+            <strong>Complementary Angles:</strong> Two angles whose sum is <MathRenderer math="90°" /> (read as "ninety degrees")
             <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Example: <MathRenderer math="30°" /> and <MathRenderer math="60°" />
+              Example: <MathRenderer math="30°" /> and <MathRenderer math="60°" /> (read as "thirty degrees and sixty degrees")
             </div>
           </li>
           <li>
@@ -251,6 +255,8 @@ export default function GeometricReasoningLesson() {
           These skills will help you prove more complex geometric relationships!
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

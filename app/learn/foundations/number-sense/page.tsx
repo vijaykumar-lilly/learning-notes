@@ -7,8 +7,11 @@ import {
   StepByStep
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function NumberSenseLesson() {
+  const navigation = getLessonNavigation('foundations', 'number-sense')
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Number Sense & Place Value</h1>
@@ -91,16 +94,16 @@ export default function NumberSenseLesson() {
 
       <Definition term="Comparing Numbers" example={
         <div>
-          <p><MathRenderer math="5 < 8" /> (5 is less than 8)</p>
-          <p><MathRenderer math="12 > 9" /> (12 is greater than 9)</p>
-          <p><MathRenderer math="7 = 7" /> (7 is equal to 7)</p>
+          <p><MathRenderer math="5 < 8" /> (read as: "5 is less than 8")</p>
+          <p><MathRenderer math="12 > 9" /> (read as: "12 is greater than 9")</p>
+          <p><MathRenderer math="7 = 7" /> (read as: "7 equals 7" or "7 is equal to 7")</p>
         </div>
       }>
         <p>We use symbols to compare numbers:</p>
         <ul className="list-disc list-inside mt-2 space-y-1">
           <li><MathRenderer math="<" /> means "less than"</li>
           <li><MathRenderer math=">" /> means "greater than"</li>
-          <li><MathRenderer math="=" /> means "equal to"</li>
+          <li><MathRenderer math="=" /> means "equal to" or "equals"</li>
         </ul>
         <Note type="tip">
           The symbol always points to the smaller number, like an arrow!
@@ -168,6 +171,8 @@ export default function NumberSenseLesson() {
           place values every day.
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

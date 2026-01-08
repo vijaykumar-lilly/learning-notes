@@ -7,8 +7,13 @@ import {
   StepByStep
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import IntegerNumberLine from '@/components/visualizations/IntegerNumberLine'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function IntegersLesson() {
+  const navigation = getLessonNavigation('pre-algebra', 'integers')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Integers & Rational Numbers</h1>
@@ -22,15 +27,27 @@ export default function IntegersLesson() {
         </div>
         <ul className="mt-4 space-y-2">
           <li><strong>Positive integers:</strong> 1, 2, 3, 4, ...</li>
-          <li><strong>Negative integers:</strong> -1, -2, -3, -4, ...</li>
+          <li><strong>Negative integers:</strong> -1, -2, -3, -4, ... (read as "negative one", "negative two", etc.)</li>
           <li><strong>Zero:</strong> Neither positive nor negative</li>
         </ul>
+        <Note type="tip">
+          When writing negative numbers in expressions, we often use parentheses: <MathRenderer math="(-5)" /> to make them clear.
+        </Note>
       </Definition>
 
       <KeyConcept title="Number Line">
         Integers can be represented on a number line. Numbers to the right are greater, 
         numbers to the left are smaller.
       </KeyConcept>
+
+      <IntegerNumberLine
+        min={-10}
+        max={10}
+        start={0}
+        operations={[]}
+        showAnimation={false}
+        label="Integer Number Line"
+      />
 
       <MultipleChoiceExercise
         question="Which integer is the smallest?"
@@ -47,15 +64,26 @@ export default function IntegersLesson() {
       <Definition term="Adding Integers">
         <p><strong>Same signs:</strong> Add and keep the sign</p>
         <ul className="list-disc list-inside mt-2">
-          <li><MathRenderer math="5 + 3 = 8" /></li>
-          <li><MathRenderer math="(-5) + (-3) = -8" /></li>
+          <li><MathRenderer math="5 + 3 = 8" /> (read as "five plus three equals eight")</li>
+          <li><MathRenderer math="(-5) + (-3) = -8" /> (read as "negative five plus negative three equals negative eight")</li>
         </ul>
         <p className="mt-3"><strong>Different signs:</strong> Subtract and use the sign of the larger</p>
         <ul className="list-disc list-inside mt-2">
-          <li><MathRenderer math="5 + (-3) = 2" /></li>
-          <li><MathRenderer math="(-5) + 3 = -2" /></li>
+          <li><MathRenderer math="5 + (-3) = 2" /> (read as "five plus negative three equals two")</li>
+          <li><MathRenderer math="(-5) + 3 = -2" /> (read as "negative five plus three equals negative two")</li>
         </ul>
       </Definition>
+
+      <IntegerNumberLine
+        min={-10}
+        max={10}
+        start={-8}
+        operations={[
+          { value: 5, label: '+5' }
+        ]}
+        showAnimation={true}
+        label="Adding Integers: (-8) + 5 = -3"
+      />
 
       <Example
         problem={<>Calculate <MathRenderer math="(-8) + 5" /></>}
@@ -196,6 +224,8 @@ export default function IntegersLesson() {
           is crucial for algebra and real-world applications like temperature, bank accounts, and elevations.
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

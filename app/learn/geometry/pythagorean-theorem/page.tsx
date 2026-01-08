@@ -8,8 +8,13 @@ import {
   StepByStep
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import PythagoreanVisualizer from '@/components/visualizations/PythagoreanVisualizer'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function PythagoreanTheoremLesson() {
+  const navigation = getLessonNavigation('geometry', 'pythagorean-theorem')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">The Pythagorean Theorem</h1>
@@ -46,11 +51,21 @@ export default function PythagoreanTheoremLesson() {
         </p>
         <div className="mt-4 text-center">
           <MathRenderer math="a^2 + b^2 = c^2" block />
-        </div>
-        <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        </div>        <p className="mt-2 text-sm italic text-gray-600 dark:text-gray-400">
+          (Read as: "a squared plus b squared equals c squared")
+        </p>        <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
           where <MathRenderer math="c" /> is the hypotenuse and <MathRenderer math="a" />, <MathRenderer math="b" /> are the other two sides
         </p>
       </Theorem>
+
+      <PythagoreanVisualizer
+        a={3}
+        b={4}
+        c={5}
+        showSquares={true}
+        animated={true}
+        label="Visual Proof: 3² + 4² = 5²"
+      />
 
       <KeyConcept title="Identifying the Hypotenuse">
         The <strong>hypotenuse</strong> is always the longest side of a right triangle and is 
@@ -309,6 +324,8 @@ export default function PythagoreanTheoremLesson() {
           applications. Master this, and you have a powerful tool in your mathematical toolkit!
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

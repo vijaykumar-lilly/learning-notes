@@ -8,8 +8,13 @@ import {
   StepByStep
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import TriangleVisualizer from '@/components/visualizations/TriangleVisualizer'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function TrianglePropertiesLesson() {
+  const navigation = getLessonNavigation('geometry', 'triangles')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Triangle Properties</h1>
@@ -23,6 +28,14 @@ export default function TrianglePropertiesLesson() {
           <li><strong>Sides:</strong> The line segments connecting the vertices</li>
           <li><strong>Angles:</strong> Formed at each vertex</li>
         </ul>
+        <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-900/30 rounded">
+          <p className="text-sm"><strong>How to read angle notation:</strong></p>
+          <ul className="text-sm mt-2 space-y-1">
+            <li><MathRenderer math="\angle ABC" /> is read as "angle ABC"</li>
+            <li><MathRenderer math="90°" /> is read as "ninety degrees"</li>
+            <li><MathRenderer math="\angle A + \angle B" /> is read as "angle A plus angle B"</li>
+          </ul>
+        </div>
       </Definition>
 
       <Theorem
@@ -44,7 +57,15 @@ export default function TrianglePropertiesLesson() {
       >
         The sum of the interior angles of any triangle is <MathRenderer math="180°" />.
       </Theorem>
-
+      <TriangleVisualizer
+        angleA={45}
+        angleB={70}
+        angleC={65}
+        showAngles={true}
+        showSides={false}
+        animated={true}
+        label="Example: Triangle with angles 45°, 70°, and 65°"
+      />
       <Example
         problem={
           <>
@@ -108,6 +129,17 @@ export default function TrianglePropertiesLesson() {
           </li>
         </ul>
       </Definition>
+
+      <TriangleVisualizer
+        angleA={90}
+        angleB={30}
+        angleC={60}
+        showAngles={true}
+        showSides={false}
+        highlightRight={true}
+        animated={true}
+        label="Right Triangle (90°, 30°, 60°)"
+      />
 
       <MultipleChoiceExercise
         question={
@@ -298,6 +330,8 @@ export default function TrianglePropertiesLesson() {
           and the triangle inequality. These concepts are essential for all of geometry!
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }

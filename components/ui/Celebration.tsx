@@ -17,7 +17,7 @@ export default function Celebration({ show, onComplete }: CelebrationProps) {
       const timer = setTimeout(() => {
         setVisible(false)
         onComplete?.()
-      }, 3000)
+      }, 1500)
       return () => clearTimeout(timer)
     }
   }, [show, onComplete])

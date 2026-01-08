@@ -7,9 +7,14 @@ import {
   Note, 
   StepByStep
 } from '@/components/lesson'
-import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
+import { NumericInputExercise, MultipleChoiceExercise, InteractiveFractionSlider } from '@/components/interactive'
+import FractionVisualizer from '@/components/visualizations/FractionVisualizer'
+import LessonNavigation from '@/components/lesson/LessonNavigation'
+import { getLessonNavigation } from '@/lib/lesson-navigation'
 
 export default function FractionsBasicsLesson() {
+  const navigation = getLessonNavigation('foundations', 'fractions')
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Introduction to Fractions</h1>
@@ -25,6 +30,14 @@ export default function FractionsBasicsLesson() {
         <div className="mt-4 text-center">
           <MathRenderer math="\frac{\text{numerator}}{\text{denominator}}" block />
         </div>
+        <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-900/30 rounded">
+          <p className="text-sm"><strong>How to read fractions:</strong></p>
+          <ul className="text-sm mt-2 space-y-1">
+            <li><MathRenderer math="\frac{3}{4}" /> is read as "three-fourths" or "three over four"</li>
+            <li><MathRenderer math="\frac{1}{2}" /> is read as "one-half"</li>
+            <li><MathRenderer math="\frac{5}{8}" /> is read as "five-eighths" or "five over eight"</li>
+          </ul>
+        </div>
         <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="font-semibold mb-2">Example:</p>
           <p>
@@ -33,6 +46,32 @@ export default function FractionsBasicsLesson() {
           </p>
         </div>
       </Definition>
+
+      <FractionVisualizer
+        numerator={3}
+        denominator={4}
+        type="circle"
+        interactive={true}
+        label="3/4 as a circle (pizza)"
+      />
+
+      <FractionVisualizer
+        numerator={3}
+        denominator={8}
+        type="bar"
+        interactive={true}
+        label="3/8 as a bar"
+      />
+
+      <InteractiveFractionSlider
+        maxNumerator={12}
+        maxDenominator={12}
+        initialNumerator={3}
+        initialDenominator={4}
+        visualType="circle"
+        showDecimal={true}
+        label="🎮 Interactive: Drag the sliders to explore fractions!"
+      />
 
       <KeyConcept title="Understanding Denominators">
         The denominator tells us how many equal parts make up one whole. 
@@ -67,7 +106,7 @@ export default function FractionsBasicsLesson() {
         <div className="space-y-2">
           <p><strong>Proper:</strong> <MathRenderer math="\frac{2}{5}" /> (less than 1)</p>
           <p><strong>Improper:</strong> <MathRenderer math="\frac{7}{5}" /> (≥ 1)</p>
-          <p><strong>Mixed:</strong> <MathRenderer math="2\frac{1}{3}" /></p>
+          <p><strong>Mixed:</strong> <MathRenderer math="2\frac{1}{3}" /> (read as "two and one-third")</p>
         </div>
       }>
         <ul className="space-y-3">
@@ -228,6 +267,8 @@ export default function FractionsBasicsLesson() {
           adding, subtracting, multiplying, and dividing fractions in future lessons.
         </p>
       </Note>
+
+      <LessonNavigation navigation={navigation} />
     </div>
   )
 }
