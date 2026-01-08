@@ -1,0 +1,17 @@
+{
+  "name": "MathLearn",
+  "short_name": "MathLearn",
+  "description": "Open-source mathematics education from basics to expertise",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
