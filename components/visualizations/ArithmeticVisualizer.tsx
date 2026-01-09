@@ -8,6 +8,7 @@ interface ArithmeticVisualizerProps {
   num2: number
   animated?: boolean
   label?: string
+  itemType?: 'dots' | 'apples' | 'cookies' | 'stars' | 'circles'
 }
 
 export default function ArithmeticVisualizer({
@@ -15,9 +16,21 @@ export default function ArithmeticVisualizer({
   num1,
   num2,
   animated = true,
-  label
+  label,
+  itemType = 'dots'
 }: ArithmeticVisualizerProps) {
   const [step, setStep] = useState(0)
+
+  const getItemEmoji = (type: string) => {
+    const emojis: Record<string, string> = {
+      apples: '🍎',
+      cookies: '🍪',
+      stars: '⭐',
+      circles: '⚫',
+      dots: '•'
+    }
+    return emojis[type] || '•'
+  }
 
   useEffect(() => {
     if (animated) {
@@ -30,43 +43,67 @@ export default function ArithmeticVisualizer({
     }
   }, [animated])
 
-  const renderDots = (count: number, color: string, startX: number, startY: number) => {
-    const dots = []
-    const dotsPerRow = Math.min(count, 10)
-    const rows = Math.ceil(count / dotsPerRow)
+  const renderItems = (count: number, color: string, startX: number, startY: number) => {
+    const items = []
+    const itemsPerRow = Math.min(count, 10)
+    const rows = Math.ceil(count / itemsPerRow)
     
-    for (let i = 0; i < count; i++) {
-      const row = Math.floor(i / dotsPerRow)
-      const col = i % dotsPerRow
-      dots.push(
-        <circle
-          key={i}
-          cx={startX + col * 25}
-          cy={startY + row * 25}
-          r="8"
-          fill={color}
-          className="transition-all duration-500"
-          style={{
-            opacity: step >= 1 ? 1 : 0,
-            transform: step >= 1 ? 'scale(1)' : 'scale(0)',
-          }}
-        />
-      )
+    if (itemType === 'dots') {
+      // Render as SVG circles
+      for (let i = 0; i < count; i++) {
+        const row = Math.floor(i / itemsPerRow)
+        const col = i % itemsPerRow
+        items.push(
+          <circle
+            key={i}
+            cx={startX + col * 25}
+            cy={startY + row * 25}
+            r="8"
+            fill={color}
+            className="transition-all duration-500"
+            style={{
+              opacity: step >= 1 ? 1 : 0,
+              transform: step >= 1 ? 'scale(1)' : 'scale(0)',
+            }}
+          />
+        )
+      }
+    } else {
+      // Render as emoji
+      for (let i = 0; i < count; i++) {
+        const row = Math.floor(i / itemsPerRow)
+        const col = i % itemsPerRow
+        items.push(
+          <text
+            key={i}
+            x={startX + col * 30}
+            y={startY + row * 30}
+            fontSize="24"
+            className="transition-all duration-500"
+            style={{
+              opacity: step >= 1 ? 1 : 0,
+              transform: step >= 1 ? 'scale(1)' : 'scale(0)',
+            }}
+          >
+            {getItemEmoji(itemType)}
+          </text>
+        )
+      }
     }
-    return dots
+    return items
   }
 
   const renderAddition = () => {
     return (
-      <svg width="400" height="200" viewBox="0 0 400 200" className="mx-auto">
+      <svg width="450" height="200" viewBox="0 0 450 200" className="mx-auto">
         {/* First group */}
-        <g>{renderDots(num1, '#3b82f6', 20, 50)}</g>
+        <g>{renderItems(num1, '#3b82f6', 20, 50)}</g>
         
         {/* Plus sign */}
-        <text x="180" y="100" className="text-4xl font-bold fill-gray-700 dark:fill-gray-300">+</text>
+        <text x="200" y="100" className="text-4xl font-bold fill-gray-700 dark:fill-gray-300">+</text>
         
         {/* Second group */}
-        <g>{renderDots(num2, '#22c55e', 220, 50)}</g>
+        <g>{renderItems(num2, '#22c55e', 250, 50)}</g>
         
         {/* Equals and result */}
         {step >= 2 && (
@@ -82,21 +119,23 @@ export default function ArithmeticVisualizer({
   }
 
   const renderSubtraction = () => {
+    const spacing = itemType === 'dots' ? 25 : 30
     return (
-      <svg width="400" height="200" viewBox="0 0 400 200" className="mx-auto">
+      <svg width="450" height="200" viewBox="0 0 450 200" className="mx-auto">
         {/* Initial group */}
         <g>
-          {renderDots(num1, '#3b82f6', 20, 50).map((dot, i) => {
+          {renderItems(num1, '#3b82f6', 20, 50).map((item, i) => {
             const shouldCrossOut = i >= (num1 - num2)
+            const itemsPerRow = Math.min(num1, 10)
             return (
               <g key={i}>
-                {dot}
+                {item}
                 {shouldCrossOut && step >= 1 && (
                   <line
-                    x1={20 + (i % 10) * 25 - 10}
-                    y1={50 + Math.floor(i / 10) * 25 - 10}
-                    x2={20 + (i % 10) * 25 + 10}
-                    y2={50 + Math.floor(i / 10) * 25 + 10}
+                    x1={20 + (i % itemsPerRow) * spacing - 12}
+                    y1={50 + Math.floor(i / itemsPerRow) * spacing - 12}
+                    x2={20 + (i % itemsPerRow) * spacing + 12}
+                    y2={50 + Math.floor(i / itemsPerRow) * spacing + 12}
                     stroke="#ef4444"
                     strokeWidth="3"
                     className="transition-all duration-500"
@@ -127,29 +166,48 @@ export default function ArithmeticVisualizer({
   }
 
   const renderMultiplication = () => {
-    const dots = []
+    const items = []
+    const spacing = itemType === 'dots' ? 25 : 30
     for (let row = 0; row < num2; row++) {
       for (let col = 0; col < num1; col++) {
-        dots.push(
-          <circle
-            key={`${row}-${col}`}
-            cx={50 + col * 25}
-            cy={50 + row * 25}
-            r="8"
-            fill="#3b82f6"
-            className="transition-all duration-500"
-            style={{
-              opacity: step >= 1 && row <= step ? 1 : 0.2,
-              transform: step >= 1 && row <= step ? 'scale(1)' : 'scale(0.5)',
-            }}
-          />
-        )
+        if (itemType === 'dots') {
+          items.push(
+            <circle
+              key={`${row}-${col}`}
+              cx={50 + col * spacing}
+              cy={50 + row * spacing}
+              r="8"
+              fill="#3b82f6"
+              className="transition-all duration-500"
+              style={{
+                opacity: step >= 1 && row <= step ? 1 : 0.2,
+                transform: step >= 1 && row <= step ? 'scale(1)' : 'scale(0.5)',
+              }}
+            />
+          )
+        } else {
+          items.push(
+            <text
+              key={`${row}-${col}`}
+              x={50 + col * spacing}
+              y={50 + row * spacing}
+              fontSize="24"
+              className="transition-all duration-500"
+              style={{
+                opacity: step >= 1 && row <= step ? 1 : 0.2,
+                transform: step >= 1 && row <= step ? 'scale(1)' : 'scale(0.5)',
+              }}
+            >
+              {getItemEmoji(itemType)}
+            </text>
+          )
+        }
       }
     }
     
     return (
       <svg width="400" height="250" viewBox="0 0 400 250" className="mx-auto">
-        <g>{dots}</g>
+        <g>{items}</g>
         
         <text x="20" y="30" className="text-sm fill-gray-600 dark:fill-gray-400">
           {num2} rows × {num1} columns
@@ -168,6 +226,7 @@ export default function ArithmeticVisualizer({
     const groupSize = num2
     const groups = Math.floor(num1 / num2)
     const remainder = num1 % num2
+    const spacing = itemType === 'dots' ? 18 : 25
     
     return (
       <svg width="500" height="250" viewBox="0 0 500 250" className="mx-auto">
@@ -189,38 +248,73 @@ export default function ArithmeticVisualizer({
                 opacity: step >= 1 ? 1 : 0
               }}
             />
-            {/* Dots in group */}
-            {Array.from({ length: groupSize }).map((_, dotIdx) => (
-              <circle
-                key={dotIdx}
-                cx={30 + groupIdx * 100 + (dotIdx % 4) * 18}
-                cy={60 + Math.floor(dotIdx / 4) * 18}
-                r="6"
-                fill="#3b82f6"
-                className="transition-all duration-500"
-                style={{
-                  opacity: step >= 1 ? 1 : 0.3,
-                }}
-              />
-            ))}
+            {/* Items in group */}
+            {Array.from({ length: groupSize }).map((_, itemIdx) => {
+              if (itemType === 'dots') {
+                return (
+                  <circle
+                    key={itemIdx}
+                    cx={30 + groupIdx * 100 + (itemIdx % 4) * spacing}
+                    cy={60 + Math.floor(itemIdx / 4) * spacing}
+                    r="6"
+                    fill="#3b82f6"
+                    className="transition-all duration-500"
+                    style={{
+                      opacity: step >= 1 ? 1 : 0.3,
+                    }}
+                  />
+                )
+              } else {
+                return (
+                  <text
+                    key={itemIdx}
+                    x={25 + groupIdx * 100 + (itemIdx % 3) * spacing}
+                    y={65 + Math.floor(itemIdx / 3) * spacing}
+                    fontSize="20"
+                    className="transition-all duration-500"
+                    style={{
+                      opacity: step >= 1 ? 1 : 0.3,
+                    }}
+                  >
+                    {getItemEmoji(itemType)}
+                  </text>
+                )
+              }
+            })}
           </g>
         ))}
         
-        {/* Remainder dots */}
+        {/* Remainder items */}
         {remainder > 0 && step >= 1 && (
           <g>
             <text x={20 + groups * 100} y="75" className="text-sm fill-gray-600 dark:fill-gray-400">
               remainder
             </text>
-            {Array.from({ length: remainder }).map((_, i) => (
-              <circle
-                key={i}
-                cx={20 + groups * 100 + i * 18}
-                cy={95}
-                r="6"
-                fill="#ef4444"
-              />
-            ))}
+            {Array.from({ length: remainder }).map((_, i) => {
+              if (itemType === 'dots') {
+                return (
+                  <circle
+                    key={i}
+                    cx={20 + groups * 100 + i * spacing}
+                    cy={95}
+                    r="6"
+                    fill="#ef4444"
+                  />
+                )
+              } else {
+                return (
+                  <text
+                    key={i}
+                    x={20 + groups * 100 + i * spacing}
+                    y={100}
+                    fontSize="20"
+                    fill="#ef4444"
+                  >
+                    {getItemEmoji(itemType)}
+                  </text>
+                )
+              }
+            })}
           </g>
         )}
         

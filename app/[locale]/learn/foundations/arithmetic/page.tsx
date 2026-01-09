@@ -45,6 +45,7 @@ export default function BasicArithmeticLesson() {
         num1={5}
         num2={3}
         label={t('addition.visualLabel')}
+        itemType="apples"
       />
 
       <KeyConcept title={t('addition.properties.title')}>
@@ -102,6 +103,7 @@ export default function BasicArithmeticLesson() {
         num1={9}
         num2={4}
         label={t('subtraction.visualLabel')}
+        itemType="cookies"
       />
 
       <MultipleChoiceExercise
@@ -157,6 +159,7 @@ export default function BasicArithmeticLesson() {
         num1={4}
         num2={3}
         label={t('multiplication.visualLabel')}
+        itemType="stars"
       />
 
       <Note type="success">
@@ -275,6 +278,7 @@ export default function BasicArithmeticLesson() {
         num1={12}
         num2={3}
         label={t('division.visualLabel')}
+        itemType="cookies"
       />
 
       <KeyConcept title={t('division.relationship.title')}>

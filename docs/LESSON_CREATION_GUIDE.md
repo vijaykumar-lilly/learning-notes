@@ -253,12 +253,66 @@ Mix different exercise types:
 - 20% Worked examples (modeling)
 - 10% Visual demonstrations
 
-### 2. **Immediate Interactivity**
+### 2. **Visual Consistency with Examples** ⭐ **IMPORTANT**
+When using visual demonstrations (like ArithmeticVisualizer), **always match the visual items to the items mentioned in your example text**.
+
+**❌ DON'T DO THIS:**
+```tsx
+// Example says "apples" but visualization shows dots
+<p>Think of it as: 5 apples + 3 apples = 8 apples</p>
+<ArithmeticVisualizer operation="addition" num1={5} num2={3} />
+```
+
+**✅ DO THIS:**
+```tsx
+// Example says "apples" and visualization shows apples
+<p>Think of it as: 5 apples + 3 apples = 8 apples</p>
+<ArithmeticVisualizer 
+  operation="addition" 
+  num1={5} 
+  num2={3} 
+  itemType="apples" 
+/>
+```
+
+**Available item types** for ArithmeticVisualizer:
+- `"apples"` 🍎 - For addition/counting examples with fruits
+- `"cookies"` 🍪 - For subtraction/division examples with food
+- `"stars"` ⭐ - For multiplication/groups examples
+- `"circles"` ⚫ - For generic circular items
+- `"dots"` • - Default/abstract representation
+
+**Why this matters:**
+- **Cognitive consistency**: Students connect the written example with the visual
+- **Better learning**: Concrete items (apples, cookies) are easier to understand than abstract dots
+- **Engagement**: Visuals that match the story are more interesting
+- **Professionalism**: Shows attention to detail
+
+**Examples from lessons:**
+```tsx
+// Addition with apples
+"5 apples + 3 apples = 8 apples"
+<ArithmeticVisualizer itemType="apples" ... />
+
+// Subtraction with cookies
+"9 cookies - 4 cookies = 5 cookies left"
+<ArithmeticVisualizer itemType="cookies" ... />
+
+// Multiplication with stars (groups)
+"4 groups of 3 stars"
+<ArithmeticVisualizer itemType="stars" ... />
+
+// Division with cookies (sharing)
+"12 cookies shared among 3 friends"
+<ArithmeticVisualizer itemType="cookies" ... />
+```
+
+### 3. **Immediate Interactivity**
 - ❌ **DON'T**: Long text blocks without interaction
 - ✅ **DO**: Introduce concept → Practice immediately
 - Rule of thumb: No more than 2-3 paragraphs before an interactive element
 
-### 3. **Progressive Difficulty**
+### 4. **Progressive Difficulty**
 ```
 Easy → Medium → Hard → Challenge
 ```
@@ -267,11 +321,11 @@ Easy → Medium → Hard → Challenge
 - Third exercise: Multiple steps
 - Final exercise: Synthesis/application
 
-### 4. **Feedback Quality**
+### 5. **Feedback Quality**
 **Poor feedback**: "Wrong. The answer is 25."
 **Good feedback**: "Not quite. Remember, we multiply the base by the height. Try 5 × 5 = ?"
 
-### 5. **Hint Strategy**
+### 6. **Hint Strategy**
 - **Level 1 Hint**: Remind of the concept/formula
 - **Level 2 Hint**: Break down the problem
 - **Level 3 Hint**: Show partial work
