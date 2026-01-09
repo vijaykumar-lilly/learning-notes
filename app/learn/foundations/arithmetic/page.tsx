@@ -55,6 +55,23 @@ export default function BasicArithmeticLesson() {
         }
       />
 
+      <Note type="tip">
+        <p className="font-semibold">🧠 Mental Math: Adding Numbers Near 10</p>
+        <p className="mt-2">
+          When adding numbers close to 10, 100, or 1000, round up then subtract:
+        </p>
+        <div className="mt-3 space-y-2 text-sm">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+            <p className="font-semibold">Example: <MathRenderer math="47 + 29" /></p>
+            <div className="mt-2 space-y-1">
+              <p>Step 1: Round 29 up to 30: <MathRenderer math="47 + 30 = 77" /></p>
+              <p>Step 2: We added 1 too many, so subtract it: <MathRenderer math="77 - 1 = 76" /></p>
+            </div>
+          </div>
+          <p className="mt-2">Works great for: 98+37 → (100+37)-2 = 135</p>
+        </div>
+      </Note>
+
       <Definition term="Subtraction">
         <p>
           <strong>Subtraction</strong> is taking away one number from another.
@@ -91,6 +108,26 @@ export default function BasicArithmeticLesson() {
         hint="Try breaking it down: 42 - 10 = 32, then 32 - 8 = 24"
       />
 
+      <Note type="success">
+        <p className="font-semibold">🎯 Subtraction Shortcut: Add to Both</p>
+        <p className="mt-2">
+          Make subtraction easier by adding the same amount to both numbers:
+        </p>
+        <div className="mt-3 space-y-2 text-sm">
+          <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded">
+            <p className="font-semibold">Example: <MathRenderer math="73 - 28" /></p>
+            <div className="mt-2 space-y-1">
+              <p>Add 2 to both: <MathRenderer math="75 - 30" /></p>
+              <p>Much easier! <MathRenderer math="75 - 30 = 45" /></p>
+            </div>
+          </div>
+          <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded mt-2">
+            <p className="font-semibold">Another: <MathRenderer math="84 - 37" /></p>
+            <p className="mt-1">Add 3 to both: <MathRenderer math="87 - 40 = 47" /></p>
+          </div>
+        </div>
+      </Note>
+
       <Definition term="Multiplication">
         <p>
           <strong>Multiplication</strong> is repeated addition. 
@@ -110,6 +147,26 @@ export default function BasicArithmeticLesson() {
         label="Visual: 4 × 3 = 12 (3 rows of 4)"
       />
 
+      <Note type="success">
+        <p className="font-semibold">✋ Multiply by 9: The Finger Trick!</p>
+        <p className="mt-2">
+          To multiply 9 × any number from 1-10, use your fingers:
+        </p>
+        <div className="mt-3 space-y-2 text-sm">
+          <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded">
+            <p className="font-semibold">Example: 9 × 7</p>
+            <div className="mt-2 space-y-1">
+              <p>1. Hold up all 10 fingers</p>
+              <p>2. Put down the 7th finger (from left)</p>
+              <p>3. Fingers to the left = tens digit (6)</p>
+              <p>4. Fingers to the right = ones digit (3)</p>
+              <p className="font-bold mt-2"><MathRenderer math="9 \times 7 = 63" /> 🎉</p>
+            </div>
+          </div>
+          <p className="mt-2">Try it: 9×4 → put down 4th finger → 3 left, 6 right → 36 ✓</p>
+        </div>
+      </Note>
+
       <Example
         title="Multiplication Table Pattern"
         problem="Find the pattern in the 5 times table"
@@ -123,6 +180,27 @@ export default function BasicArithmeticLesson() {
           </div>
         }
       />
+
+      <Note type="tip">
+        <p className="font-semibold">🔁 Doubling and Halving Trick</p>
+        <p className="mt-2">
+          Make multiplication easier by doubling one number and halving the other:
+        </p>
+        <div className="mt-3 space-y-2 text-sm">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+            <p className="font-semibold">Example: <MathRenderer math="16 \times 25" /></p>
+            <div className="mt-2 space-y-1">
+              <p>Double 25, halve 16: <MathRenderer math="8 \times 50" /></p>
+              <p>Double 50, halve 8: <MathRenderer math="4 \times 100 = 400" /></p>
+            </div>
+          </div>
+          <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded mt-2">
+            <p className="font-semibold">Quick ones:</p>
+            <p className="mt-1"><MathRenderer math="14 \times 5 = 7 \times 10 = 70" /></p>
+            <p><MathRenderer math="32 \times 15 = 16 \times 30 = 480" /></p>
+          </div>
+        </div>
+      </Note>
 
       <NumericInputExercise
         question={<>What is <MathRenderer math="7 \times 8" />?</>}
@@ -147,6 +225,43 @@ export default function BasicArithmeticLesson() {
           <p className="mt-2">If you share 12 candies among 3 friends, each gets 4 candies.</p>
         </div>
       </Definition>
+
+      <Note type="success">
+        <p className="font-semibold">✅ Quick Divisibility Rules</p>
+        <p className="mt-2">
+          Check if a number is divisible without dividing:
+        </p>
+        <div className="mt-3 space-y-2 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
+              <p className="font-semibold">By 2:</p>
+              <p>Last digit is 0, 2, 4, 6, or 8</p>
+            </div>
+            <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded">
+              <p className="font-semibold">By 3:</p>
+              <p>Sum of digits divisible by 3</p>
+              <p className="text-xs mt-1">123: 1+2+3=6 (divisible!)</p>
+            </div>
+            <div className="p-2 bg-yellow-50 dark:bg-yellow-900/20 rounded">
+              <p className="font-semibold">By 5:</p>
+              <p>Ends in 0 or 5</p>
+            </div>
+            <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded">
+              <p className="font-semibold">By 9:</p>
+              <p>Sum of digits divisible by 9</p>
+              <p className="text-xs mt-1">729: 7+2+9=18 (yes!)</p>
+            </div>
+            <div className="p-2 bg-red-50 dark:bg-red-900/20 rounded">
+              <p className="font-semibold">By 10:</p>
+              <p>Ends in 0</p>
+            </div>
+            <div className="p-2 bg-indigo-50 dark:bg-indigo-900/20 rounded">
+              <p className="font-semibold">By 6:</p>
+              <p>Divisible by both 2 AND 3</p>
+            </div>
+          </div>
+        </div>
+      </Note>
 
       <ArithmeticVisualizer
         operation="division"
@@ -206,6 +321,27 @@ export default function BasicArithmeticLesson() {
           </div>
         }
       />
+
+      <Note type="tip">
+        <p className="font-semibold">🏆 PEMDAS/BODMAS Memory Trick</p>
+        <p className="mt-2">
+          Order of Operations: <strong>P</strong>arentheses, <strong>E</strong>xponents, <strong>M</strong>ultiply/<strong>D</strong>ivide, <strong>A</strong>dd/<strong>S</strong>ubtract
+        </p>
+        <div className="mt-3 space-y-3">
+          <div className="p-3 bg-pink-50 dark:bg-pink-900/20 rounded">
+            <p className="font-semibold text-sm">Memory phrase:</p>
+            <p className="mt-1 text-sm">"<strong>P</strong>lease <strong>E</strong>xcuse <strong>M</strong>y <strong>D</strong>ear <strong>A</strong>unt <strong>S</strong>ally"</p>
+          </div>
+          <div className="text-sm">
+            <p className="font-semibold">Example: <MathRenderer math="3 + 4 \times 2" /></p>
+            <div className="mt-2 space-y-1 ml-4">
+              <p>❌ Wrong: <MathRenderer math="(3 + 4) \times 2 = 14" /></p>
+              <p>✅ Right: <MathRenderer math="3 + (4 \times 2) = 3 + 8 = 11" /></p>
+              <p className="text-xs mt-2">Multiply before adding!</p>
+            </div>
+          </div>
+        </div>
+      </Note>
 
       <Note type="info">
         <p className="font-semibold">Order of Operations Tip</p>

@@ -74,6 +74,25 @@ export default function IntegersLesson() {
         </ul>
       </Definition>
 
+      <Note type="success">
+        <p className="font-semibold">➕ Same Signs ADD, Different Signs SUBTRACT</p>
+        <p className="mt-2">
+          Easy way to remember adding integers:
+        </p>
+        <div className="mt-3 space-y-2">
+          <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded">
+            <p className="font-semibold text-sm">✅ Same Signs: ADD and keep the sign</p>
+            <p className="text-sm mt-1"><MathRenderer math="(-5) + (-3) = -(5+3) = -8" /></p>
+            <p className="text-sm"><MathRenderer math="7 + 9 = +(7+9) = 16" /></p>
+          </div>
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+            <p className="font-semibold text-sm">➡️ Different Signs: SUBTRACT and use bigger's sign</p>
+            <p className="text-sm mt-1"><MathRenderer math="(-8) + 5 = -(8-5) = -3" /> (8 is bigger, so negative)</p>
+            <p className="text-sm"><MathRenderer math="9 + (-4) = +(9-4) = 5" /> (9 is bigger, so positive)</p>
+          </div>
+        </div>
+      </Note>
+
       <IntegerNumberLine
         min={-10}
         max={10}
@@ -135,6 +154,21 @@ export default function IntegersLesson() {
         </ul>
       </Definition>
 
+      <Note type="tip">
+        <p className="font-semibold">🔄 "Keep-Change-Change" Subtraction Trick</p>
+        <p className="mt-2">
+          When subtracting integers, use <strong>K-C-C</strong>:
+        </p>
+        <div className="mt-3 font-mono text-sm bg-gray-50 dark:bg-gray-900/30 p-4 rounded space-y-2">
+          <p><strong>K</strong>eep the first number: <MathRenderer math="5 - (-3)" /></p>
+          <p><strong>C</strong>hange subtraction to addition: <MathRenderer math="5 + (-3)" /></p>
+          <p><strong>C</strong>hange the sign of second number: <MathRenderer math="5 + 3 = 8" /></p>
+        </div>
+        <p className="mt-3 text-sm">
+          Two negatives make a positive! <MathRenderer math="- (-)" /> becomes <MathRenderer math="+" />
+        </p>
+      </Note>
+
       <MultipleChoiceExercise
         question={<>What is <MathRenderer math="3 - (-5)" />?</>}
         choices={[
@@ -164,6 +198,28 @@ export default function IntegersLesson() {
           Same signs give positive, different signs give negative!
         </Note>
       </Definition>
+
+      <Note type="success">
+        <p className="font-semibold">✖️ Negative × Negative = Positive (The Enemy's Enemy Rule)</p>
+        <p className="mt-2">
+          Think of it like this: "The enemy of my enemy is my friend!"
+        </p>
+        <div className="mt-3 space-y-2 text-sm">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+            <p className="font-semibold">Sign Rules Chart:</p>
+            <div className="mt-2 grid grid-cols-2 gap-2 font-mono">
+              <div><MathRenderer math="(+) \times (+) = (+)" /></div>
+              <div><MathRenderer math="(+) \times (-) = (-)" /></div>
+              <div><MathRenderer math="(-) \times (+) = (-)" /></div>
+              <div className="font-bold"><MathRenderer math="(-) \times (-) = (+)" /> ✨</div>
+            </div>
+          </div>
+          <p className="mt-2">
+            <strong>Memory trick:</strong> Count the negatives. Even number of negatives = positive, odd = negative.
+          </p>
+          <p className="font-mono"><MathRenderer math="(-2) \times (-3) \times (-4) = -24" /> (3 negatives = odd = negative)</p>
+        </div>
+      </Note>
 
       <NumericInputExercise
         question={<>What is <MathRenderer math="(-6) \times (-7)" />?</>}
@@ -200,6 +256,27 @@ export default function IntegersLesson() {
         hint="Divide 24 by 6, then apply the negative sign (different signs)"
       />
 
+      <Note type="tip">
+        <p className="font-semibold">🎯 PEMDAS with Negative Numbers</p>
+        <p className="mt-2">
+          When working with order of operations and negative numbers:
+        </p>
+        <div className="mt-3 space-y-3">
+          <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded">
+            <p className="font-semibold text-sm">Watch out for exponents!</p>
+            <p className="text-sm mt-1"><MathRenderer math="-3^2 = -(3^2) = -9" /> (exponent only applies to 3)</p>
+            <p className="text-sm"><MathRenderer math="(-3)^2 = (-3) \times (-3) = 9" /> (exponent applies to -3)</p>
+          </div>
+          <div className="text-sm">
+            <p className="font-semibold">Example: <MathRenderer math="-5 + 3 \times (-2)" /></p>
+            <div className="mt-2 space-y-1 font-mono ml-4">
+              <p>Step 1: Multiply first: <MathRenderer math="3 \times (-2) = -6" /></p>
+              <p>Step 2: Then add: <MathRenderer math="-5 + (-6) = -11" /></p>
+            </div>
+          </div>
+        </div>
+      </Note>
+
       <Definition term="Rational Numbers">
         <p>
           A <strong>rational number</strong> is any number that can be written as a fraction{' '}
@@ -216,6 +293,29 @@ export default function IntegersLesson() {
           </ul>
         </div>
       </Definition>
+
+      <Note type="tip">
+        <p className="font-semibold">⚡ Quick Integer Computation Shortcuts</p>
+        <div className="mt-2 space-y-3">
+          <div>
+            <p className="text-sm font-semibold">1. Adding opposites = 0</p>
+            <p className="text-sm mt-1"><MathRenderer math="17 + (-17) = 0" />, <MathRenderer math="(-45) + 45 = 0" /></p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold">2. Subtracting is adding the opposite</p>
+            <p className="text-sm mt-1"><MathRenderer math="a - b = a + (-b)" /></p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold">3. Multiplying by -1 flips the sign</p>
+            <p className="text-sm mt-1"><MathRenderer math="-1 \times 25 = -25" />, <MathRenderer math="-1 \times (-30) = 30" /></p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold">4. Absolute value shortcut</p>
+            <p className="text-sm mt-1"><MathRenderer math="|a - b|" /> = distance between a and b on number line</p>
+            <p className="text-sm"><MathRenderer math="|-5 - 3| = |-8| = 8" /> (distance between -5 and 3)</p>
+          </div>
+        </div>
+      </Note>
 
       <Note type="success">
         <p className="font-semibold">Well done!</p>
