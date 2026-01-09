@@ -65,6 +65,48 @@ export const lessonMetadataDB: Record<string, LessonMetadata> = {
     proofCount: 1,
   },
 
+  'decimals': {
+    id: 'decimals',
+    title: 'Decimals',
+    slug: 'decimals',
+    domain: 'Foundations',
+    domainSlug: 'foundations',
+    description: 'Understanding decimal numbers and their operations',
+    difficulty: 'beginner',
+    estimatedTime: 50,
+    prerequisites: ['fractions'],
+    learningObjectives: [
+      'Understand place value in decimal numbers',
+      'Convert between fractions and decimals',
+      'Compare and order decimal numbers',
+      'Add and subtract decimals',
+      'Multiply and divide decimals'
+    ],
+    keywords: ['decimals', 'place value', 'tenths', 'hundredths', 'decimal point', 'conversion'],
+    exerciseCount: 50,
+  },
+
+  'percentages': {
+    id: 'percentages',
+    title: 'Percentages',
+    slug: 'percentages',
+    domain: 'Foundations',
+    domainSlug: 'foundations',
+    description: 'Understanding percentages and their real-world applications',
+    difficulty: 'beginner',
+    estimatedTime: 55,
+    prerequisites: ['decimals', 'fractions'],
+    learningObjectives: [
+      'Understand the concept of percent as "per hundred"',
+      'Convert between percentages, decimals, and fractions',
+      'Calculate percentages of numbers',
+      'Find percentage increase and decrease',
+      'Apply percentages to real-world problems (discounts, tips, taxes, interest)'
+    ],
+    keywords: ['percentages', 'percent', 'discount', 'interest', 'tax', 'tip', 'conversion'],
+    exerciseCount: 55,
+  },
+
   // Pre-Algebra
   'integers': {
     id: 'integers',

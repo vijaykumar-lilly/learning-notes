@@ -1,6 +1,7 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
+import ZoomModal from '@/components/ui/ZoomModal'
 
 interface KeyConceptProps {
   title?: string
@@ -8,8 +9,21 @@ interface KeyConceptProps {
 }
 
 export default function KeyConcept({ title = 'Key Concept', children }: KeyConceptProps) {
+  const [isZoomed, setIsZoomed] = useState(false)
+
   return (
-    <div className="my-6 p-4 sm:p-6 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-300 dark:border-amber-700">
+    <>
+      <div className="my-6 p-4 sm:p-6 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-300 dark:border-amber-700 relative group">
+        <button
+          onClick={() => setIsZoomed(true)}
+          className="absolute top-2 right-2 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-gray-800 shadow-sm"
+          aria-label="Zoom in"
+          title="Click to zoom"
+        >
+          <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+          </svg>
+        </button>
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
           <svg className="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,6 +39,13 @@ export default function KeyConcept({ title = 'Key Concept', children }: KeyConce
           </div>
         </div>
       </div>
-    </div>
+      </div>
+
+      <ZoomModal isOpen={isZoomed} onClose={() => setIsZoomed(false)} title={title}>
+        <div className="text-gray-800 dark:text-gray-200 space-y-2">
+          {children}
+        </div>
+      </ZoomModal>
+    </>
   )
 }

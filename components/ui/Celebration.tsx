@@ -49,10 +49,8 @@ export default function Celebration({ show, onComplete }: CelebrationProps) {
         "transform transition-all duration-500",
         "animate-bounce-in"
       )}>
-        <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-          </svg>
+        <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+          <span className="text-7xl animate-clap">👏</span>
         </div>
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
           Excellent Work! 🎉
@@ -86,11 +84,29 @@ export default function Celebration({ show, onComplete }: CelebrationProps) {
             opacity: 1;
           }
         }
+        @keyframes clap {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+          }
+          25% {
+            transform: scale(1.2) rotate(-15deg);
+          }
+          50% {
+            transform: scale(1.3) rotate(0deg);
+          }
+          75% {
+            transform: scale(1.2) rotate(15deg);
+          }
+        }
         .animate-confetti {
           animation: confetti linear forwards;
         }
         .animate-bounce-in {
           animation: bounce-in 0.5s ease-out;
+        }
+        .animate-clap {
+          animation: clap 0.6s ease-in-out infinite;
+          display: inline-block;
         }
       `}</style>
     </div>
