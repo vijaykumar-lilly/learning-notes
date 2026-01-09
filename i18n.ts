@@ -23,7 +23,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
       common: (await import(`./messages/${locale}/common.json`)).default,
       'number-sense': (await import(`./messages/${locale}/number-sense.json`)).default,
       arithmetic: (await import(`./messages/${locale}/arithmetic.json`)).default,
-      decimals: (await import(`./messages/${locale}/decimals.json`)).default
+      decimals: (await import(`./messages/${locale}/decimals.json`)).default,
+      fractions: (await import(`./messages/${locale}/fractions.json`)).default,
+      percentages: (await import(`./messages/${locale}/percentages.json`)).default
     }
   };
 });

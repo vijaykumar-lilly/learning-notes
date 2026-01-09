@@ -14,7 +14,7 @@ This guide provides step-by-step instructions for creating new bilingual lessons
 
 ```
 messages/
-├── en/
+├── en/                       # Primary language (English)
 │   ├── common.json           # Navigation, UI buttons (~20 keys)
 │   ├── number-sense.json     # Number Sense lesson (~100 keys)
 │   ├── arithmetic.json       # Arithmetic lesson (~200 keys)
@@ -22,12 +22,17 @@ messages/
 │   ├── fractions.json        # Fractions lesson
 │   ├── percentages.json      # Percentages lesson
 │   └── integers.json         # Integers lesson
-└── ta/
-    ├── common.json
+└── [locale]/                 # Secondary languages (ta, es, fr, etc.)
+    ├── common.json           # Same structure as primary
     ├── number-sense.json
     ├── arithmetic.json
-    └── ... (same structure)
+    └── ... (mirror primary language structure)
 ```
+
+**Note**: 
+- **Primary language**: English (en) - All lessons created here first
+- **Secondary languages**: Tamil (ta), Spanish (es), French (fr), etc.
+- Each secondary language must mirror the exact structure of the primary language
 
 **Benefits**:
 - ✅ Smaller, manageable files (100-200 lines each)
@@ -77,7 +82,7 @@ Student answers → Instant feedback → Explanation → Try again or Continue
 - Review and synthesize at the end
 
 #### 5. **Accessibility & Inclusivity**
-- **Bilingual support**: Learn in your preferred language (English/Tamil)
+- **Multilingual support**: Learn in your preferred language (currently English, Tamil, expandable to more)
 - **Responsive design**: Works on mobile, tablet, desktop
 - **Clear typography**: Easy-to-read fonts and spacing
 - **Progressive disclosure**: Information revealed when needed
@@ -594,10 +599,10 @@ export default function YourLesson() {
 - Use `Note` components for tips, warnings, success messages
 
 ### Language Tone
-- **English**: Clear, friendly, encouraging
-- **Tamil**: Formal educational tone, respectful
-- **Both**: Age-appropriate vocabulary
-- **Both**: Positive, motivating language
+- **Primary language (English)**: Clear, friendly, encouraging
+- **Secondary languages**: Maintain culturally appropriate tone (formal or informal based on language norms)
+- **All languages**: Age-appropriate vocabulary
+- **All languages**: Positive, motivating language
 
 ---
 
@@ -705,9 +710,18 @@ export default function YourLessonName() {
 
 ## Step 3: Create Translation Files
 
-### 3.1: Create English Translation File
+**Workflow**: Always create the primary language (English) first, then translate to secondary languages.
+
+### Language Creation Order:
+1. ✅ **Create in English (Primary)** - Complete all content, exercises, and explanations
+2. ✅ **Translate to Secondary Languages** - Mirror the English structure exactly
+3. ✅ **Test Both Languages** - Verify language switching works correctly
+
+### 3.1: Create Primary Language Translation File (English)
 
 **File**: `messages/en/your-lesson-namespace.json`
+
+**Note**: English is the primary language. Create all lesson content here first.
 
 Example: `messages/en/arithmetic.json`
 
@@ -738,12 +752,15 @@ Example: `messages/en/arithmetic.json`
 }
 ```
 
-### 3.2: Create Tamil Translation File
+### 3.2: Create Secondary Language Translation Files
 
-**File**: `messages/ta/your-lesson-namespace.json`
+**File**: `messages/[locale]/your-lesson-namespace.json`
 
-Mirror the exact same structure as English:
+Where `[locale]` is the language code (ta for Tamil, es for Spanish, fr for French, etc.)
 
+**Important**: Mirror the exact same structure as the primary language (English).
+
+**Example for Tamil** (`messages/ta/your-lesson-namespace.json`):
 ```json
 {
   "title": "உங்கள் பாடத் தலைப்பு",
@@ -767,6 +784,34 @@ Mirror the exact same structure as English:
   "conclusion": {
     "title": "சிறப்பாக செய்தீர்கள்!",
     "message": "நீங்கள் கற்றுக்கொண்டீர்கள்..."
+  }
+}
+```
+
+**Example for Spanish** (`messages/es/your-lesson-namespace.json`):
+```json
+{
+  "title": "Título de tu lección",
+  
+  "concept1": {
+    "term": "Término del concepto",
+    "definition": "Un <strong>concepto</strong> se define aquí con etiquetas HTML.",
+    "examplesLabel": "Ejemplos:",
+    "example1": "Primer texto de ejemplo",
+    "example2": "Segundo texto de ejemplo"
+  },
+  
+  "exercise1": {
+    "question": "¿Cuál es la respuesta?",
+    "hint": "Piensa en el patrón...",
+    "explanation": "La respuesta es X porque...",
+    "solution1": "Paso 1 con <strong>énfasis</strong>",
+    "solution2": "Paso 2 texto plano"
+  },
+  
+  "conclusion": {
+    "title": "¡Buen trabajo!",
+    "message": "Has aprendido sobre..."
   }
 }
 ```
@@ -798,12 +843,13 @@ return {
    - `hint` for hints
    - `explanation` for explanations
    - `solution1`, `solution2`, etc. for multi-step solutions
-5. **Tamil guidelines**:
-   - Match English structure exactly (same keys, same nesting)
-   - Preserve HTML tags in same positions
-   - Math notation stays universal (numbers, symbols)
-   - Use proper Tamil script (UTF-8 encoding)
-   - Professional educational tone
+5. **Secondary language guidelines** (for all non-English languages):
+   - **Match primary language structure exactly** (same keys, same nesting)
+   - **Preserve HTML tags** in same positions
+   - **Math notation stays universal** (numbers, symbols, formulas)
+   - **Use proper character encoding** (UTF-8 for all scripts)
+   - **Maintain appropriate cultural tone** (formal/informal based on language norms)
+   - **Keep key names in English** (only translate values, not JSON keys)
 
 ---
 
@@ -940,23 +986,28 @@ return {
 ## Step 7: Testing Your Lesson
 
 ### 1. Verify Routes Work
-- English: `http://localhost:3000/en/learn/[domain]/[topic]`
-- Tamil: `http://localhost:3000/ta/learn/[domain]/[topic]`
+- Primary language: `http://localhost:3000/en/learn/[domain]/[topic]`
+- Secondary languages: `http://localhost:3000/[locale]/learn/[domain]/[topic]`
+  - Example: `http://localhost:3000/ta/learn/[domain]/[topic]` (Tamil)
+  - Example: `http://localhost:3000/es/learn/[domain]/[topic]` (Spanish)
 
 ### 2. Check Language Switching
 - Click the language switcher in the header
 - Verify all content updates correctly
-- Ensure no English text appears in Tamil mode and vice versa
+- Ensure no primary language text appears in secondary language mode and vice versa
+- Test switching between all available languages
 
 ### 3. Validate Translations
 - Check for missing translation keys (console errors)
 - Verify HTML formatting displays correctly
-- Test all interactive exercises work in both languages
+- Test all interactive exercises work in all languages
+- Confirm math notation displays universally
 
 ### 4. Review Accessibility
-- All text should be readable
-- Tamil font displays properly (system fonts)
-- Screen readers can access content
+- All text should be readable in all languages
+- Non-Latin scripts display properly (system fonts)
+- Right-to-left languages render correctly (if applicable)
+- Screen readers can access content in all languages
 
 ---
 
@@ -998,15 +1049,17 @@ return {
 
 See the reference implementation:
 - **File**: `app/[locale]/learn/foundations/number-sense/page.tsx`
-- **English**: `messages/en.json` → `lessons.numberSense`
-- **Tamil**: `messages/ta.json` → `lessons.numberSense`
+- **Primary (English)**: `messages/en/number-sense.json`
+- **Secondary (Tamil)**: `messages/ta/number-sense.json`
+- **Additional languages**: Follow the same pattern in `messages/[locale]/number-sense.json`
 
 This demonstrates:
 - ✅ Proper use of `useTranslations`
 - ✅ `t.rich()` for HTML content
 - ✅ All interactive components
 - ✅ Math rendering
-- ✅ Full English/Tamil translations
+- ✅ Complete multilingual translations
+- ✅ Language-agnostic architecture
 
 ---
 
@@ -1044,19 +1097,32 @@ This demonstrates:
 
 ## Lesson Creation Checklist
 
+### Phase 1: Create Primary Language (English)
 - [ ] Create lesson component file in correct domain/topic folder
 - [ ] Add `'use client'` directive
 - [ ] Import and use `useTranslations` hook
 - [ ] Implement lesson content using translation keys
 - [ ] Use `t.rich()` for any HTML formatting
-- [ ] Add English translations to `messages/en.json`
-- [ ] Add Tamil translations to `messages/ta.json`
-- [ ] Test both `/en/` and `/ta/` routes
-- [ ] Verify language switcher works
-- [ ] Check exercises function correctly
+- [ ] Add English translations to `messages/en/your-lesson.json`
+- [ ] Test `/en/` route works correctly
+- [ ] Verify all exercises function correctly
 - [ ] Review math rendering displays properly
+
+### Phase 2: Add Secondary Languages
+- [ ] Create translation file in `messages/[locale]/your-lesson.json`
+- [ ] Mirror exact structure from English file
+- [ ] Translate all values (keep keys in English)
+- [ ] Preserve HTML tags in same positions
+- [ ] Test `/[locale]/` route (e.g., `/ta/`, `/es/`)
+- [ ] Verify language switcher works between all languages
+- [ ] Ensure no mixed-language content appears
+
+### Phase 3: Final Testing
 - [ ] Test on mobile and desktop
 - [ ] Verify sidebar highlights active lesson
+- [ ] Check all languages render correctly
+- [ ] Validate math notation is universal
+- [ ] Test with screen readers (accessibility)
 
 ---
 
@@ -1076,6 +1142,53 @@ If you encounter issues:
 2. Review console errors for specific translation key issues
 3. Verify JSON syntax in translation files
 4. Test incrementally - add translations section by section
+
+---
+
+## Adding a New Language to the Platform
+
+To add a new language (e.g., Spanish, French, Hindi):
+
+### 1. Create Language Directory
+```bash
+mkdir messages/[locale]  # e.g., messages/es for Spanish
+```
+
+### 2. Copy Structure from English
+```bash
+cp -r messages/en/* messages/[locale]/
+```
+
+### 3. Translate All Files
+- Keep JSON structure identical
+- Keep all key names in English
+- Translate only the values
+- Preserve HTML tags
+- Keep math notation universal
+
+### 4. Register in i18n Configuration
+Add the new locale to `i18n.ts`:
+```typescript
+export const locales = ['en', 'ta', 'es'] as const; // Add your locale
+```
+
+### 5. Test Thoroughly
+- Test all lessons in new language
+- Verify language switcher includes new language
+- Check font rendering for non-Latin scripts
+- Validate right-to-left layout (if applicable)
+
+### Language Codes Reference
+- `en` - English
+- `ta` - Tamil
+- `es` - Spanish
+- `fr` - French
+- `de` - German
+- `hi` - Hindi
+- `zh` - Chinese
+- `ar` - Arabic
+- `ja` - Japanese
+- etc.
 
 ---
 
