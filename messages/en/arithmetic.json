@@ -1,0 +1,185 @@
+{
+  "title": "Basic Arithmetic",
+  "addition": {
+    "term": "Addition",
+    "definition": "<strong>Addition</strong> is combining two or more numbers to get a total or sum. The",
+    "readAs": "sign means \"plus\" and is read as \"add\".",
+    "exampleLabel": "Example:",
+    "exampleText": "Think of it as: 5 apples + 3 apples = 8 apples",
+    "visualLabel": "Visual: Adding 5 and 3",
+    "properties": {
+      "title": "Properties of Addition",
+      "commutative": "<strong>Commutative Property:</strong> The order doesn't matter:",
+      "commutativeLabel": "you can add in any order",
+      "identity": "<strong>Identity Property:</strong> Adding zero doesn't change the number:",
+      "identityLabel": "zero is the identity element"
+    },
+    "exercise1": {
+      "question": "What is",
+      "hint": "Break it into parts: 20 + 10 = 30, then add the remaining 3 + 5 = 8. Finally, 30 + 8 = 38",
+      "solution1": "We can break this into parts:",
+      "solution2": "20 + 10 = 30, and 3 + 5 = 8",
+      "solution3": "So: 30 + 8 = 38"
+    },
+    "mentalMath": {
+      "title": "Mental Math Trick",
+      "description": "When adding numbers close to 10, 20, 30, etc., round up first, then subtract:",
+      "exampleLabel": "Example:",
+      "step1": "Round 29 to 30:",
+      "step2": "Subtract the extra 1:",
+      "worksGreat": "This works great for any numbers ending in 8 or 9!"
+    }
+  },
+  "subtraction": {
+    "term": "Subtraction",
+    "definition": "<strong>Subtraction</strong> is taking away one number from another. The",
+    "readAs": "sign means \"minus\" and is read as \"subtract\".",
+    "exampleLabel": "Example:",
+    "exampleText": "Think of it as: 9 cookies - 4 cookies = 5 cookies left",
+    "visualLabel": "Visual: Subtracting 4 from 9",
+    "exercise1": {
+      "question": "What is",
+      "explanation1": "We can use borrowing:",
+      "explanation2": "Borrow 1 from the tens place: 4 becomes 3, and 2 becomes 12. Now: 12 - 8 = 4 for ones, 3 - 1 = 2 for tens. Answer: 24",
+      "hint": "Try borrowing from the tens place to subtract in the ones place."
+    },
+    "shortcut": {
+      "title": "Subtraction Shortcut",
+      "description": "Make subtraction easier by adding the same amount to both numbers:",
+      "example1Label": "Example:",
+      "example1Step1": "Add 2 to both numbers:",
+      "example1Step2": "Now it's easier:",
+      "example2Label": "Another example:",
+      "example2": "Add 3 to both:"
+    }
+  },
+  "multiplication": {
+    "term": "Multiplication",
+    "definition": "<strong>Multiplication</strong> is repeated addition. It's a faster way to add the same number multiple times. We use the",
+    "or": "or",
+    "exampleLabel": "Example:",
+    "exampleText": "Think of it as: 4 groups of 3 = 3 + 3 + 3 + 3 = 12",
+    "visualLabel": "Visual: 4 groups of 3",
+    "fingerTrick": {
+      "title": "The 9 Times Trick (Using Fingers!)",
+      "description": "Here's a cool trick to multiply any number by 9 using your fingers:",
+      "exampleLabel": "Example:",
+      "step1": "1. Hold up all 10 fingers",
+      "step2": "2. Put down your 7th finger (counting from the left)",
+      "step3": "3. Count fingers to the left of the down finger: 6 (this is the tens digit)",
+      "step4": "4. Count fingers to the right: 3 (this is the ones digit)",
+      "tryIt": "Try this with other numbers like 9 × 4, 9 × 6, etc.!"
+    },
+    "pattern": {
+      "title": "Multiplication Pattern",
+      "problem": "Notice the pattern when multiplying by 5:",
+      "conclusion": "Pattern: All products end in 0 or 5!"
+    },
+    "doublingTrick": {
+      "title": "Doubling and Halving Trick",
+      "description": "When multiplying, if one number is even, you can double one and halve the other to make it easier:",
+      "exampleLabel": "Example:",
+      "step1": "Double 25 to get 50, halve 16 to get 8:",
+      "step2": "Double 50 to get 100, halve 8 to get 4:",
+      "quickOnes": "This is especially quick when you can reach numbers ending in 0 or 5:"
+    },
+    "exercise1": {
+      "question": "What is",
+      "hint": "Try the 9 times finger trick, or remember: 7 × 8 = 56",
+      "solution": "This is part of the multiplication table. If you're stuck, you can think of it as 7 + 7 + 7 + 7 + 7 + 7 + 7 + 7, but it's much faster to memorize: 7 × 8 = 56"
+    }
+  },
+  "division": {
+    "term": "Division",
+    "definition": "<strong>Division</strong> is splitting a number into equal parts or groups. We use the",
+    "or": "or",
+    "readAs": "symbol (read as \"divided by\").",
+    "exampleLabel": "Example:",
+    "exampleText": "Think of it as: 12 cookies shared equally among 3 friends = 4 cookies each",
+    "visualLabel": "Visual: Dividing 12 into 3 groups",
+    "rules": {
+      "title": "Quick Divisibility Rules",
+      "description": "Here are some tricks to quickly check if a number can be divided evenly:",
+      "by2": {
+        "label": "Divisible by 2",
+        "rule": "If it ends in 0, 2, 4, 6, or 8"
+      },
+      "by3": {
+        "label": "Divisible by 3",
+        "rule": "If the sum of its digits is divisible by 3",
+        "example": "Example: 123 → 1+2+3 = 6, and 6÷3 = 2 ✓"
+      },
+      "by5": {
+        "label": "Divisible by 5",
+        "rule": "If it ends in 0 or 5"
+      },
+      "by9": {
+        "label": "Divisible by 9",
+        "rule": "If the sum of its digits is divisible by 9",
+        "example": "Example: 729 → 7+2+9 = 18, and 18÷9 = 2 ✓"
+      },
+      "by10": {
+        "label": "Divisible by 10",
+        "rule": "If it ends in 0"
+      },
+      "by6": {
+        "label": "Divisible by 6",
+        "rule": "If it's divisible by both 2 and 3"
+      }
+    },
+    "relationship": {
+      "title": "Relationship between Multiplication and Division",
+      "description": "Division is the opposite (inverse) of multiplication:",
+      "if": "If",
+      "then": "then"
+    },
+    "exercise1": {
+      "question": "What is",
+      "explanation": "45 ÷ 5 = 9 because 5 × 9 = 45. Division is the inverse of multiplication!",
+      "hint": "Think: What number times 5 equals 45?"
+    },
+    "example": {
+      "problem": "Solve",
+      "usingLongDivision": "using long division",
+      "step1": {
+        "title": "Set up the division",
+        "content": "How many times does 7 go into 56?"
+      },
+      "step2": {
+        "title": "Find the answer",
+        "content": "7 goes into 56 exactly 8 times because"
+      },
+      "step3": {
+        "title": "Write the answer",
+        "content": "The quotient is 8:"
+      },
+      "hint": "Think about the 7 times table: 7 × 1, 7 × 2, 7 × 3... which equals 56?"
+    },
+    "exercise2": {
+      "question": "What is",
+      "hint": "Use the divisibility rule for 9: Add the digits of 81. Is it divisible by 9?",
+      "solution1": "Using the 9 times table, we know",
+      "solution2": "So the answer is:"
+    }
+  },
+  "orderOfOperations": {
+    "title": "Order of Operations",
+    "description": "When you have multiple operations in one problem, follow this order: Parentheses, Exponents, Multiplication/Division (left to right), Addition/Subtraction (left to right). This is called PEMDAS or BODMAS.",
+    "memoryPhrase": {
+      "label": "Memory phrase:",
+      "text": "\"Please Excuse My Dear Aunt Sally\" (PEMDAS)"
+    },
+    "exampleLabel": "Example:",
+    "wrong": "Wrong:",
+    "right": "Right:",
+    "multiplyFirst": "Remember: Multiply before adding!",
+    "tip": {
+      "title": "Important Tip",
+      "description": "Always use parentheses when you want to change the order of operations. For example, if you want to add first, write (3 + 4) × 2 = 14."
+    }
+  },
+  "conclusion": {
+    "title": "🎉 Congratulations!",
+    "message": "You've mastered the four basic operations! These skills form the foundation of all mathematics. Keep practicing to build speed and accuracy!"
+  }
+}

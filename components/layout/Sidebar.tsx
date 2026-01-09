@@ -164,7 +164,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                 <div className="mt-1 ml-2 space-y-0.5">
                   {domain.topics.map((topic) => {
                     const topicPath = `/learn/${domain.slug}/${topic.slug}`
-                    const isActive = pathname === topicPath
+                    const isActive = pathname?.endsWith(topicPath) || pathname === topicPath
 
                     return (
                       <Link

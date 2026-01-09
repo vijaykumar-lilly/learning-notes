@@ -1,0 +1,23 @@
+{
+  "title": "Decimals",
+  "subtitle": "Introduction to Decimal Numbers",
+  "definition": {
+    "term": "Decimal Number",
+    "explanation": "A <strong>decimal number</strong> is a number that contains a decimal point, separating the whole number part from the fractional part. Decimals are another way to represent parts of a whole, just like fractions.",
+    "exampleLabel": "Example:",
+    "exampleText": "3.75 reads as \"three point seven five\"",
+    "wholePart": "is the whole number part",
+    "fractionalPart": "is the fractional part"
+  },
+  "placeValue": {
+    "title": "Decimal Place Value",
+    "description": "Each digit in a decimal number has a place value based on its position relative to the decimal point.",
+    "hundreds": "Hundreds",
+    "tens": "Tens",
+    "ones": "Ones",
+    "decimalPoint": "Decimal Point",
+    "tenths": "Tenths",
+    "hundredths": "Hundredths",
+    "thousandths": "Thousandths"
+  }
+}

@@ -5,9 +5,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tamil font support - system fonts with fallbacks */
+[lang="ta"] {
+  font-family: 'Noto Sans Tamil', 'Lohit Tamil', 'Tamil MN', 'Tamil Sangam MN', sans-serif;
+  line-height: 1.7;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bilingual-font-size: 16px;
 }
 
 .dark {
@@ -19,6 +26,35 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Apply bilingual font size to lesson content */
+.max-w-4xl {
+  font-size: var(--bilingual-font-size);
+}
+
+/* High contrast mode */
+.high-contrast {
+  --foreground: #000000;
+}
+
+.dark.high-contrast {
+  --foreground: #ffffff;
+}
+
+.high-contrast a,
+.high-contrast button {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Reduced motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
 }
 
 @layer utilities {
