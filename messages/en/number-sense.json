@@ -1,5 +1,24 @@
 {
   "title": "Number Sense & Place Value",
+  "welcome": {
+    "intro": "Welcome to your first step in mastering mathematics! In this lesson, you'll discover how numbers work and build a strong foundation for all your future math learning.",
+    "topic1": {
+      "title": "Understanding Numbers",
+      "desc": "Learn what numbers are and how we use them every day"
+    },
+    "topic2": {
+      "title": "Place Value System",
+      "desc": "Discover how position gives meaning to digits"
+    },
+    "topic3": {
+      "title": "Comparing & Patterns",
+      "desc": "Master comparing numbers and spotting patterns"
+    }
+  },
+  "numberLine": {
+    "title": "Interactive Number Line",
+    "instruction": "Numbers follow a pattern from 1 to 10. Each number is one more than the previous!"
+  },
   "number": {
     "term": "Number",
     "definition": "A <strong>number</strong> is a mathematical object used to count, measure, and label. Numbers help us understand quantities and order.",
@@ -86,7 +105,12 @@
     }
   },
   "conclusion": {
-    "title": "Great job!",
-    "message": "You've learned about numbers, place value, comparing, and even/odd numbers. These are the building blocks for all math! Practice counting and identifying place values every day."
+    "title": "Congratulations!",
+    "message": "You've mastered the fundamentals of number sense! These skills are the building blocks for all mathematics.",
+    "skill1": "Numbers",
+    "skill2": "Place Value",
+    "skill3": "Comparing",
+    "skill4": "Even & Odd",
+    "nextStep": "Ready for the next lesson?"
   }
 }
