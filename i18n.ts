@@ -31,6 +31,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       measurement: (await import(`./messages/${locale}/measurement.json`)).default
     ,
       'data-graphs': (await import(`./messages/${locale}/data-graphs.json`)).default
+    ,
+      'patterns-sequences': (await import(`./messages/${locale}/patterns-sequences.json`)).default
     }
   };
 });

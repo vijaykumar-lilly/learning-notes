@@ -32,6 +32,7 @@ export const curriculumData: Domain[] = [
       { id: '1.7', title: 'Basic Geometry', slug: 'basic-geometry', exerciseCount: 5 },
       { id: '1.8', title: 'Measurement', slug: 'measurement', exerciseCount: 5 },
       { id: '1.9', title: 'Basic Data & Graphs', slug: 'data-graphs', exerciseCount: 5 },
+      { id: '1.10', title: 'Patterns & Sequences', slug: 'patterns-sequences', exerciseCount: 5 },
     ],
   },
   {
