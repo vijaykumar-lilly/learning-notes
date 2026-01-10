@@ -16,7 +16,16 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse }: SidebarProps) {
   const pathname = usePathname()
-  const [expandedDomains, setExpandedDomains] = useState<Set<string>>(new Set(['1']))
+  
+  // Determine which domain to expand based on current pathname
+  const getCurrentDomain = () => {
+    const currentDomain = curriculumData.find(domain => 
+      pathname?.includes(`/learn/${domain.slug}/`)
+    )
+    return currentDomain ? new Set([currentDomain.id]) : new Set()
+  }
+  
+  const [expandedDomains, setExpandedDomains] = useState<Set<string>>(getCurrentDomain)
 
   const toggleDomain = (domainId: string) => {
     const newExpanded = new Set(expandedDomains)
@@ -123,7 +132,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                 className={cn(
                   'w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors',
                   'hover:bg-gray-100 dark:hover:bg-gray-800',
-                  pathname?.includes(domain.slug) 
+                  pathname?.includes(`/learn/${domain.slug}/`)
                     ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' 
                     : 'text-gray-700 dark:text-gray-300'
                 )}
