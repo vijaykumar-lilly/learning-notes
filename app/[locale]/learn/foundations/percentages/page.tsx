@@ -18,7 +18,7 @@ export default function PercentagesLesson() {
   const navigation = getLessonNavigation('foundations', 'percentages')
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 relative">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">{t('title')}</h1>
 
       <Definition term={t('definition.percentage.title')}>

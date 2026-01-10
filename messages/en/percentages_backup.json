@@ -51,7 +51,8 @@
       "method1Step1": "Find the discount amount",
       "method1Step2": "Subtract from original price",
       "method2Title": "Method 2: Use complement percentage",
-      "method2Content": "If 20% off, you pay 80%. So multiply by 0.80"
+      "method2Content": "If 20% off, you pay 80%. So multiply by 0.80",
+      "method2Explanation": "If 20% off, you pay 80%. So multiply by 0.80"
     },
     "tips": {
       "title": "Tips and Gratuity",
@@ -65,7 +66,8 @@
       "title": "Sales Tax",
       "intro": "Sales tax is a percentage added to the price of goods and services. The rate varies by location.",
       "calculatingTitle": "Calculating Total with Tax:",
-      "shortcutLabel": "Or use shortcut:"
+      "shortcutLabel": "Or use shortcut:",
+      "orShortcut": "Or use shortcut:"
     }
   },
   "keyConcepts": {
@@ -160,7 +162,7 @@
       "hint": "Move the decimal point 2 places to the right"
     },
     "fractionToPercent": {
-      "question": "What is",
+      "question": "What is {fraction} as a percentage?",
       "solution": "1 ÷ 5 = 0.2, then 0.2 × 100 = 20%",
       "hint": "First convert to decimal, then multiply by 100"
     },
@@ -193,13 +195,13 @@
   "examples": {
     "fractionToPercent": {
       "title": "Converting Fraction to Percent",
-      "problem": "Convert",
+      "problem": "Convert {fraction} to a percentage",
       "step1Title": "Convert to decimal",
       "step1Content": "3 ÷ 4 = 0.75",
       "step2Title": "Multiply by 100",
       "step2Content": "0.75 × 100 = 75",
       "step3Title": "Add % symbol",
-      "step3Content": ""
+      "step3Content": "{result}"
     },
     "findingPercentage": {
       "title": "Finding a Percentage",
@@ -247,6 +249,21 @@
       "method2Step2Title": "Multiply",
       "method2Step2Content": "$80 × 0.75 = $60",
       "answer": "Sale Price = $60"
+    },
+    "priceWithTax": {
+      "title": "Calculating Price with Tax",
+      "problem": "A computer costs $800 before tax. If the sales tax is 8%, what is the total price?",
+      "method1Title": "Method 1: Add tax to price",
+      "method1Step1Title": "Find tax amount",
+      "method1Step1Content": "$800 × 0.08 = $64",
+      "method1Step2Title": "Add to original price",
+      "method1Step2Content": "$800 + $64 = $864",
+      "method2Title": "Method 2: Multiply by (1 + tax rate)",
+      "method2Step1Title": "Calculate multiplier",
+      "method2Step1Content": "1 + 0.08 = 1.08",
+      "method2Step2Title": "Multiply",
+      "method2Step2Content": "$800 × 1.08 = $864",
+      "answer": "Total Price = $864"
     },
     "salesTax": {
       "title": "Calculating Price with Sales Tax",

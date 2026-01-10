@@ -19,6 +19,8 @@ export default function Celebration({ show, onComplete }: CelebrationProps) {
         onComplete?.()
       }, 1500)
       return () => clearTimeout(timer)
+    } else {
+      setVisible(false)
     }
   }, [show, onComplete])
 
