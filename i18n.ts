@@ -34,7 +34,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       integers: (await import(`./messages/${locale}/integers.json`)).default,
       exponents: (await import(`./messages/${locale}/exponents.json`)).default,
       expressions: (await import(`./messages/${locale}/expressions.json`)).default,
-      'linear-equations': (await import(`./messages/${locale}/linear-equations.json`)).default
+      'linear-equations': (await import(`./messages/${locale}/linear-equations.json`)).default,
+      inequalities: (await import(`./messages/${locale}/inequalities.json`)).default
     }
   };
 });

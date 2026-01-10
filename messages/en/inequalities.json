@@ -1,0 +1,203 @@
+{
+  "title": "Inequalities",
+  "description": "Learn to solve and graph inequalities with practical applications",
+  "definition": {
+    "title": "What is an Inequality?",
+    "intro": "An inequality shows the relationship between two values when they are different. Unlike equations that use '=', inequalities use symbols like >, <, ≥, and ≤.",
+    "equation": {
+      "title": "📊 Equation",
+      "description": "Shows exact equality",
+      "meaning": "x must be exactly 5"
+    },
+    "inequality": {
+      "title": "📈 Inequality",
+      "description": "Shows a range of values",
+      "meaning": "x can be any value greater than 5"
+    },
+    "symbols": {
+      "title": "Inequality Symbols",
+      "gt": "Greater than",
+      "lt": "Less than",
+      "gte": "Greater than or equal to",
+      "lte": "Less than or equal to"
+    }
+  },
+  "concepts": {
+    "title": "Key Concepts",
+    "solving": {
+      "title": "📝 Solving Inequalities",
+      "text": "Inequalities are solved like equations, with one important exception:",
+      "rule1": "Add or subtract the same number from both sides - inequality sign stays the same",
+      "rule2": "Multiply or divide by a positive number - inequality sign stays the same"
+    },
+    "flip": {
+      "title": "The Flip Rule",
+      "text": "When you multiply or divide both sides by a negative number, you must flip the inequality sign!",
+      "example": "Example:",
+      "original": "Original inequality",
+      "flipped": "← Sign flipped! (> became <)"
+    },
+    "numberline": {
+      "title": "📍 Graphing on a Number Line",
+      "text": "Visual representation helps understand the solution set:",
+      "open": "Open circle: value not included (> or <)",
+      "closed": "Closed circle: value included (≥ or ≤)"
+    }
+  },
+  "visual": {
+    "title": "Visual Guide: Inequality Symbols",
+    "table": {
+      "symbol": "Symbol",
+      "meaning": "Meaning",
+      "example": "Example",
+      "graph": "Number Line Graph",
+      "gtMeaning": "Greater than",
+      "gtGraph": "Arrow to the right, open circle",
+      "ltMeaning": "Less than",
+      "ltGraph": "Arrow to the left, open circle",
+      "gteMeaning": "Greater than or equal to",
+      "gteGraph": "Arrow to the right, closed circle",
+      "lteMeaning": "Less than or equal to",
+      "lteGraph": "Arrow to the left, closed circle"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: Simple Inequality",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Solution:",
+      "step2Text": "Subtract 7 from both sides",
+      "solutionLabel": "Answer:",
+      "solutionText": "x can be any number greater than 5"
+    },
+    "example2": {
+      "title": "Example 2: Two-Step Inequality",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Step 1:",
+      "step2Text": "Add 4 to both sides",
+      "step3Label": "Step 2:",
+      "step3Text": "Divide both sides by 3 (positive number, sign stays same)",
+      "solutionLabel": "Answer:",
+      "solutionText": "x can be 5 or any number less than 5"
+    },
+    "example3": {
+      "title": "Example 3: Negative Coefficient (Flip the Sign!)",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Solution:",
+      "step2Text": "Divide both sides by -4 and FLIP the inequality sign",
+      "note": "⚠️ Remember: When dividing by a negative, flip the sign!",
+      "solutionLabel": "Answer:",
+      "solutionText": "x can be any number less than -5"
+    },
+    "example4": {
+      "title": "Example 4: Compound Inequality",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Step 1:",
+      "step2Text": "Subtract 1 from all three parts",
+      "step3Label": "Step 2:",
+      "step3Text": "Divide all parts by 2",
+      "solutionLabel": "Answer:",
+      "solutionText": "x is between -2 and 4, including 4 but not -2"
+    }
+  },
+  "realWorld": {
+    "title": "Real World Applications",
+    "intro": "Inequalities are everywhere in daily life when we deal with limits, ranges, and constraints!",
+    "app1": {
+      "title": "💰 Budget Constraints",
+      "description": "When shopping with a budget, you need to stay under a spending limit.",
+      "exampleLabel": "Example:",
+      "example": "You have $100. You buy a $25 shirt and want to buy movie tickets for $3 each. How many tickets can you buy?",
+      "solutionLabel": "Solution:",
+      "answer": "You can buy up to 25 tickets."
+    },
+    "app2": {
+      "title": "🌡️ Temperature Ranges",
+      "description": "Comfortable room temperature is often described as a range, not a single value.",
+      "exampleLabel": "Example:",
+      "example": "A comfortable room temperature is between 65°F and 75°F.",
+      "meaning": "The temperature should be at least 65° but no more than 75°."
+    },
+    "app3": {
+      "title": "🚗 Speed Limits",
+      "description": "Speed limits are inequalities that tell us the maximum safe speed.",
+      "exampleLabel": "Example:",
+      "example": "A highway has a speed limit of 65 mph.",
+      "meaning": "You must drive at a speed less than or equal to 65 mph to stay legal."
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "instruction": "Solve these inequalities. Click to reveal the solution when you're ready!",
+    "exercise1": {
+      "title": "Exercise 1: Simple Inequality",
+      "question": "Solve for x:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise2": {
+      "title": "Exercise 2: Two-Step Inequality",
+      "question": "Solve for y:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise3": {
+      "title": "Exercise 3: Flip the Sign!",
+      "question": "Solve for m (remember to flip!):",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "note": "⚠️ Sign flipped because we divided by a negative number!",
+      "answerLabel": "Answer:"
+    },
+    "exercise4": {
+      "title": "Exercise 4: Inequality with Fractions",
+      "question": "Solve for n:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise5": {
+      "title": "Exercise 5: Compound Inequality",
+      "question": "Solve for x:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    }
+  },
+  "tips": {
+    "title": "Tips & Common Mistakes",
+    "tip1": {
+      "title": "⚠️ Don't Forget to Flip!",
+      "text": "The most common mistake is forgetting to flip the inequality sign when multiplying or dividing by a negative number. Always check the sign of the number you're using!"
+    },
+    "tip2": {
+      "title": "✅ Test Your Solution",
+      "text": "Pick a number from your solution set and substitute it back into the original inequality to verify it works. This helps catch errors!"
+    },
+    "tip3": {
+      "title": "📊 Visualize with a Number Line",
+      "text": "Drawing a number line helps you see the solution set clearly. Use open circles for < and >, closed circles for ≤ and ≥."
+    },
+    "tip4": {
+      "title": "🎯 Read Carefully",
+      "text": "Pay attention to whether the inequality includes 'or equal to' (≤ or ≥) versus strict inequality (< or >). This determines if the boundary value is included in the solution."
+    }
+  },
+  "conclusion": {
+    "title": "Summary",
+    "summary": "Great work! You've learned how to solve inequalities, one of the most practical math skills for real-world situations.",
+    "keyPoints": "Key Takeaways:",
+    "point1": "Inequalities show relationships between values using >, <, ≥, and ≤",
+    "point2": "Solve inequalities like equations, but flip the sign when multiplying/dividing by negatives",
+    "point3": "Graph solutions on number lines using open or closed circles",
+    "point4": "Inequalities appear everywhere: budgets, temperature ranges, speed limits, and more",
+    "next": "Next up: Coordinate Plane & Graphing - plotting points and visualizing equations!"
+  }
+}
