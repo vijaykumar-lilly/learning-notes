@@ -27,7 +27,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       fractions: (await import(`./messages/${locale}/fractions.json`)).default,
       percentages: (await import(`./messages/${locale}/percentages.json`)).default,
       'ratios-proportions': (await import(`./messages/${locale}/ratios-proportions.json`)).default,
-      'basic-geometry': (await import(`./messages/${locale}/basic-geometry.json`)).default
+      'basic-geometry': (await import(`./messages/${locale}/basic-geometry.json`)).default,
+      measurement: (await import(`./messages/${locale}/measurement.json`)).default
     }
   };
 });

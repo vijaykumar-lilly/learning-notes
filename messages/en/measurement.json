@@ -1,0 +1,193 @@
+{
+  "title": "Measurement",
+  
+  "definition": {
+    "measurement": {
+      "title": "What is Measurement?",
+      "intro": "<strong>Measurement</strong> is finding the size, amount, or degree of something using numbers and units.",
+      "typesTitle": "What Can We Measure?",
+      "type1": "Length/Distance (how long or far)",
+      "type2": "Weight/Mass (how heavy)",
+      "type3": "Volume/Capacity (how much space or liquid)",
+      "type4": "Time (how long something takes)"
+    },
+    "length": {
+      "title": "Length and Distance",
+      "intro": "<strong>Length</strong> measures how long something is. <strong>Distance</strong> measures how far apart two things are.",
+      "metricTitle": "Metric Units (used in most countries):",
+      "millimeter": "Millimeter (mm) - very small, like the thickness of a coin",
+      "centimeter": "Centimeter (cm) - about the width of your pinky finger",
+      "meter": "Meter (m) - about one big step",
+      "kilometer": "Kilometer (km) - 1000 meters, good for long distances",
+      "imperialTitle": "Imperial Units (used in USA):",
+      "inch": "Inch (in) - about the length of your thumb",
+      "foot": "Foot (ft) - 12 inches, about the length of a ruler",
+      "yard": "Yard (yd) - 3 feet, about one big step",
+      "mile": "Mile (mi) - 5,280 feet, used for long distances"
+    },
+    "weight": {
+      "title": "Weight and Mass",
+      "intro": "<strong>Weight</strong> (or mass) measures how heavy something is.",
+      "metricTitle": "Metric Units:",
+      "gram": "Gram (g) - very light, like a paperclip",
+      "kilogram": "Kilogram (kg) - 1000 grams, like a bag of sugar",
+      "imperialTitle": "Imperial Units:",
+      "ounce": "Ounce (oz) - small weight, like a slice of bread",
+      "pound": "Pound (lb) - 16 ounces, like a loaf of bread"
+    },
+    "volume": {
+      "title": "Volume and Capacity",
+      "intro": "<strong>Volume</strong> or <strong>capacity</strong> measures how much space something takes up or how much liquid it can hold.",
+      "unitsTitle": "Common Units:",
+      "milliliter": "Milliliter (mL) - a few drops of water",
+      "liter": "Liter (L) - 1000 mL, like a large water bottle",
+      "cup": "Cup (c) - about 250 mL, a coffee mug",
+      "pint": "Pint (pt) - 2 cups",
+      "quart": "Quart (qt) - 4 cups",
+      "gallon": "Gallon (gal) - 4 quarts, a milk jug"
+    },
+    "time": {
+      "title": "Time",
+      "intro": "<strong>Time</strong> measures how long something takes or when something happens.",
+      "unitsTitle": "Units of Time:",
+      "second": "Second (s) - 1 heartbeat",
+      "minute": "Minute (min) - 60 seconds",
+      "hour": "Hour (h or hr) - 60 minutes",
+      "day": "Day - 24 hours",
+      "week": "Week - 7 days",
+      "month": "Month - about 30 days",
+      "year": "Year - 12 months or 365 days"
+    }
+  },
+
+  "keyConcepts": {
+    "lengthConversions": {
+      "title": "Length Conversions",
+      "explanation": "Common conversions you should know:",
+      "metric1": "1 meter = 100 centimeters",
+      "metric2": "1 centimeter = 10 millimeters",
+      "metric3": "1 kilometer = 1000 meters",
+      "imperial1": "1 foot = 12 inches",
+      "imperial2": "1 yard = 3 feet",
+      "imperial3": "1 mile = 5,280 feet"
+    },
+    "volumeConversions": {
+      "title": "Volume Conversions",
+      "conversion1": "1 liter = 1000 milliliters",
+      "conversion2": "1 pint = 2 cups",
+      "conversion3": "1 quart = 2 pints = 4 cups",
+      "conversion4": "1 gallon = 4 quarts = 16 cups"
+    }
+  },
+
+  "examples": {
+    "example1": {
+      "title": "Converting Meters to Centimeters",
+      "question": "A table is 2 meters long. How many centimeters is that?",
+      "step1": "Remember: 1 meter = 100 centimeters",
+      "step2": "Multiply: 2 meters × 100 = 200 centimeters",
+      "step3": "Check: 200 cm is bigger than 2 m, which makes sense because centimeters are smaller units",
+      "answerLabel": "Answer:",
+      "answer": "The table is 200 centimeters long"
+    },
+    "example2": {
+      "title": "Converting Kilograms to Grams",
+      "question": "A bag of rice weighs 3 kilograms. How many grams is that?",
+      "step1": "Remember: 1 kilogram = 1000 grams",
+      "step2": "Multiply: 3 kg × 1000 = 3000 grams",
+      "answerLabel": "Answer:",
+      "answer": "The rice weighs 3000 grams"
+    },
+    "example3": {
+      "title": "Calculating Time",
+      "question": "A movie starts at 3:00 PM and ends at 5:30 PM. How long is the movie?",
+      "step1": "From 3:00 to 5:00 = 2 hours",
+      "step2": "From 5:00 to 5:30 = 30 minutes",
+      "step3": "Total: 2 hours + 30 minutes = 2 hours 30 minutes",
+      "answerLabel": "Answer:",
+      "answer": "The movie is 2 hours and 30 minutes long"
+    }
+  },
+
+  "exercises": {
+    "exercise1": {
+      "question": "How many inches are in 1 foot?",
+      "option1": "10 inches",
+      "option2": "12 inches",
+      "option3": "24 inches",
+      "option4": "36 inches",
+      "explanation": "There are 12 inches in 1 foot. Think of a ruler!"
+    },
+    "exercise2": {
+      "question": "Convert 3 kilograms to grams.",
+      "hint": "Remember: 1 kg = 1000 g",
+      "explanation": "3 kg × 1000 = 3000 grams"
+    },
+    "exercise3": {
+      "question": "How many cups are in 1 gallon?",
+      "option1": "4 cups",
+      "option2": "8 cups",
+      "option3": "16 cups",
+      "option4": "32 cups",
+      "explanation": "1 gallon = 4 quarts, 1 quart = 4 cups, so 1 gallon = 4 × 4 = 16 cups"
+    },
+    "exercise4": {
+      "question": "How many minutes are in 2 hours?",
+      "hint": "Remember: 1 hour = 60 minutes",
+      "explanation": "2 hours × 60 minutes = 120 minutes"
+    },
+    "exercise5": {
+      "question": "Which unit would you use to measure the length of your bedroom?",
+      "option1": "Millimeters",
+      "option2": "Meters or feet",
+      "option3": "Kilometers",
+      "option4": "Grams",
+      "explanation": "Meters or feet are appropriate for measuring room sizes. Millimeters are too small, kilometers are too large, and grams measure weight, not length!"
+    }
+  },
+
+  "visuals": {
+    "lengthTools": {
+      "title": "Tools for Measuring Length",
+      "caption": "Different tools for different measurements",
+      "ruler": "Ruler (inches/cm)",
+      "tape": "Measuring Tape",
+      "meterStick": "Meter Stick"
+    },
+    "weightScale": {
+      "title": "Measuring Weight",
+      "caption": "A scale shows how heavy something is",
+      "label": "Kitchen Scale"
+    },
+    "volumeContainers": {
+      "title": "Measuring Volume",
+      "caption": "Different containers for measuring liquids",
+      "cup": "Cup",
+      "liter": "1 Liter",
+      "measuring": "Measuring Cup",
+      "gallon": "Gallon"
+    },
+    "clock": {
+      "title": "Measuring Time",
+      "caption": "A clock helps us measure and tell time",
+      "label": "3:00 - Hour hand (short, blue), Minute hand (long, green)"
+    }
+  },
+
+  "notes": {
+    "tip1": "Always include the unit when you write a measurement! 5 meters is very different from 5 centimeters!",
+    "trick1": "Memory trick for feet: A FOOT has 12 inches, just like a RULER has 12 inches!",
+    "warning1": "Don't mix up volume and weight! Milliliters (mL) measure liquids, grams (g) measure weight.",
+    "tip2": "To remember time: There are 60 seconds in a minute and 60 minutes in an hour. Both use 60!"
+  },
+
+  "conclusion": {
+    "title": "Great Measuring!",
+    "summary": "You've learned about different types of measurements! These skills help you understand the world around you and solve real problems every day.",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "We measure length (how long), weight (how heavy), volume (how much), and time (how long it takes)",
+    "takeaway2": "Metric system uses meters, grams, and liters; Imperial system uses feet, pounds, and gallons",
+    "takeaway3": "Always include the unit with your measurement (5 cm, not just 5)",
+    "takeaway4": "Converting units: multiply or divide based on the conversion factor (1 m = 100 cm, 1 ft = 12 in)"
+  }
+}

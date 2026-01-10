@@ -30,7 +30,7 @@ export const curriculumData: Domain[] = [
       { id: '1.5', title: 'Percentages', slug: 'percentages', exerciseCount: 40 },
       { id: '1.6', title: 'Ratios & Proportions', slug: 'ratios-proportions', exerciseCount: 6 },
       { id: '1.7', title: 'Basic Geometry', slug: 'basic-geometry', exerciseCount: 5 },
-      { id: '1.8', title: 'Measurement', slug: 'measurement', exerciseCount: 35 },
+      { id: '1.8', title: 'Measurement', slug: 'measurement', exerciseCount: 5 },
       { id: '1.9', title: 'Basic Data & Graphs', slug: 'data-graphs', exerciseCount: 30 },
     ],
   },
