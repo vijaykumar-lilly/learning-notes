@@ -45,7 +45,7 @@ export const curriculumData: Domain[] = [
       { id: '2.1', title: 'Integers & Rational Numbers', slug: 'integers', exerciseCount: 5 },
       { id: '2.2', title: 'Exponents & Powers', slug: 'exponents', exerciseCount: 5 },
       { id: '2.3', title: 'Algebraic Expressions', slug: 'expressions', exerciseCount: 5 },
-      { id: '2.4', title: 'Linear Equations (One Variable)', slug: 'linear-equations', exerciseCount: 70 },
+      { id: '2.4', title: 'Linear Equations (One Variable)', slug: 'linear-equations', exerciseCount: 5 },
       { id: '2.5', title: 'Inequalities', slug: 'inequalities', exerciseCount: 40 },
       { id: '2.6', title: 'Coordinate Plane & Graphing', slug: 'coordinate-plane', exerciseCount: 55 },
       { id: '2.7', title: 'Introduction to Functions', slug: 'functions-intro', exerciseCount: 35 },

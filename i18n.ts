@@ -33,7 +33,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       'patterns-sequences': (await import(`./messages/${locale}/patterns-sequences.json`)).default,
       integers: (await import(`./messages/${locale}/integers.json`)).default,
       exponents: (await import(`./messages/${locale}/exponents.json`)).default,
-      expressions: (await import(`./messages/${locale}/expressions.json`)).default
+      expressions: (await import(`./messages/${locale}/expressions.json`)).default,
+      'linear-equations': (await import(`./messages/${locale}/linear-equations.json`)).default
     }
   };
 });

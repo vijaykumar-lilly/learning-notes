@@ -1,0 +1,190 @@
+{
+  "title": "Linear Equations",
+  "description": "Learn to solve linear equations step by step and apply them to real-world problems",
+  "definition": {
+    "title": "What is a Linear Equation?",
+    "intro": "A linear equation is a mathematical statement that shows two expressions are equal. The goal is to find the value of the variable that makes the equation true.",
+    "what": "What makes it 'linear'?",
+    "explanation": "Linear equations have variables raised to the power of 1 (not squared or cubed). When graphed, they form straight lines.",
+    "example1": "One-step equation",
+    "example2": "Two-step equation",
+    "example3": "Equation with parentheses",
+    "goal": "The Goal:",
+    "goalText": "Isolate the variable on one side of the equation to find its value. Think of it like unwrapping a present - remove one layer at a time!"
+  },
+  "concepts": {
+    "title": "Key Concepts",
+    "balance": {
+      "title": "⚖️ Balance Principle",
+      "text": "An equation is like a balanced scale. Whatever you do to one side, you must do to the other to keep it balanced.",
+      "example": "If you add 5 to the left side, add 5 to the right side too!"
+    },
+    "inverse": {
+      "title": "🔄 Inverse Operations",
+      "text": "To isolate the variable, use the opposite operation:",
+      "add": "Addition",
+      "subtract": "Subtraction",
+      "multiply": "Multiplication",
+      "divide": "Division"
+    },
+    "steps": {
+      "title": "📋 Order of Operations (Reverse PEMDAS)",
+      "step1": "Simplify both sides (combine like terms, distribute)",
+      "step2": "Move variable terms to one side (add/subtract)",
+      "step3": "Move constant terms to the other side (add/subtract)",
+      "step4": "Isolate the variable (multiply/divide)"
+    }
+  },
+  "visual": {
+    "title": "Visual Guide: Types of Linear Equations",
+    "table": {
+      "type": "Equation Type",
+      "example": "Example",
+      "steps": "Solution Steps",
+      "oneStep": "One-Step",
+      "twoStep": "Two-Step",
+      "multiStep": "Multi-Step"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: One-Step Equation",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Solution:",
+      "step2Text": "Add 9 to both sides",
+      "checkLabel": "Check:"
+    },
+    "example2": {
+      "title": "Example 2: Two-Step Equation",
+      "problem": "Solve for y:",
+      "step1Label": "Given:",
+      "step2Label": "Step 1:",
+      "step2Text": "Subtract 8 from both sides",
+      "step3Label": "Step 2:",
+      "step3Text": "Divide both sides by 5",
+      "checkLabel": "Check:"
+    },
+    "example3": {
+      "title": "Example 3: Multi-Step with Distributive Property",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Step 1:",
+      "step2Text": "Apply distributive property",
+      "step3Label": "Step 2:",
+      "step3Text": "Add 6 to both sides",
+      "step4Label": "Step 3:",
+      "step4Text": "Divide both sides by 3",
+      "checkLabel": "Check:"
+    },
+    "example4": {
+      "title": "Example 4: Variable on Both Sides",
+      "problem": "Solve for x:",
+      "step1Label": "Given:",
+      "step2Label": "Step 1:",
+      "step2Text": "Subtract 4x from both sides",
+      "step3Label": "Step 2:",
+      "step3Text": "Add 3 to both sides",
+      "step4Label": "Step 3:",
+      "step4Text": "Divide both sides by 3",
+      "checkLabel": "Check:"
+    }
+  },
+  "realWorld": {
+    "title": "Real World Applications",
+    "intro": "Linear equations help us solve everyday problems! Here's where you'll use them:",
+    "app1": {
+      "title": "💰 Money & Budgeting",
+      "description": "Managing money often involves solving equations to find unknowns.",
+      "exampleLabel": "Example:",
+      "example": "You spent $45 on lunch and still have $120 left. How much money did you start with?",
+      "solutionLabel": "Solution:",
+      "answer": "You started with $75."
+    },
+    "app2": {
+      "title": "👨‍👩‍👧 Age Problems",
+      "description": "Family relationships and age comparisons use linear equations.",
+      "exampleLabel": "Example:",
+      "example": "Your dad is 3 times your age. If he's 36 years old, how old are you?",
+      "solutionLabel": "Solution:",
+      "answer": "You are 12 years old."
+    },
+    "app3": {
+      "title": "🛍️ Shopping & Discounts",
+      "description": "Calculate original prices when you know the sale price and discount.",
+      "exampleLabel": "Example:",
+      "example": "A jacket is on sale for 25% off and costs $60 after discount. What was the original price?",
+      "solutionLabel": "Solution:",
+      "answer": "The original price was $80."
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "instruction": "Try solving these equations on your own. Click to reveal the solution when you're ready!",
+    "exercise1": {
+      "title": "Exercise 1: One-Step Equation",
+      "question": "Solve for x:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise2": {
+      "title": "Exercise 2: Two-Step Equation",
+      "question": "Solve for y:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise3": {
+      "title": "Exercise 3: Distributive Property",
+      "question": "Solve for m:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise4": {
+      "title": "Exercise 4: Variable on Both Sides",
+      "question": "Solve for n:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    },
+    "exercise5": {
+      "title": "Exercise 5: Equation with Fractions",
+      "question": "Solve for x:",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:"
+    }
+  },
+  "tips": {
+    "title": "Tips & Common Mistakes",
+    "tip1": {
+      "title": "⚠️ Always Check Your Answer",
+      "text": "Substitute your solution back into the original equation to verify it works. This catches calculation errors!"
+    },
+    "tip2": {
+      "title": "✅ Keep Equations Balanced",
+      "text": "Whatever operation you perform on one side, do the same to the other side. The equals sign means both sides must remain equal."
+    },
+    "tip3": {
+      "title": "❌ Watch Out for Signs",
+      "text": "Be careful with negative numbers! When subtracting a negative, it becomes addition. When dividing by a negative, the inequality flips (we'll learn more about this later)."
+    },
+    "tip4": {
+      "title": "📝 Show Your Work",
+      "text": "Write out each step clearly. This helps you track your thinking and makes it easier to find mistakes."
+    }
+  },
+  "conclusion": {
+    "title": "Summary",
+    "summary": "Congratulations! You've learned how to solve linear equations, one of the most important skills in algebra.",
+    "keyPoints": "Key Takeaways:",
+    "point1": "Linear equations have variables to the first power",
+    "point2": "Use inverse operations to isolate the variable",
+    "point3": "Always maintain balance - do the same to both sides",
+    "point4": "Check your solution by substituting back into the original equation",
+    "next": "Next up: Inequalities - solving equations with 'greater than' and 'less than' symbols!"
+  }
+}
