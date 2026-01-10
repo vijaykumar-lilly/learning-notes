@@ -1,0 +1,175 @@
+{
+  "title": "Algebraic Expressions",
+  "definition": {
+    "algebraic": {
+      "title": "What is an Algebraic Expression?",
+      "intro": "An <strong>algebraic expression</strong> is a mathematical phrase that can contain numbers, variables, and operation symbols (+, −, ×, ÷).",
+      "example1Label": "Simple expression:",
+      "example2Label": "Complex expression:"
+    },
+    "terms": {
+      "title": "Terms in an Expression",
+      "intro": "A <strong>term</strong> is a single number, variable, or the product of numbers and variables separated by + or − signs.",
+      "exampleLabel": "In the expression:",
+      "term1": "1st term",
+      "term2": "2nd term",
+      "term3": "3rd term (constant)"
+    },
+    "coefficient": {
+      "title": "Coefficient",
+      "intro": "The <strong>coefficient</strong> is the numerical part of a term that contains a variable.",
+      "example1": "Coefficient is 7",
+      "example2": "Coefficient is -3",
+      "example3": "Coefficient is 1 (implied)"
+    }
+  },
+  "sections": {
+    "variables": {
+      "title": "Variables and Constants"
+    },
+    "terms": {
+      "title": "Terms and Coefficients"
+    },
+    "likeTerms": {
+      "title": "Like Terms",
+      "intro": "<strong>Like terms</strong> are terms that have the same variables raised to the same powers. Only like terms can be combined."
+    },
+    "combining": {
+      "title": "Combining Like Terms",
+      "intro": "To simplify expressions, combine like terms by adding or subtracting their coefficients."
+    },
+    "distributive": {
+      "title": "Distributive Property",
+      "explanation": "Multiply the term outside the parentheses by each term inside.",
+      "exampleLabel": "Examples:"
+    },
+    "evaluating": {
+      "title": "Evaluating Expressions",
+      "intro": "To evaluate an expression, substitute the given value for the variable and calculate."
+    }
+  },
+  "visuals": {
+    "variables": {
+      "title": "Understanding Components",
+      "caption": "Variables change, constants stay the same",
+      "variableTitle": "Variables",
+      "variableDesc": "Letters that represent unknown values",
+      "variable1": "unknown number",
+      "variable2": "another unknown",
+      "variable3": "often used for counting",
+      "constantTitle": "Constants",
+      "constantDesc": "Fixed numerical values",
+      "constant1": "always five",
+      "constant2": "always negative three",
+      "constant3": "approximately 3.14159..."
+    },
+    "likeTerms": {
+      "title": "Identifying Like Terms",
+      "caption": "Same variable and same exponent = like terms",
+      "header1": "Terms",
+      "header2": "Like Terms?",
+      "header3": "Reason",
+      "yes": "Yes",
+      "no": "No",
+      "reason1": "All have variable x with exponent 1",
+      "reason2": "All have y² (same variable, same exponent)",
+      "reason3": "Different exponents (1 vs 2)",
+      "reason4": "Different variables (x vs y)"
+    },
+    "combining": {
+      "title": "Combining Like Terms Example",
+      "caption": "Group like terms and add/subtract coefficients",
+      "step1": "Original expression:",
+      "step2": "Group like terms:",
+      "step3": "Combine coefficients:"
+    },
+    "evaluating": {
+      "title": "Evaluation Example",
+      "caption": "Substitute and calculate",
+      "problemLabel": "Evaluate:",
+      "when": "when",
+      "step1": "Step 1: Substitute 3 for x",
+      "step2": "Step 2: Multiply",
+      "step3": "Step 3: Add"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Combining Like Terms",
+      "question": "Simplify: 4x + 5x - 3",
+      "step1": "Identify like terms: 4x and 5x are like terms",
+      "step2": "Combine coefficients: 4 + 5 = 9",
+      "step3": "Result: 9x - 3",
+      "answerLabel": "Answer:"
+    },
+    "example2": {
+      "title": "Using Distributive Property",
+      "question": "Simplify: 4(x + 3)",
+      "step1": "Distribute 4 to both terms: 4 × x + 4 × 3",
+      "step2": "Multiply: 4x + 12",
+      "answerLabel": "Answer:"
+    },
+    "example3": {
+      "title": "Evaluating an Expression",
+      "question": "Evaluate 3x + 8 when x = 3",
+      "step1": "Substitute x = 3: 3(3) + 8",
+      "step2": "Multiply: 9 + 8",
+      "step3": "Add: 17",
+      "answerLabel": "Answer:"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "exercise1": {
+      "question": "Which terms are like terms? 3x, 5y, 2x",
+      "option1": "3x and 5y",
+      "option2": "5y and 2x",
+      "option3": "3x and 2x",
+      "option4": "All of them",
+      "explanation": "3x and 2x are like terms because they have the same variable (x) with the same exponent."
+    },
+    "exercise2": {
+      "question": "Evaluate 4x - 5 when x = 5",
+      "hint": "Substitute 5 for x, then calculate.",
+      "explanation": "4(5) - 5 = 20 - 5 = 15"
+    },
+    "exercise3": {
+      "question": "Simplify: 2x + 3x",
+      "option1": "5x²",
+      "option2": "5x",
+      "option3": "6x",
+      "option4": "2x²",
+      "explanation": "Combine coefficients: 2 + 3 = 5, so 2x + 3x = 5x"
+    },
+    "exercise4": {
+      "question": "What is the coefficient in 7y?",
+      "hint": "The coefficient is the number in front of the variable.",
+      "explanation": "The coefficient is 7"
+    },
+    "exercise5": {
+      "question": "Simplify using distributive property: 3(x + 2)",
+      "option1": "3x + 2",
+      "option2": "3x + 5",
+      "option3": "3x + 6",
+      "option4": "x + 6",
+      "explanation": "Distribute: 3 × x + 3 × 2 = 3x + 6"
+    }
+  },
+  "notes": {
+    "title": "Tips & Tricks",
+    "tip1": "📝 Only like terms can be combined. 2x + 3y cannot be simplified further.",
+    "tip2": "🎯 When combining like terms, add or subtract only the coefficients, not the variables.",
+    "tip3": "💡 Use the distributive property: a(b + c) = ab + ac",
+    "warning1": "⚠️ Don't confuse 3x and 3x²! They are NOT like terms because they have different exponents."
+  },
+  "conclusion": {
+    "title": "Excellent Work! 🎉",
+    "summary": "You've mastered algebraic expressions! Understanding variables, terms, coefficients, and how to simplify expressions is fundamental to all of algebra. These skills will be essential as you progress to solving equations and more complex problems.",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Variables represent unknown values; constants are fixed numbers",
+    "takeaway2": "Like terms have the same variable with the same exponent",
+    "takeaway3": "Combine like terms by adding/subtracting coefficients",
+    "takeaway4": "Use the distributive property: a(b + c) = ab + ac"
+  }
+}

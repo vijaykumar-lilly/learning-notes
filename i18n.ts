@@ -32,7 +32,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       'data-graphs': (await import(`./messages/${locale}/data-graphs.json`)).default,
       'patterns-sequences': (await import(`./messages/${locale}/patterns-sequences.json`)).default,
       integers: (await import(`./messages/${locale}/integers.json`)).default,
-      exponents: (await import(`./messages/${locale}/exponents.json`)).default
+      exponents: (await import(`./messages/${locale}/exponents.json`)).default,
+      expressions: (await import(`./messages/${locale}/expressions.json`)).default
     }
   };
 });

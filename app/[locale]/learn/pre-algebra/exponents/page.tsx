@@ -52,6 +52,87 @@ export default function ExponentsLesson() {
         </div>
       </Definition>
 
+      {/* Exponents vs Powers */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">{t('sections.exponentVsPower.title')}</h2>
+        
+        <VisualExplanation 
+          title={t('visuals.exponentVsPower.title')}
+          caption={t('visuals.exponentVsPower.caption')}
+        >
+          <div className="space-y-6">
+            {/* Similarities */}
+            <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-2 border-green-200 dark:border-green-700">
+              <h3 className="text-lg font-semibold mb-3 text-green-700 dark:text-green-400">
+                ✓ {t('visuals.exponentVsPower.similaritiesTitle')}
+              </h3>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>{t('visuals.exponentVsPower.similarity1')}</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>{t('visuals.exponentVsPower.similarity2')}</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>{t('visuals.exponentVsPower.similarity3')}</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Differences */}
+            <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg border-2 border-orange-200 dark:border-orange-700">
+              <h3 className="text-lg font-semibold mb-3 text-orange-700 dark:text-orange-400">
+                ⚡ {t('visuals.exponentVsPower.differencesTitle')}
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="min-w-full border border-gray-300 dark:border-gray-600">
+                  <thead className="bg-orange-100 dark:bg-orange-900/40">
+                    <tr>
+                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">{t('visuals.exponentVsPower.aspect')}</th>
+                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">{t('visuals.exponentVsPower.exponentCol')}</th>
+                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">{t('visuals.exponentVsPower.powerCol')}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-white dark:bg-gray-800">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">{t('visuals.exponentVsPower.definition')}</td>
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.exponentVsPower.exponentDef')}</td>
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.exponentVsPower.powerDef')}</td>
+                    </tr>
+                    <tr className="bg-gray-50 dark:bg-gray-700">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">{t('visuals.exponentVsPower.example')}</td>
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                        {t('visuals.exponentVsPower.exponentExample')} <MathRenderer math="2^5" /> {t('visuals.exponentVsPower.exponentIs')} <strong>5</strong>
+                      </td>
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                        {t('visuals.exponentVsPower.powerExample')} <MathRenderer math="2^5 = 32" /> {t('visuals.exponentVsPower.powerIs')} <strong>32</strong>
+                      </td>
+                    </tr>
+                    <tr className="bg-white dark:bg-gray-800">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">{t('visuals.exponentVsPower.usage')}</td>
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.exponentVsPower.exponentUsage')}</td>
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.exponentVsPower.powerUsage')}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Key Insight */}
+            <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg border-l-4 border-blue-500">
+              <p className="text-sm">
+                <strong className="text-blue-700 dark:text-blue-400">💡 {t('visuals.exponentVsPower.keyInsight')}</strong>
+                <br />
+                {t('visuals.exponentVsPower.keyInsightText')}
+              </p>
+            </div>
+          </div>
+        </VisualExplanation>
+      </section>
+
       {/* Reading Exponents */}
       <section className="my-8">
         <h2 className="text-2xl font-bold mb-4">{t('sections.reading.title')}</h2>

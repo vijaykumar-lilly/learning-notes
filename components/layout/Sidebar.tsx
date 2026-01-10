@@ -18,11 +18,11 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
   const pathname = usePathname()
   
   // Determine which domain to expand based on current pathname
-  const getCurrentDomain = () => {
+  const getCurrentDomain = (): Set<string> => {
     const currentDomain = curriculumData.find(domain => 
       pathname?.includes(`/learn/${domain.slug}/`)
     )
-    return currentDomain ? new Set([currentDomain.id]) : new Set()
+    return currentDomain ? new Set([currentDomain.id]) : new Set<string>()
   }
   
   const [expandedDomains, setExpandedDomains] = useState<Set<string>>(getCurrentDomain)
