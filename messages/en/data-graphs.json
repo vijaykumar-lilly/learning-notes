@@ -1,0 +1,177 @@
+{
+  "title": "Basic Data & Graphs",
+  "definition": {
+    "data": {
+      "title": "What is Data?",
+      "intro": "<strong>Data</strong> is information we collect about something.",
+      "examplesTitle": "Examples of data:",
+      "example1": "How many pets each student has",
+      "example2": "Favorite ice cream flavors in your class",
+      "example3": "Daily temperature readings",
+      "example4": "Number of books read each month"
+    },
+    "graphs": {
+      "title": "What are Graphs?",
+      "intro": "<strong>Graphs</strong> are visual ways to show data.",
+      "purpose": "They help us see patterns and compare information quickly."
+    },
+    "barGraphs": {
+      "title": "1. Bar Graphs",
+      "explanation": "Bar graphs use rectangular bars to show amounts. The height (or length) of each bar shows how much of something there is."
+    },
+    "pictographs": {
+      "title": "2. Pictographs",
+      "explanation": "Pictographs use pictures or symbols to represent data. Each picture stands for a certain number of items."
+    },
+    "linePlots": {
+      "title": "3. Line Plots",
+      "explanation": "Line plots show data as marks (usually X's) above a number line. They're great for showing how often different numbers appear."
+    },
+    "tables": {
+      "title": "4. Data Tables",
+      "explanation": "Data tables organize information in rows and columns, making it easy to read and compare."
+    }
+  },
+  "visuals": {
+    "barGraph": {
+      "title": "Example: Bar Graph",
+      "caption": "This bar graph shows how many students chose each fruit as their favorite.",
+      "chartTitle": "Favorite Fruits",
+      "label1": "Apple",
+      "label2": "Banana",
+      "label3": "Orange",
+      "label4": "Grape",
+      "xlabel": "Fruit",
+      "ylabel": "Number of Students"
+    },
+    "pictograph": {
+      "title": "Example: Pictograph",
+      "caption": "Each symbol represents 2 pieces of fruit sold.",
+      "chartTitle": "Fruit Sales",
+      "row1": "Apples",
+      "row2": "Bananas",
+      "row3": "Oranges",
+      "row4": "Grapes",
+      "key": "Key: Each symbol = 2 fruits"
+    },
+    "linePlot": {
+      "title": "Example: Line Plot",
+      "caption": "Each X shows one student. The number shows how many books they read.",
+      "chartTitle": "Books Read This Month",
+      "xlabel": "Number of Books"
+    },
+    "dataTable": {
+      "title": "Example: Data Table",
+      "caption": "This table shows student scores on a test.",
+      "header1": "Student Name",
+      "header2": "Test Score",
+      "row1col1": "Alice",
+      "row1col2": "95",
+      "row2col1": "Bob",
+      "row2col2": "87",
+      "row3col1": "Charlie",
+      "row3col2": "92",
+      "row4col1": "Diana",
+      "row4col2": "88"
+    }
+  },
+  "keyConcepts": {
+    "readingBarGraphs": {
+      "title": "How to Read a Bar Graph:",
+      "step1": "Look at the title to understand what data is shown",
+      "step2": "Check the labels on both axes",
+      "step3": "Find the bar you're interested in",
+      "step4": "Look at where the top of the bar reaches on the scale"
+    },
+    "readingPictographs": {
+      "title": "How to Read a Pictograph:",
+      "step1": "Check the key to see what each symbol represents",
+      "step2": "Count the number of symbols in a row",
+      "step3": "Multiply by the value of each symbol"
+    }
+  },
+  "examples": {
+    "title": "Examples",
+    "example1": {
+      "title": "Reading a Bar Graph",
+      "question": "Looking at our Favorite Fruits bar graph, which fruit was chosen by the most students?",
+      "step1": "Look at all the bars and compare their heights",
+      "step2": "Orange has the tallest bar",
+      "step3": "The top of the Orange bar reaches 8 on the scale",
+      "step4": "This means 8 students chose Orange as their favorite",
+      "answerLabel": "Answer:",
+      "answer": "Orange was chosen by the most students (8 students)."
+    },
+    "example2": {
+      "title": "Reading a Pictograph",
+      "question": "In our Fruit Sales pictograph, how many apples were sold?",
+      "step1": "Count the apple symbols: 6 symbols",
+      "step2": "Each symbol represents 2 fruits",
+      "step3": "Calculate: 6 × 2 = 12 apples",
+      "answerLabel": "Answer:",
+      "answer": "12 apples were sold."
+    },
+    "example3": {
+      "title": "Reading a Line Plot",
+      "question": "In our Books Read line plot, how many students read exactly 4 books?",
+      "step1": "Find the number 4 on the number line",
+      "step2": "Count the X marks above 4",
+      "step3": "There are 4 X marks above the number 4",
+      "answerLabel": "Answer:",
+      "answer": "4 students read exactly 4 books."
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "exercise1": {
+      "question": "Look at the Favorite Fruits bar graph. How many students chose Banana?",
+      "option1": "2",
+      "option2": "3",
+      "option3": "4",
+      "option4": "5",
+      "explanation": "The Banana bar reaches up to 4 on the scale, so 4 students chose Banana."
+    },
+    "exercise2": {
+      "question": "In the Fruit Sales pictograph, how many oranges were sold? (Remember: each symbol = 2 fruits)",
+      "hint": "Count the orange symbols and multiply by 2.",
+      "explanation": "There are 5 orange symbols, and each represents 2 fruits: 5 × 2 = 10 oranges."
+    },
+    "exercise3": {
+      "question": "Looking at the Books Read line plot, what is the most common number of books read?",
+      "option1": "2 books",
+      "option2": "4 books",
+      "option3": "5 books",
+      "option4": "6 books",
+      "explanation": "The number 4 has the most X marks (4 marks), so 4 books is the most common."
+    },
+    "exercise4": {
+      "question": "In the Books Read line plot, how many students read 2 books?",
+      "hint": "Count the X marks above the number 2.",
+      "explanation": "There are 3 X marks above the number 2, so 3 students read 2 books."
+    },
+    "exercise5": {
+      "question": "In the student scores table, who scored the highest on the test?",
+      "option1": "Alice - 95",
+      "option2": "Bob - 87",
+      "option3": "Charlie - 92",
+      "option4": "Diana - 88",
+      "explanation": "Looking at all the scores in the table, Alice has the highest score of 95."
+    }
+  },
+  "notes": {
+    "title": "Tips & Tricks",
+    "tip1": "📊 Always read the title and labels first! They tell you what the graph is showing.",
+    "tip2": "🔍 In pictographs, always check the key to know what each symbol represents.",
+    "trick1": "💡 To find the total in a bar graph, add up all the bar values.",
+    "warning1": "⚠️ Make sure you're reading the correct axis (horizontal or vertical) when finding values."
+  },
+  "conclusion": {
+    "title": "Great Work! 🎉",
+    "summary": "You've learned about different ways to organize and display data! Graphs and tables help us understand information quickly and spot patterns that might be hard to see in a list of numbers.",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Bar graphs use bars to compare amounts",
+    "takeaway2": "Pictographs use symbols to represent data",
+    "takeaway3": "Line plots show data on a number line with marks",
+    "takeaway4": "Data tables organize information in rows and columns"
+  }
+}

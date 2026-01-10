@@ -21,11 +21,13 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
     "@types/katex": "^0.16.7",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.4",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^17.2.3",
     "eslint": "^9.18.0",
     "eslint-config-next": "16.1.1",
     "postcss": "^8.4.49",

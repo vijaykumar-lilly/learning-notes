@@ -1,0 +1,165 @@
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│   🤖 CLAUDE API LESSON GENERATOR - QUICK REFERENCE                      │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  ONE-TIME SETUP (10 minutes)                                          ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+  1️⃣  Get API Key
+      
+      🏢 Enterprise/Shared Access:
+      → Contact your IT admin/team lead
+      → Request shared Claude API key
+      → You'll receive: sk-ant-api03-xxxxxxxxxx
+      
+      👤 Personal Access:
+      → https://console.anthropic.com/
+      → Create API Key
+      → Copy: sk-ant-api03-xxxxxxxxxx
+
+  2️⃣  Configure Environment
+      $ cp .env.example .env
+      $ nano .env
+      → Add: ANTHROPIC_API_KEY=sk-ant-api03-your-key
+
+  3️⃣  Test Connection
+      $ node scripts/test-api-connection.js
+      ✅ Success! Connected to Claude API
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  USAGE - GENERATE LESSONS                                               │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  ▶ Interactive Mode (script prompts you):
+    $ node scripts/generate-lesson-api.js
+
+  ▶ Command Line (fastest):
+    $ node scripts/generate-lesson-api.js <slug> <domain> <ageRange> [topic]
+
+  ▶ Examples:
+    $ node scripts/generate-lesson-api.js data-graphs foundations "Ages 5-11"
+    $ node scripts/generate-lesson-api.js integers pre-algebra "Ages 11-13"
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  WHAT HAPPENS AUTOMATICALLY                                             │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  ⚡ Generates prompt from template
+  🤖 Calls Claude API (30-60 sec)
+  📦 Extracts 3 files:
+     ✅ page.tsx → app/[locale]/learn/[domain]/[slug]/
+     ✅ en.json → messages/en/
+     ✅ ta.json → messages/ta/
+  🔧 Registers lesson:
+     ✅ Updates i18n.ts
+     ✅ Updates curriculum-data.ts
+  💰 Shows cost: ~$0.12-0.15
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  AFTER GENERATION                                                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  $ npm run build
+  $ npm run dev
+  → Open: http://localhost:3000/en/learn/[domain]/[slug]
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  COSTS & LIMITS                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  💵 Per Lesson: ~$0.12-0.15
+     • Input tokens: ~2,000 × $3/M = $0.006
+     • Output tokens: ~8,000 × $15/M = $0.120
+
+  📊 Monthly Estimates:
+     • 10 lessons: ~$1.50
+     • 50 lessons: ~$7.50
+     • 100 lessons: ~$15.00
+
+  🛡️  Set Limits:
+     → https://console.anthropic.com/settings/billing
+     → Set monthly cap (e.g., $10)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  TROUBLESHOOTING                                                        │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  ❌ "API key not found"
+     → Check: cat .env
+     → Verify: ANTHROPIC_API_KEY=sk-ant-api03-...
+
+  ❌ "Invalid API key"
+     → Regenerate at console.anthropic.com
+     → Check for typos/spaces
+
+  ❌ "Rate limit exceeded"
+     → Wait 60 seconds
+     → Check plan limits
+
+  ❌ Build fails
+     → npm run build 2>&1 | grep Error
+     → rm -rf .next && npm run build
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  HELPFUL COMMANDS                                                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  Test API:
+    $ node scripts/test-api-connection.js
+
+  Generate lesson (interactive):
+    $ node scripts/generate-lesson-api.js
+
+  Generate lesson (quick):
+    $ node scripts/generate-lesson-api.js <slug> <domain> <age>
+
+  Manual register (if needed):
+    $ node scripts/register-lesson.js <slug> <count> <domain>
+
+  Build & test:
+    $ npm run build && npm run dev
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  DOCUMENTATION                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  📖 Quick Setup:      scripts/API_QUICK_SETUP.md
+  📖 Full Guide:       scripts/API_SETUP_GUIDE.md
+  📖 Automation:       AUTOMATION_QUICKSTART.md
+  📖 Complete Docs:    scripts/README.md
+  📖 Summary:          API_AUTOMATION_COMPLETE.md
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  WORKFLOW COMPARISON                                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  BEFORE (Manual):                      AFTER (API):
+  ✎ Open template                       $ node scripts/generate-lesson-api.js
+  ✎ Fill placeholders                      ↓
+  ✎ Copy to claude.ai                   ⚡ Everything automatic!
+  ✎ Wait for response                      ↓
+  ✎ Copy 3 code blocks                  ✅ Done in 2 minutes!
+  ✎ Save 3 files
+  ✎ Edit i18n.ts
+  ✎ Edit curriculum-data.ts
+  ⏱️  ~30 minutes                        ⏱️  ~2 minutes
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  🚀 START HERE                                                        ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+  1. Read: scripts/API_QUICK_SETUP.md
+  2. Get key: https://console.anthropic.com/
+  3. Setup: cp .env.example .env && nano .env
+  4. Test: node scripts/test-api-connection.js
+  5. Generate: node scripts/generate-lesson-api.js
+  6. Build: npm run build && npm run dev
+
+  Questions? Check API_AUTOMATION_COMPLETE.md
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║  Happy Lesson Creating! 🎓                                            ║
+╚═══════════════════════════════════════════════════════════════════════╝

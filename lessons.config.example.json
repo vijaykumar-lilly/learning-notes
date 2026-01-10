@@ -1,0 +1,29 @@
+[
+  {
+    "topic": "Basic Data & Graphs",
+    "domain": "foundations",
+    "slug": "data-graphs",
+    "ageRange": "Ages 5-11 / Grades K-5",
+    "exercises": 5,
+    "topics": 4,
+    "notes": "Cover: reading bar graphs, pictographs, line plots, simple data collection"
+  },
+  {
+    "topic": "Integers & Rational Numbers",
+    "domain": "pre-algebra",
+    "slug": "integers",
+    "ageRange": "Ages 11-13 / Grades 6-8",
+    "exercises": 6,
+    "topics": 3,
+    "notes": "Cover: negative numbers, number line, absolute value, operations"
+  },
+  {
+    "topic": "Exponents & Powers",
+    "domain": "pre-algebra",
+    "slug": "exponents",
+    "ageRange": "Ages 11-13 / Grades 6-8",
+    "exercises": 6,
+    "topics": 3,
+    "notes": "Cover: base and exponent, laws of exponents, powers of 10, scientific notation intro"
+  }
+]

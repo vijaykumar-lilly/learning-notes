@@ -1,0 +1,6 @@
+# Ignore generated prompts folder
+generated-prompts/
+
+# Ignore user config files
+*.config.json
+!*.example.json

@@ -1,0 +1,169 @@
+I need you to create a complete mathematics lesson for an open-source education platform.
+
+PROJECT CONTEXT:
+- Next.js 16.1.1 with App Router and TypeScript
+- Bilingual support: English (en) and Tamil (ta) using next-intl
+- Target audience: Ages 5-11 / Grades K-5 (Elementary students)
+- License: Content under CC BY-SA, Code under Apache-2.0
+
+LESSON DETAILS:
+- Topic: Basic Data & Graphs
+- Domain: foundations
+- Slug: data-graphs
+- Age-appropriate language for elementary students (ages 5-11)
+
+REQUIRED OUTPUTS (3 files):
+
+1. **app/[locale]/learn/foundations/data-graphs/page.tsx**
+   - Import required components from '@/components/lesson' and '@/components/interactive'
+   - Structure: Title → Definition → Topics (with KeyConcepts) → Examples → Exercises → Conclusion
+   - Include 3-4 static VisualExplanation components with inline SVG diagrams showing:
+     * Bar graph example
+     * Pictograph example
+     * Line plot/tally marks
+     * Simple data table
+   - Each SVG should:
+     * Use viewBox for responsiveness
+     * Support dark mode with conditional fill classes
+     * Be simple, educational, and age-appropriate
+     * Include text labels using t() translations
+   - Include 3-5 worked examples using Example component
+   - Include 5-6 exercises (mix of MultipleChoiceExercise and NumericInputExercise)
+   - Use t() function for ALL text content
+   - NO 'use client' directive (server component)
+
+2. **messages/en/data-graphs.json**
+   - Complete English translations
+   - Structure: title, definition, keyConcepts, examples, exercises, visuals, notes, conclusion
+   - Include real-world analogies and age-appropriate explanations
+   - Memory tricks and helpful tips in notes section
+   - All exercise options, hints, and explanations
+
+3. **messages/ta/data-graphs.json**
+   - Complete Tamil translations
+   - EXACT same JSON structure as English file
+   - All keys must match English file exactly
+   - Numbers, units, and formulas remain the same
+
+COMPONENT APIs TO USE:
+
+```tsx
+// Lesson Components
+<Definition term="Title">Content</Definition>
+<KeyConcept>Content</KeyConcept>
+<Example title="Title">Content with steps</Example>
+<StepByStep steps={['Step 1', 'Step 2']} />
+<Note>Helpful tip or warning</Note>
+
+// Visual Components
+<VisualExplanation title={t('...')} caption={t('...')}>
+  <svg viewBox="0 0 400 200">
+    {/* SVG content */}
+  </svg>
+</VisualExplanation>
+
+// Interactive Exercises
+<MultipleChoiceExercise
+  question={t('exercises.exercise1.question')}
+  options={[
+    { text: t('exercises.exercise1.option1'), isCorrect: false },
+    { text: t('exercises.exercise1.option2'), isCorrect: true },
+  ]}
+  explanation={t('exercises.exercise1.explanation')}
+/>
+
+<NumericInputExercise
+  question={t('exercises.exercise2.question')}
+  correctAnswer={8}
+  hint={t('exercises.exercise2.hint')}
+  explanation={t('exercises.exercise2.explanation')}
+/>
+```
+
+VISUAL EXPLANATION GUIDELINES:
+- 3-4 static diagrams per lesson using VisualExplanation wrapper
+- Each SVG should teach ONE concept clearly
+- Use simple shapes: rectangles for bars, icons/images for pictographs, dots for line plots
+- Color scheme: Use Tailwind color classes (blue-500, green-500, red-500, etc.)
+- Dark mode: Add conditional classes like `fill-gray-800 dark:fill-gray-200`
+- Accessibility: Include text labels and clear contrast
+- Focus on: bar graphs, pictographs, line plots, simple tables
+
+LESSON STRUCTURE:
+1. Introduction/Definition (what is data? what are graphs?)
+2. Main Topics:
+   - Reading Bar Graphs (with VisualExplanation showing simple bar chart)
+   - Pictographs (with VisualExplanation showing picture symbols)
+   - Line Plots & Tally Marks (with VisualExplanation)
+   - Simple Data Tables (with VisualExplanation)
+3. Worked Examples (3-5 examples reading different graph types)
+4. Practice Exercises (5-6 exercises, mix of MC and numeric)
+5. Notes/Tips (how to read graphs, common mistakes)
+6. Conclusion (summary and key takeaways)
+
+SPECIFIC CONTENT REQUIREMENTS FOR THIS LESSON:
+- Cover reading bar graphs (vertical bars showing quantities)
+- Pictographs with simple symbols (e.g., 1 apple = 2 fruits)
+- Tally marks and line plots (X's above a number line)
+- Simple data collection and tables
+- Real-world examples: favorite colors, pets, sports, weather
+- Age 5-11 vocabulary: simple, clear, relatable examples
+
+TRANSLATION FILE STRUCTURE:
+```json
+{
+  "title": "Basic Data & Graphs",
+  "definition": {
+    "data": { "title": "What is Data?", "intro": "...", "examples": "..." },
+    "graphs": { "title": "What are Graphs?", "intro": "..." },
+    "barGraphs": { "title": "Bar Graphs", "explanation": "..." },
+    "pictographs": { "title": "Pictographs", "explanation": "..." },
+    "linePlots": { "title": "Line Plots", "explanation": "..." },
+    "tables": { "title": "Data Tables", "explanation": "..." }
+  },
+  "keyConcepts": {
+    "readingGraphs": { "title": "How to Read Graphs", "steps": ["...", "..."] }
+  },
+  "examples": {
+    "example1": { "title": "Reading a Bar Graph", "question": "...", "step1": "...", "answer": "..." },
+    "example2": { "title": "Understanding a Pictograph", "question": "...", "steps": "..." },
+    "example3": { "title": "Making a Line Plot", "question": "...", "steps": "..." }
+  },
+  "exercises": {
+    "exercise1": { "question": "...", "option1": "...", "explanation": "..." },
+    "exercise2": { "question": "...", "hint": "...", "explanation": "..." }
+  },
+  "visuals": {
+    "barGraph": { "title": "Bar Graph Example", "caption": "...", "labels": { "xlabel": "...", "ylabel": "...", "title": "..." } },
+    "pictograph": { "title": "Pictograph Example", "caption": "...", "key": "..." },
+    "linePlot": { "title": "Line Plot Example", "caption": "..." },
+    "dataTable": { "title": "Data Table Example", "caption": "..." }
+  },
+  "notes": {
+    "tip1": "Always read the title of the graph first!",
+    "tip2": "Check what each picture or bar represents",
+    "trick1": "Count carefully - don't rush!",
+    "warning1": "Make sure you understand what the numbers mean"
+  },
+  "conclusion": {
+    "title": "Great Job Learning About Data!",
+    "summary": "...",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Data is information we collect",
+    "takeaway2": "Graphs help us see data in pictures",
+    "takeaway3": "Bar graphs use bars to show amounts",
+    "takeaway4": "Pictographs use pictures or symbols"
+  }
+}
+```
+
+CONSTRAINTS:
+- Server components only (no 'use client')
+- All text through t() translations
+- Age-appropriate vocabulary for ages 5-11 (elementary school)
+- Practical, real-world examples kids can relate to
+- Clear, simple SVG diagrams for each graph type
+- 5-6 exercises total (not 30 - that's a placeholder)
+- File size: ~400-500 lines for page.tsx, ~130-150 lines per translation file
+
+Please generate all 3 files with complete, production-ready code. Focus on making the graphs visually clear and easy for children to understand.
