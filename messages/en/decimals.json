@@ -1,6 +1,5 @@
 {
   "title": "Decimals",
-  "subtitle": "Introduction to Decimal Numbers",
   "definition": {
     "term": "Decimal Number",
     "explanation": "A <strong>decimal number</strong> is a number that contains a decimal point, separating the whole number part from the fractional part. Decimals are another way to represent parts of a whole, just like fractions.",
@@ -15,9 +14,223 @@
     "hundreds": "Hundreds",
     "tens": "Tens",
     "ones": "Ones",
-    "decimalPoint": "Decimal Point",
     "tenths": "Tenths",
     "hundredths": "Hundredths",
-    "thousandths": "Thousandths"
+    "thousandths": "Thousandths",
+    "numberReading": "The number 246.357 is read as \"two hundred forty-six point three five seven\" or \"two hundred forty-six and three hundred fifty-seven thousandths\""
+  },
+  "notes": {
+    "pronunciation": {
+      "title": "💡 Pronunciation Tip:",
+      "point": "The decimal point (•) is read as \"point\" or \"and\"",
+      "example1": "0.5 = \"zero point five\" or \"five tenths\"",
+      "example2": "3.14 = \"three point one four\""
+    },
+    "placeValueMemory": {
+      "title": "🎯 Easy Trick - Place Value Memory:",
+      "intro": "Remember: <strong>\"Tiny Hungry Tigers\"</strong>",
+      "tenths": "<strong>T</strong>enths (first place after decimal)",
+      "hundredths": "<strong>H</strong>undredths (second place)",
+      "thousandths": "<strong>T</strong>housandths (third place)",
+      "pattern": "Each place is 10 times smaller than the one before!"
+    },
+    "quickConversion": {
+      "title": "⚡ Quick Conversion Tricks:",
+      "halves": "<strong>Halves:</strong> 1/2 = 0.5 (just divide by 2!)",
+      "fifths": "<strong>Fifths:</strong> Multiply numerator by 2, then by 10: 3/5 = (3×2)/10 = 0.6",
+      "fourths": "<strong>Fourths:</strong> Think quarters! 1/4 = $0.25",
+      "tenths": "<strong>Tenths:</strong> Just move decimal: 7/10 = 0.7",
+      "hundredths": "<strong>Hundredths:</strong> Add a zero: 23/100 = 0.23"
+    },
+    "comparing": {
+      "title": "🎯 Comparing Trick - \"Add Zeros Method\":",
+      "method1Title": "<strong>Method 1:</strong> Add zeros to make same length",
+      "method1Example": "0.5 vs 0.47 → 0.50 vs 0.47 → 0.50 is bigger!",
+      "method2Title": "<strong>Method 2:</strong> Remove decimal, compare as whole numbers",
+      "method2Example": "0.8 vs 0.75 → 80 vs 75 (think: 80 cents vs 75 cents)",
+      "method3Title": "<strong>Method 3:</strong> Use number line visualization",
+      "method3Example": "Which is closer to 1? That's the bigger one!"
+    },
+    "addSubtract": {
+      "title": "💡 Adding/Subtracting Trick - \"Line Up Method\":",
+      "step1": "<strong>Step 1:</strong> Write numbers in a column",
+      "step2": "<strong>Step 2:</strong> Line up decimal points (one under the other)",
+      "step3": "<strong>Step 3:</strong> Add zeros to make same length (optional but helpful!)",
+      "step4": "<strong>Step 4:</strong> Ignore decimal, add/subtract normally",
+      "step5": "<strong>Step 5:</strong> Bring decimal straight down",
+      "memory": "<strong>Memory trick:</strong> \"Decimals are shy - they never move during +/−\""
+    },
+    "multiply": {
+      "title": "⚡ Multiplying Trick - \"Count & Place\":",
+      "methodTitle": "<strong>Super Easy 3-Step Method:</strong>",
+      "step1": "Ignore decimals, multiply whole numbers: 2.5 × 3.2 → 25 × 32 = 800",
+      "step2": "Count decimal places: 2.5 (1) + 3.2 (1) = 2 total",
+      "step3": "Put decimal back: 800 → 8.00 = 8",
+      "quickCheck": "<strong>Quick Check:</strong> If multiplying by 0.1, move decimal LEFT 1 place<br />Example: 5 × 0.1 = 0.5 (5.0 → 0.5)"
+    },
+    "divide": {
+      "title": "💡 Division Tricks - Multiple Methods:",
+      "method1Title": "Method 1: \"Make it Whole\"",
+      "method1Example": "6.4 ÷ 0.2 → Move decimals right → 64 ÷ 2 = 32",
+      "method2Title": "Method 2: \"Multiply Both\"",
+      "method2Example": "0.8 ÷ 0.4 → Multiply by 10 → 8 ÷ 4 = 2",
+      "method3Title": "Method 3: \"Fraction Trick\"",
+      "method3Example": "1.5 ÷ 0.5 = 15/10 ÷ 5/10 = 15 ÷ 5 = 3",
+      "quickTip": "<strong>Quick tip:</strong> Dividing by 0.1 = Multiply by 10<br />Example: 5 ÷ 0.1 = 50 (move decimal right!)"
+    },
+    "commonMistakes": {
+      "title": "Common Mistakes:",
+      "mistake1": "Not lining up decimal points when adding/subtracting",
+      "mistake2": "Forgetting to count decimal places when multiplying",
+      "mistake3": "Comparing 0.3 and 0.25 incorrectly (0.3 = 0.30 > 0.25)"
+    },
+    "mentalMath": {
+      "title": "🚀 Mental Math Shortcuts:",
+      "multiply05": "<strong>× by 0.5:</strong> Divide by 2 (half it!)",
+      "multiply05Example": "8 × 0.5 = 8 ÷ 2 = 4",
+      "multiply025": "<strong>× by 0.25:</strong> Divide by 4 (quarter it!)",
+      "multiply025Example": "20 × 0.25 = 20 ÷ 4 = 5",
+      "multiply01": "<strong>× by 0.1:</strong> Move decimal left 1 place",
+      "multiply01Example": "47 × 0.1 = 4.7",
+      "divide05": "<strong>÷ by 0.5:</strong> Multiply by 2 (double it!)",
+      "divide05Example": "6 ÷ 0.5 = 6 × 2 = 12",
+      "add099": "<strong>+ 0.99:</strong> Add 1, subtract 0.01",
+      "add099Example": "5 + 0.99 = 6 − 0.01 = 5.99"
+    }
+  },
+  "exercises": {
+    "placeValue": {
+      "question": "What is the place value of the digit 7 in 42.378?",
+      "explanation": "In 42.378, the 7 is in the hundredths place (second digit after the decimal point). The 3 is in tenths, 7 is in hundredths, and 8 is in thousandths.",
+      "hint": "Count positions from the decimal point: first position = tenths, second position = hundredths"
+    },
+    "largest": {
+      "question": "Which decimal is the largest?",
+      "explanation": "0.35 = 0.350 is the largest. Compare: 0.300, 0.350, 0.305, 0.030",
+      "hint": "Add zeros to compare: 0.300, 0.350, 0.305, 0.030"
+    },
+    "fractionToDecimal": {
+      "question": "What is",
+      "questionSuffix": "as a decimal?",
+      "explanation": "1 ÷ 5 = 0.2",
+      "hint": "Divide 1 by 5"
+    },
+    "comparing": {
+      "question": "Which decimal is the largest?",
+      "explanation": "0.35 = 0.350 is the largest. Compare: 0.300, 0.350, 0.305, 0.030",
+      "hint": "Add zeros to compare: 0.300, 0.350, 0.305, 0.030"
+    },
+    "addition": {
+      "question": "What is 4.6 + 2.85?",
+      "hint": "Line up the decimal points: 4.60 + 2.85"
+    },
+    "multiplication": {
+      "question": "What is 0.4 × 0.5?",
+      "explanation": "4 × 5 = 20. With 2 decimal places total, answer is 0.20 = 0.2",
+      "hint": "Multiply 4 × 5, then count decimal places"
+    },
+    "division": {
+      "question": "What is 12.6 ÷ 3?",
+      "hint": "Divide 12.6 by 3 directly",
+      "solution": "12.6 ÷ 3 = 4.2",
+      "check": "Check: 4.2 × 3 = 12.6 ✓"
+    },
+    "wordProblem": {
+      "question": "A book costs $12.50 and a pen costs $2.75. What is the total?",
+      "explanation": "$12.50 + $2.75 = $15.25",
+      "hint": "Line up: 12.50 + 2.75"
+    }
+  },
+  "conversions": {
+    "fractionToDecimal": {
+      "title": "Converting Fractions to Decimals",
+      "explanation": "To convert a fraction to a decimal, divide the numerator by the denominator.",
+      "commonTitle": "Common Conversions:"
+    },
+    "decimalToFraction": {
+      "title": "Converting Decimals to Fractions",
+      "explanation": "To convert a decimal to a fraction:",
+      "step1": "Write the decimal as a fraction with denominator based on place value",
+      "step2": "Simplify the fraction if possible"
+    }
+  },
+  "examples": {
+    "fractionToDecimal": {
+      "title": "Converting a Fraction to a Decimal",
+      "step1Title": "Set up the division",
+      "step1Content": "Divide 3 by 8:",
+      "step2Title": "Perform the division",
+      "step2Content": "3 ÷ 8 = 0.375",
+      "step3Title": "Write the answer"
+    },
+    "decimalToFraction": {
+      "title": "Converting a Decimal to a Fraction",
+      "problem": "Convert 0.625 to a fraction",
+      "step1Title": "Identify the place value",
+      "step1Content": "0.625 has 3 decimal places, so it's thousandths:",
+      "step2Title": "Simplify",
+      "step2Line1": "GCF of 625 and 1000 is 125",
+      "step3Title": "Final answer"
+    },
+    "adding": {
+      "title": "Adding Decimals",
+      "problem": "Calculate: 3.7 + 2.45",
+      "answer": "Answer: 6.15"
+    },
+    "multiplying": {
+      "title": "Multiplying Decimals",
+      "problem": "Calculate: 2.5 × 3.2",
+      "step1": "Step 1: 25 × 32 = 800",
+      "step2": "Step 2: Count decimal places: 2.5 (1) + 3.2 (1) = 2 total",
+      "step3": "Step 3: Place decimal: 8.00 = 8",
+      "answer": "Answer: 2.5 × 3.2 = 8"
+    },
+    "dividing": {
+      "title": "Dividing Decimals",
+      "problem": "Calculate: 6.4 ÷ 0.2",
+      "step1": "Step 1: Move decimal in 0.2 one place right → 2",
+      "step2": "Step 2: Move decimal in 6.4 one place right → 64",
+      "step3": "Step 3: Divide: 64 ÷ 2 = 32",
+      "answer": "Answer: 32"
+    }
+  },
+  "keyConcepts": {
+    "comparing": {
+      "title": "Comparing Decimals",
+      "intro": "To compare decimals:",
+      "step1": "Line up the decimal points",
+      "step2": "Compare digits from left to right",
+      "step3": "Add zeros to make equal lengths if needed",
+      "exampleTitle": "Example: Which is greater, 0.5 or 0.45?",
+      "exampleExplanation": "Compare tenths: 5 > 4, so 0.5 > 0.45"
+    }
+  },
+  "operations": {
+    "addSubtract": {
+      "title": "Adding and Subtracting Decimals",
+      "intro": "To add or subtract decimals:",
+      "step1": "Line up the decimal points vertically",
+      "step2": "Add zeros to make equal lengths if needed",
+      "step3": "Add or subtract as with whole numbers",
+      "step4": "Bring down the decimal point to the answer"
+    },
+    "multiply": {
+      "title": "Multiplying Decimals",
+      "intro": "To multiply decimals:",
+      "step1": "Multiply as if they were whole numbers",
+      "step2": "Count total decimal places in both factors",
+      "step3": "Place the decimal point with that many decimal places"
+    },
+    "divide": {
+      "title": "Dividing Decimals",
+      "intro": "To divide decimals:",
+      "step1": "Move the decimal in the divisor to make it a whole number",
+      "step2": "Move the decimal in the dividend the same number of places",
+      "step3": "Divide as with whole numbers"
+    }
+  },
+  "conclusion": {
+    "title": "Excellent work!",
+    "message": "You've learned about decimal numbers, place value, converting between fractions and decimals, and all four operations with decimals. Decimals are essential for money, measurements, and many real-world applications!"
   }
 }
