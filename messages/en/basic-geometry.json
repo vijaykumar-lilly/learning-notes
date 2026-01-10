@@ -1,0 +1,211 @@
+{
+  "title": "Basic Geometry",
+  
+  "definition": {
+    "shape": {
+      "title": "Shapes",
+      "intro": "A <strong>shape</strong> is a figure with a specific form. Shapes are all around us!",
+      "exampleTitle": "Common Shapes:",
+      "example1": "Circles (like the sun, wheels, pizza)",
+      "example2": "Squares (like windows, tiles, dice)",
+      "example3": "Triangles (like road signs, pizza slices, roofs)",
+      "example4": "Rectangles (like doors, books, phones)"
+    },
+    "circle": {
+      "title": "Circle",
+      "intro": "A <strong>circle</strong> is a round shape where every point is the same distance from the center.",
+      "centerTitle": "Center:",
+      "centerDesc": "The middle point of the circle",
+      "radiusTitle": "Radius:",
+      "radiusDesc": "The distance from the center to any point on the circle",
+      "diameterTitle": "Diameter:",
+      "diameterDesc": "The distance across the circle through the center (Diameter = 2 × Radius)"
+    },
+    "rectangle": {
+      "title": "Rectangle",
+      "intro": "A <strong>rectangle</strong> is a four-sided shape with opposite sides equal and all corners at 90 degrees.",
+      "properties": "Properties of Rectangles:",
+      "property1": "4 sides (opposite sides are equal)",
+      "property2": "4 right angles (90° corners)",
+      "property3": "Opposite sides are parallel"
+    },
+    "square": {
+      "title": "Square",
+      "intro": "A <strong>square</strong> is a special rectangle where all four sides are equal.",
+      "special": "Think of a square as a rectangle where length = width!"
+    },
+    "triangle": {
+      "title": "Triangle",
+      "intro": "A <strong>triangle</strong> is a shape with three sides and three corners (angles).",
+      "typesTitle": "Types of Triangles by Sides:",
+      "equilateral": "Equilateral Triangle",
+      "equilateralDesc": "All 3 sides are equal",
+      "isosceles": "Isosceles Triangle",
+      "isoscelesDesc": "2 sides are equal",
+      "scalene": "Scalene Triangle",
+      "scaleneDesc": "All 3 sides are different"
+    },
+    "line": {
+      "title": "Lines, Rays, and Line Segments",
+      "intro": "Understanding the basic building blocks of geometry:",
+      "pointTitle": "Point:",
+      "pointDesc": "An exact location in space (shown as a dot)",
+      "lineSegmentTitle": "Line Segment:",
+      "lineSegmentDesc": "A straight path between two points (has two endpoints)",
+      "rayTitle": "Ray:",
+      "rayDesc": "Starts at one point and goes on forever in one direction (has one endpoint)"
+    },
+    "angle": {
+      "title": "Angles",
+      "intro": "An <strong>angle</strong> is formed when two rays or line segments meet at a point. We measure angles in degrees (°).",
+      "typesTitle": "Types of Angles:",
+      "right": "<strong>Right Angle:</strong> Exactly 90° (like a corner of a square)",
+      "acute": "<strong>Acute Angle:</strong> Less than 90° (sharp angle)",
+      "obtuse": "<strong>Obtuse Angle:</strong> More than 90° but less than 180° (wide angle)",
+      "straight": "<strong>Straight Angle:</strong> Exactly 180° (a straight line)"
+    }
+  },
+
+  "keyConcepts": {
+    "squareVsRectangle": {
+      "title": "Square vs Rectangle",
+      "explanation": "Understanding the relationship:",
+      "point1": "Every square is a rectangle (it has 4 sides and 4 right angles)",
+      "point2": "Not every rectangle is a square (only if all sides are equal)"
+    }
+  },
+
+  "examples": {
+    "example1": {
+      "title": "Finding the Diameter",
+      "question": "A circle has a radius of 5 cm. What is its diameter?",
+      "step1": "Remember: Diameter = 2 × Radius",
+      "step2": "Diameter = 2 × 5 = 10 cm",
+      "answerLabel": "Answer:",
+      "answer": "The diameter is 10 cm"
+    },
+    "example2": {
+      "title": "Identifying Triangle Types",
+      "question": "A triangle has sides of length 7 cm, 7 cm, and 5 cm. What type of triangle is it?",
+      "step1": "Count how many sides are equal: Two sides are 7 cm",
+      "step2": "When exactly 2 sides are equal, it's an isosceles triangle",
+      "answerLabel": "Answer:",
+      "answer": "This is an isosceles triangle"
+    },
+    "example3": {
+      "title": "Identifying Angles",
+      "question": "Look at the corner of a piece of paper. What type of angle is it?",
+      "step1": "The corner of paper forms a perfect square corner",
+      "step2": "Square corners are right angles (90°)",
+      "answerLabel": "Answer:",
+      "answer": "It's a right angle (90°)"
+    }
+  },
+
+  "exercises": {
+    "exercise1": {
+      "question": "If the radius of a circle is 8 inches, what is the diameter?",
+      "option1": "4 inches",
+      "option2": "16 inches",
+      "option3": "8 inches",
+      "option4": "24 inches",
+      "explanation": "Diameter = 2 × Radius = 2 × 8 = 16 inches"
+    },
+    "exercise2": {
+      "question": "How many sides does a square have?",
+      "hint": "Count the sides of a square shape",
+      "explanation": "A square has 4 equal sides"
+    },
+    "exercise3": {
+      "question": "Which triangle has all three sides of different lengths?",
+      "option1": "Equilateral triangle",
+      "option2": "Scalene triangle",
+      "option3": "Isosceles triangle",
+      "option4": "Right triangle",
+      "explanation": "A scalene triangle has all three sides of different lengths"
+    },
+    "exercise4": {
+      "question": "How many degrees are in a right angle?",
+      "hint": "Think of the corner of a square",
+      "explanation": "A right angle is exactly 90 degrees"
+    },
+    "exercise5": {
+      "question": "An angle that measures 45° is called:",
+      "option1": "Right angle",
+      "option2": "Obtuse angle",
+      "option3": "Acute angle",
+      "option4": "Straight angle",
+      "explanation": "An acute angle is any angle less than 90°. Since 45° < 90°, it's acute"
+    }
+  },
+
+  "visuals": {
+    "basicShapes": {
+      "title": "Basic Shapes",
+      "caption": "The four fundamental shapes you should know",
+      "circle": "Circle",
+      "square": "Square",
+      "triangle": "Triangle",
+      "rectangle": "Rectangle"
+    },
+    "circleParts": {
+      "title": "Parts of a Circle",
+      "caption": "Diameter is always twice the radius",
+      "center": "Center",
+      "radius": "Radius",
+      "diameter": "Diameter",
+      "relationship": "Diameter = 2 × Radius"
+    },
+    "rectangleSquare": {
+      "title": "Rectangle vs Square",
+      "caption": "A square is a special type of rectangle",
+      "rectangleLabel": "Rectangle",
+      "rectangleDim": "Length ≠ Width",
+      "squareLabel": "Square",
+      "squareDim": "All sides equal"
+    },
+    "triangleTypes": {
+      "title": "Types of Triangles",
+      "caption": "Classified by their side lengths",
+      "equilateral": "Equilateral",
+      "allEqual": "All 3 sides equal",
+      "isosceles": "Isosceles",
+      "twoEqual": "2 sides equal",
+      "scalene": "Scalene",
+      "allDifferent": "All sides different"
+    },
+    "lineTypes": {
+      "title": "Points, Lines, Rays, and Segments",
+      "caption": "The building blocks of geometry",
+      "point": "Point",
+      "segment": "Line Segment",
+      "ray": "Ray",
+      "line": "Line"
+    },
+    "angleTypes": {
+      "title": "Types of Angles",
+      "caption": "Angles are measured in degrees (°)",
+      "right": "90°",
+      "acute": "45°",
+      "obtuse": "120°",
+      "straight": "180°"
+    }
+  },
+
+  "notes": {
+    "tip1": "Look around your room! Can you find circles, squares, rectangles, and triangles? Geometry is everywhere!",
+    "trick1": "Memory trick: A SQUARE has EQUAL sides. Both words have 'QUA' in them!",
+    "warning1": "Don't confuse the names! Equilateral = all equal, Isosceles = two equal, Scalene = all different (no equal sides)",
+    "tip2": "To remember angle types: Acute is 'a-cute' (small) angle, Obtuse sounds like 'obese' (big) angle!"
+  },
+
+  "conclusion": {
+    "title": "Excellent Work!",
+    "summary": "You've learned the basics of geometry! These shapes and concepts are the foundation for understanding the world around you.",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Shapes have specific properties: circles are round, rectangles have 4 right angles, triangles have 3 sides",
+    "takeaway2": "A square is a special rectangle where all sides are equal",
+    "takeaway3": "Triangles are classified by their sides: equilateral (all equal), isosceles (2 equal), scalene (all different)",
+    "takeaway4": "Angles come in different types: right (90°), acute (<90°), obtuse (>90°), and straight (180°)"
+  }
+}
