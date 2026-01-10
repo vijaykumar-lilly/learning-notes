@@ -28,13 +28,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
       percentages: (await import(`./messages/${locale}/percentages.json`)).default,
       'ratios-proportions': (await import(`./messages/${locale}/ratios-proportions.json`)).default,
       'basic-geometry': (await import(`./messages/${locale}/basic-geometry.json`)).default,
-      measurement: (await import(`./messages/${locale}/measurement.json`)).default
-    ,
-      'data-graphs': (await import(`./messages/${locale}/data-graphs.json`)).default
-    ,
-      'patterns-sequences': (await import(`./messages/${locale}/patterns-sequences.json`)).default
-    ,
-      'integers': (await import(`./messages/${locale}/integers.json`)).default
+      measurement: (await import(`./messages/${locale}/measurement.json`)).default,
+      'data-graphs': (await import(`./messages/${locale}/data-graphs.json`)).default,
+      'patterns-sequences': (await import(`./messages/${locale}/patterns-sequences.json`)).default,
+      integers: (await import(`./messages/${locale}/integers.json`)).default,
+      exponents: (await import(`./messages/${locale}/exponents.json`)).default
     }
   };
 });
