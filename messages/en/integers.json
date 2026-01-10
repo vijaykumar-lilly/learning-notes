@@ -1,0 +1,184 @@
+{
+  "title": "Integers & Rational Numbers",
+  "definition": {
+    "integers": {
+      "title": "What are Integers?",
+      "intro": "<strong>Integers</strong> are whole numbers that can be positive, negative, or zero.",
+      "typesTitle": "Types of integers:",
+      "positive": "Positive integers",
+      "positiveExample": "1, 2, 3, 4, 5, ... (numbers greater than zero)",
+      "negative": "Negative integers",
+      "negativeExample": "-1, -2, -3, -4, -5, ... (numbers less than zero)",
+      "zero": "Zero",
+      "zeroExample": "0 (neither positive nor negative)"
+    },
+    "absoluteValue": {
+      "title": "Absolute Value",
+      "intro": "The <strong>absolute value</strong> of a number is its distance from zero on the number line.",
+      "explanation": "Absolute value is always positive or zero, never negative.",
+      "notation": "Notation: |number|"
+    },
+    "rational": {
+      "title": "Rational Numbers",
+      "intro": "A <strong>rational number</strong> is any number that can be written as a fraction p/q, where p and q are integers and q ≠ 0.",
+      "examples": "Examples of rational numbers:"
+    }
+  },
+  "sections": {
+    "numberLine": {
+      "title": "The Number Line",
+      "explanation": "The number line is a visual way to represent integers. Zero is in the middle, positive numbers are to the right, and negative numbers are to the left."
+    },
+    "absoluteValue": {
+      "title": "Absolute Value"
+    },
+    "comparing": {
+      "title": "Comparing Integers",
+      "explanation": "On a number line, numbers increase as you move to the right and decrease as you move to the left."
+    },
+    "operations": {
+      "title": "Operations with Integers",
+      "addition": {
+        "title": "Adding Integers",
+        "rulesTitle": "Rules for addition:",
+        "rule1Title": "Same signs",
+        "rule1": "Add the numbers and keep the sign. Example: (-3) + (-5) = -8",
+        "rule2Title": "Different signs",
+        "rule2": "Subtract the smaller absolute value from the larger, and use the sign of the number with larger absolute value. Example: (-7) + 3 = -4"
+      },
+      "multiplication": {
+        "title": "Multiplying Integers"
+      }
+    },
+    "rational": {
+      "title": "Rational Numbers"
+    }
+  },
+  "visuals": {
+    "numberLine": {
+      "title": "Integer Number Line",
+      "caption": "Integers extend infinitely in both directions from zero.",
+      "negativeLabel": "Negative Numbers",
+      "positiveLabel": "Positive Numbers"
+    },
+    "absoluteValue": {
+      "title": "Understanding Absolute Value",
+      "caption": "Both -4 and 4 are the same distance (4 units) from zero.",
+      "distance": "Distance"
+    },
+    "comparing": {
+      "title": "Comparing Integer Examples",
+      "caption": "On the number line, numbers to the right are always greater.",
+      "smaller": "Smaller",
+      "larger": "Larger"
+    },
+    "multiplication": {
+      "title": "Sign Rules for Multiplication",
+      "caption": "The sign of the product depends on the signs of the factors.",
+      "header1": "Signs",
+      "header2": "Example",
+      "header3": "Result",
+      "positive": "Positive",
+      "negative": "Negative"
+    }
+  },
+  "keyConcepts": {
+    "numberLine": {
+      "title": "Key Points:",
+      "point1": "Numbers to the right are greater than numbers to the left",
+      "point2": "Negative numbers are less than zero and positive numbers",
+      "point3": "The distance between consecutive integers is always 1"
+    },
+    "comparing": {
+      "title": "Rules for Comparing:",
+      "rule1": "Any positive number is greater than any negative number",
+      "rule2": "Between two negative numbers, the one closer to zero is greater (Example: -2 > -5)",
+      "rule3": "Zero is greater than all negative numbers and less than all positive numbers"
+    },
+    "rational": {
+      "title": "Key Facts:",
+      "point1": "All integers are rational numbers (can be written as n/1)",
+      "point2": "All terminating decimals are rational numbers",
+      "point3": "Fractions with non-zero denominators are rational numbers"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Adding Integers with Different Signs",
+      "question": "Calculate: (-8) + 12",
+      "step1": "Identify: different signs (negative and positive)",
+      "step2": "Find absolute values: |−8| = 8, |12| = 12",
+      "step3": "Subtract: 12 − 8 = 4. Use sign of larger absolute value (positive)",
+      "answerLabel": "Answer:",
+      "answer": "(-8) + 12 = 4"
+    },
+    "example2": {
+      "title": "Finding Absolute Value",
+      "question": "What is |-15|?",
+      "step1": "Absolute value is the distance from zero",
+      "step2": "The distance from -15 to 0 is 15 units",
+      "answerLabel": "Answer:",
+      "answer": "|-15| = 15"
+    },
+    "example3": {
+      "title": "Multiplying Integers",
+      "question": "Calculate: (-6) × (-4)",
+      "step1": "Identify signs: both negative",
+      "step2": "Rule: negative × negative = positive",
+      "step3": "Multiply absolute values: 6 × 4 = 24",
+      "answerLabel": "Answer:",
+      "answer": "(-6) \\times (-4) = 24"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "exercise1": {
+      "question": "Which number is the smallest? -10, -3, 0, 5",
+      "option1": "0",
+      "option2": "-10",
+      "option3": "-3",
+      "option4": "5",
+      "explanation": "-10 is farthest to the left on the number line, so it's the smallest."
+    },
+    "exercise2": {
+      "question": "What is |-5|?",
+      "hint": "Absolute value is always non-negative.",
+      "explanation": "The distance from -5 to 0 is 5 units, so |-5| = 5."
+    },
+    "exercise3": {
+      "question": "Calculate: (-7) + 5",
+      "hint": "Different signs: subtract and use the sign of the larger absolute value.",
+      "explanation": "|−7| = 7, |5| = 5. Subtract: 7 − 5 = 2. Use negative sign: -2"
+    },
+    "exercise4": {
+      "question": "What is the result of (-3) × 4?",
+      "option1": "12",
+      "option2": "7",
+      "option3": "-12",
+      "option4": "-7",
+      "explanation": "Negative × positive = negative. So (-3) × 4 = -12"
+    },
+    "exercise5": {
+      "question": "Calculate: 5 × (-3)",
+      "hint": "Remember: positive × negative = negative.",
+      "explanation": "5 × 3 = 15, but positive × negative = negative, so 5 × (-3) = -15"
+    }
+  },
+  "notes": {
+    "title": "Tips & Tricks",
+    "tip1": "🧮 Remember: The product of two numbers with the same sign is always positive.",
+    "tip2": "📍 On a number line, think of negative numbers as being 'below zero' or 'in debt'.",
+    "tip3": "💡 When adding integers with different signs, think of it as a 'tug of war' - the stronger side wins!",
+    "warning1": "⚠️ Don't confuse the negative sign with subtraction. -5 is a number, while 3 - 5 is an operation."
+  },
+  "conclusion": {
+    "title": "Excellent Work! 🎉",
+    "summary": "You've mastered integers and rational numbers! Understanding these concepts is fundamental to all of algebra. You can now work with positive and negative numbers confidently!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Integers include positive numbers, negative numbers, and zero",
+    "takeaway2": "Absolute value measures distance from zero and is always non-negative",
+    "takeaway3": "Sign rules for multiplication: same signs = positive, different signs = negative",
+    "takeaway4": "Rational numbers can be expressed as fractions and include all integers and terminating decimals"
+  }
+}

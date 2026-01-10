@@ -4,326 +4,470 @@ import {
   Example, 
   KeyConcept, 
   Note, 
-  StepByStep
+  StepByStep,
+  VisualExplanation
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
-import IntegerNumberLine from '@/components/visualizations/IntegerNumberLine'
 import LessonNavigation from '@/components/lesson/LessonNavigation'
 import { getLessonNavigation } from '@/lib/lesson-navigation'
+import { useTranslations } from 'next-intl'
 
 export default function IntegersLesson() {
+  const t = useTranslations('integers')
   const navigation = getLessonNavigation('pre-algebra', 'integers')
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl sm:text-4xl font-bold mb-6">Integers & Rational Numbers</h1>
+    <div className="max-w-4xl mx-auto px-4 py-8 relative">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-6">{t('title')}</h1>
 
-      <Definition term="Integers">
-        <p>
-          <strong>Integers</strong> are whole numbers and their opposites, including zero.
-        </p>
-        <div className="mt-4 text-center">
-          <p className="font-semibold">..., -3, -2, -1, 0, 1, 2, 3, ...</p>
-        </div>
-        <ul className="mt-4 space-y-2">
-          <li><strong>Positive integers:</strong> 1, 2, 3, 4, ...</li>
-          <li><strong>Negative integers:</strong> -1, -2, -3, -4, ... (read as "negative one", "negative two", etc.)</li>
-          <li><strong>Zero:</strong> Neither positive nor negative</li>
-        </ul>
-        <Note type="tip">
-          When writing negative numbers in expressions, we often use parentheses: <MathRenderer math="(-5)" /> to make them clear.
-        </Note>
-      </Definition>
-
-      <KeyConcept title="Number Line">
-        Integers can be represented on a number line. Numbers to the right are greater, 
-        numbers to the left are smaller.
-      </KeyConcept>
-
-      <IntegerNumberLine
-        min={-10}
-        max={10}
-        start={0}
-        operations={[]}
-        showAnimation={false}
-        label="Integer Number Line"
-      />
-
-      <MultipleChoiceExercise
-        question="Which integer is the smallest?"
-        choices={[
-          { id: 'a', text: '-5', isCorrect: true },
-          { id: 'b', text: '0', isCorrect: false },
-          { id: 'c', text: '-2', isCorrect: false },
-          { id: 'd', text: '3', isCorrect: false }
-        ]}
-        explanation="On a number line, -5 is furthest to the left, making it the smallest."
-        hint="Negative numbers are smaller than positive numbers. The more negative, the smaller."
-      />
-
-      <Definition term="Adding Integers">
-        <p><strong>Same signs:</strong> Add and keep the sign</p>
-        <ul className="list-disc list-inside mt-2">
-          <li><MathRenderer math="5 + 3 = 8" /> (read as "five plus three equals eight")</li>
-          <li><MathRenderer math="(-5) + (-3) = -8" /> (read as "negative five plus negative three equals negative eight")</li>
-        </ul>
-        <p className="mt-3"><strong>Different signs:</strong> Subtract and use the sign of the larger</p>
-        <ul className="list-disc list-inside mt-2">
-          <li><MathRenderer math="5 + (-3) = 2" /> (read as "five plus negative three equals two")</li>
-          <li><MathRenderer math="(-5) + 3 = -2" /> (read as "negative five plus three equals negative two")</li>
-        </ul>
-      </Definition>
-
-      <Note type="success">
-        <p className="font-semibold">➕ Same Signs ADD, Different Signs SUBTRACT</p>
-        <p className="mt-2">
-          Easy way to remember adding integers:
-        </p>
-        <div className="mt-3 space-y-2">
-          <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded">
-            <p className="font-semibold text-sm">✅ Same Signs: ADD and keep the sign</p>
-            <p className="text-sm mt-1"><MathRenderer math="(-5) + (-3) = -(5+3) = -8" /></p>
-            <p className="text-sm"><MathRenderer math="7 + 9 = +(7+9) = 16" /></p>
-          </div>
-          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
-            <p className="font-semibold text-sm">➡️ Different Signs: SUBTRACT and use bigger's sign</p>
-            <p className="text-sm mt-1"><MathRenderer math="(-8) + 5 = -(8-5) = -3" /> (8 is bigger, so negative)</p>
-            <p className="text-sm"><MathRenderer math="9 + (-4) = +(9-4) = 5" /> (9 is bigger, so positive)</p>
-          </div>
-        </div>
-      </Note>
-
-      <IntegerNumberLine
-        min={-10}
-        max={10}
-        start={-8}
-        operations={[
-          { value: 5, label: '+5' }
-        ]}
-        showAnimation={true}
-        label="Adding Integers: (-8) + 5 = -3"
-      />
-
-      <Example
-        problem={<>Calculate <MathRenderer math="(-8) + 5" /></>}
-        solution={
-          <StepByStep
-            steps={[
-              {
-                title: 'Identify the signs',
-                content: <>Different signs: negative 8 and positive 5</>
-              },
-              {
-                title: 'Find which has larger absolute value',
-                content: <>8 &gt; 5, so the answer will be negative</>
-              },
-              {
-                title: 'Subtract the smaller from the larger',
-                content: <><MathRenderer math="8 - 5 = 3" /></>
-              },
-              {
-                title: 'Apply the sign',
-                content: <><MathRenderer math="(-8) + 5 = -3" /></>
-              }
-            ]}
-          />
-        }
-      />
-
-      <NumericInputExercise
-        question={<>What is <MathRenderer math="(-12) + 7" />?</>}
-        correctAnswer={-5}
-        hint="Different signs: find the difference (12 - 7) and use the sign of -12"
-        solution={
-          <div>
-            <p>12 - 7 = 5</p>
-            <p className="mt-2">Since -12 has the larger absolute value, the answer is negative</p>
-            <p className="mt-2 font-semibold">Answer: -5</p>
-          </div>
-        }
-      />
-
-      <Definition term="Subtracting Integers">
-        <p>
-          To subtract an integer, <strong>add its opposite</strong>.
-        </p>
-        <ul className="list-disc list-inside mt-2">
-          <li><MathRenderer math="7 - 3 = 7 + (-3) = 4" /></li>
-          <li><MathRenderer math="5 - (-2) = 5 + 2 = 7" /></li>
-          <li><MathRenderer math="(-6) - 4 = (-6) + (-4) = -10" /></li>
-        </ul>
-      </Definition>
-
-      <Note type="tip">
-        <p className="font-semibold">🔄 "Keep-Change-Change" Subtraction Trick</p>
-        <p className="mt-2">
-          When subtracting integers, use <strong>K-C-C</strong>:
-        </p>
-        <div className="mt-3 font-mono text-sm bg-gray-50 dark:bg-gray-900/30 p-4 rounded space-y-2">
-          <p><strong>K</strong>eep the first number: <MathRenderer math="5 - (-3)" /></p>
-          <p><strong>C</strong>hange subtraction to addition: <MathRenderer math="5 + (-3)" /></p>
-          <p><strong>C</strong>hange the sign of second number: <MathRenderer math="5 + 3 = 8" /></p>
-        </div>
-        <p className="mt-3 text-sm">
-          Two negatives make a positive! <MathRenderer math="- (-)" /> becomes <MathRenderer math="+" />
-        </p>
-      </Note>
-
-      <MultipleChoiceExercise
-        question={<>What is <MathRenderer math="3 - (-5)" />?</>}
-        choices={[
-          { id: 'a', text: '-2', isCorrect: false },
-          { id: 'b', text: '2', isCorrect: false },
-          { id: 'c', text: '8', isCorrect: true },
-          { id: 'd', text: '-8', isCorrect: false }
-        ]}
-        explanation={
-          <>
-            <MathRenderer math="3 - (-5) = 3 + 5 = 8" />
-            <p className="mt-2">Subtracting a negative is the same as adding a positive!</p>
-          </>
-        }
-        hint="Remember: Subtracting a negative number is like adding a positive"
-      />
-
-      <Definition term="Multiplying Integers">
-        <p><strong>Rules for signs:</strong></p>
-        <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>Positive × Positive = Positive: <MathRenderer math="3 \times 4 = 12" /></li>
-          <li>Negative × Negative = Positive: <MathRenderer math="(-3) \times (-4) = 12" /></li>
-          <li>Positive × Negative = Negative: <MathRenderer math="3 \times (-4) = -12" /></li>
-          <li>Negative × Positive = Negative: <MathRenderer math="(-3) \times 4 = -12" /></li>
-        </ul>
-        <Note type="tip">
-          Same signs give positive, different signs give negative!
-        </Note>
-      </Definition>
-
-      <Note type="success">
-        <p className="font-semibold">✖️ Negative × Negative = Positive (The Enemy's Enemy Rule)</p>
-        <p className="mt-2">
-          Think of it like this: "The enemy of my enemy is my friend!"
-        </p>
-        <div className="mt-3 space-y-2 text-sm">
-          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
-            <p className="font-semibold">Sign Rules Chart:</p>
-            <div className="mt-2 grid grid-cols-2 gap-2 font-mono">
-              <div><MathRenderer math="(+) \times (+) = (+)" /></div>
-              <div><MathRenderer math="(+) \times (-) = (-)" /></div>
-              <div><MathRenderer math="(-) \times (+) = (-)" /></div>
-              <div className="font-bold"><MathRenderer math="(-) \times (-) = (+)" /> ✨</div>
-            </div>
-          </div>
-          <p className="mt-2">
-            <strong>Memory trick:</strong> Count the negatives. Even number of negatives = positive, odd = negative.
-          </p>
-          <p className="font-mono"><MathRenderer math="(-2) \times (-3) \times (-4) = -24" /> (3 negatives = odd = negative)</p>
-        </div>
-      </Note>
-
-      <NumericInputExercise
-        question={<>What is <MathRenderer math="(-6) \times (-7)" />?</>}
-        correctAnswer={42}
-        hint="Two negative numbers multiplied together give a positive result"
-        solution={
-          <div>
-            <p>Multiply the absolute values: 6 × 7 = 42</p>
-            <p className="mt-2">Same signs (both negative) = positive result</p>
-            <p className="mt-2 font-semibold">Answer: 42</p>
-          </div>
-        }
-      />
-
-      <Definition term="Dividing Integers">
-        <p>Division follows the same sign rules as multiplication:</p>
-        <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>Positive ÷ Positive = Positive</li>
-          <li>Negative ÷ Negative = Positive</li>
-          <li>Positive ÷ Negative = Negative</li>
-          <li>Negative ÷ Positive = Negative</li>
-        </ul>
-      </Definition>
-
-      <MultipleChoiceExercise
-        question={<>What is <MathRenderer math="(-24) \div 6" />?</>}
-        choices={[
-          { id: 'a', text: '4', isCorrect: false },
-          { id: 'b', text: '-4', isCorrect: true },
-          { id: 'c', text: '6', isCorrect: false },
-          { id: 'd', text: '-6', isCorrect: false }
-        ]}
-        explanation="Different signs give a negative result: (-24) ÷ 6 = -4"
-        hint="Divide 24 by 6, then apply the negative sign (different signs)"
-      />
-
-      <Note type="tip">
-        <p className="font-semibold">🎯 PEMDAS with Negative Numbers</p>
-        <p className="mt-2">
-          When working with order of operations and negative numbers:
-        </p>
-        <div className="mt-3 space-y-3">
-          <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded">
-            <p className="font-semibold text-sm">Watch out for exponents!</p>
-            <p className="text-sm mt-1"><MathRenderer math="-3^2 = -(3^2) = -9" /> (exponent only applies to 3)</p>
-            <p className="text-sm"><MathRenderer math="(-3)^2 = (-3) \times (-3) = 9" /> (exponent applies to -3)</p>
-          </div>
-          <div className="text-sm">
-            <p className="font-semibold">Example: <MathRenderer math="-5 + 3 \times (-2)" /></p>
-            <div className="mt-2 space-y-1 font-mono ml-4">
-              <p>Step 1: Multiply first: <MathRenderer math="3 \times (-2) = -6" /></p>
-              <p>Step 2: Then add: <MathRenderer math="-5 + (-6) = -11" /></p>
-            </div>
-          </div>
-        </div>
-      </Note>
-
-      <Definition term="Rational Numbers">
-        <p>
-          A <strong>rational number</strong> is any number that can be written as a fraction{' '}
-          <MathRenderer math="\frac{a}{b}" /> where <MathRenderer math="a" /> and <MathRenderer math="b" /> are integers 
-          and <MathRenderer math="b \neq 0" />.
-        </p>
-        <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-          <p className="font-semibold mb-2">Examples of Rational Numbers:</p>
-          <ul className="space-y-1">
-            <li><MathRenderer math="\frac{3}{4}" /> (fraction)</li>
-            <li><MathRenderer math="5" /> (can be written as <MathRenderer math="\frac{5}{1}" />)</li>
-            <li><MathRenderer math="-2" /> (can be written as <MathRenderer math="\frac{-2}{1}" />)</li>
-            <li><MathRenderer math="0.5" /> (equals <MathRenderer math="\frac{1}{2}" />)</li>
+      {/* Introduction */}
+      <Definition term={t('definition.integers.title')}>
+        <p>{t.rich('definition.integers.intro', { strong: (chunks) => <strong>{chunks}</strong> })}</p>
+        <div className="mt-4">
+          <p className="font-semibold mb-2">{t('definition.integers.typesTitle')}</p>
+          <ul className="space-y-2 list-disc list-inside">
+            <li><strong>{t('definition.integers.positive')}:</strong> {t('definition.integers.positiveExample')}</li>
+            <li><strong>{t('definition.integers.negative')}:</strong> {t('definition.integers.negativeExample')}</li>
+            <li><strong>{t('definition.integers.zero')}:</strong> {t('definition.integers.zeroExample')}</li>
           </ul>
         </div>
       </Definition>
 
-      <Note type="tip">
-        <p className="font-semibold">⚡ Quick Integer Computation Shortcuts</p>
-        <div className="mt-2 space-y-3">
-          <div>
-            <p className="text-sm font-semibold">1. Adding opposites = 0</p>
-            <p className="text-sm mt-1"><MathRenderer math="17 + (-17) = 0" />, <MathRenderer math="(-45) + 45 = 0" /></p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">2. Subtracting is adding the opposite</p>
-            <p className="text-sm mt-1"><MathRenderer math="a - b = a + (-b)" /></p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">3. Multiplying by -1 flips the sign</p>
-            <p className="text-sm mt-1"><MathRenderer math="-1 \times 25 = -25" />, <MathRenderer math="-1 \times (-30) = 30" /></p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">4. Absolute value shortcut</p>
-            <p className="text-sm mt-1"><MathRenderer math="|a - b|" /> = distance between a and b on number line</p>
-            <p className="text-sm"><MathRenderer math="|-5 - 3| = |-8| = 8" /> (distance between -5 and 3)</p>
-          </div>
-        </div>
-      </Note>
+      {/* Number Line */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">{t('sections.numberLine.title')}</h2>
+        <p className="mb-4">{t('sections.numberLine.explanation')}</p>
 
-      <Note type="success">
-        <p className="font-semibold">Well done!</p>
-        <p className="mt-1">
-          You've mastered integers and their operations! Understanding positive and negative numbers 
-          is crucial for algebra and real-world applications like temperature, bank accounts, and elevations.
-        </p>
-      </Note>
+        <VisualExplanation 
+          title={t('visuals.numberLine.title')}
+          caption={t('visuals.numberLine.caption')}
+        >
+          <svg viewBox="0 0 700 120" className="w-full h-auto">
+            {/* Number line */}
+            <line x1="50" y1="60" x2="650" y2="60" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="3"/>
+            
+            {/* Arrows */}
+            <polygon points="640,55 650,60 640,65" className="fill-gray-700 dark:fill-gray-300"/>
+            <polygon points="60,55 50,60 60,65" className="fill-gray-700 dark:fill-gray-300"/>
+            
+            {/* Numbers and tick marks */}
+            {[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map((num) => {
+              const x = 350 + num * 50
+              return (
+                <g key={num}>
+                  <line 
+                    x1={x} 
+                    y1="50" 
+                    x2={x} 
+                    y2="70" 
+                    className="stroke-gray-700 dark:stroke-gray-300" 
+                    strokeWidth="2"
+                  />
+                  <text 
+                    x={x} 
+                    y="90" 
+                    textAnchor="middle" 
+                    className={`text-sm font-semibold ${num === 0 ? 'fill-red-600 dark:fill-red-400' : 'fill-gray-700 dark:fill-gray-300'}`}
+                  >
+                    {num}
+                  </text>
+                </g>
+              )
+            })}
+            
+            {/* Labels */}
+            <text x="150" y="30" textAnchor="middle" className="fill-blue-600 dark:fill-blue-400 text-xs font-semibold">
+              {t('visuals.numberLine.negativeLabel')}
+            </text>
+            <text x="550" y="30" textAnchor="middle" className="fill-green-600 dark:fill-green-400 text-xs font-semibold">
+              {t('visuals.numberLine.positiveLabel')}
+            </text>
+          </svg>
+        </VisualExplanation>
+
+        <KeyConcept>
+          <p className="font-semibold mb-2">{t('keyConcepts.numberLine.title')}</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>{t('keyConcepts.numberLine.point1')}</li>
+            <li>{t('keyConcepts.numberLine.point2')}</li>
+            <li>{t('keyConcepts.numberLine.point3')}</li>
+          </ul>
+        </KeyConcept>
+      </section>
+
+      {/* Absolute Value */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">{t('sections.absoluteValue.title')}</h2>
+        
+        <Definition term={t('definition.absoluteValue.title')}>
+          <p>{t.rich('definition.absoluteValue.intro', { strong: (chunks) => <strong>{chunks}</strong> })}</p>
+          <p className="mt-2">{t('definition.absoluteValue.explanation')}</p>
+          <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+            <p className="font-semibold mb-1">{t('definition.absoluteValue.notation')}</p>
+            <div className="flex items-center gap-4 text-lg">
+              <MathRenderer math="|5| = 5" />
+              <span className="text-gray-400">•</span>
+              <MathRenderer math="|-5| = 5" />
+            </div>
+          </div>
+        </Definition>
+
+        <VisualExplanation 
+          title={t('visuals.absoluteValue.title')}
+          caption={t('visuals.absoluteValue.caption')}
+        >
+          <svg viewBox="0 0 600 180" className="w-full h-auto">
+            {/* Number line */}
+            <line x1="50" y1="90" x2="550" y2="90" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2"/>
+            
+            {/* Zero point */}
+            <circle cx="300" cy="90" r="5" className="fill-red-600"/>
+            <text x="300" y="115" textAnchor="middle" className="fill-red-600 dark:fill-red-400 text-sm font-bold">
+              0
+            </text>
+            
+            {/* -4 point */}
+            <circle cx="180" cy="90" r="5" className="fill-blue-600"/>
+            <text x="180" y="115" textAnchor="middle" className="fill-blue-600 dark:fill-blue-400 text-sm font-bold">
+              -4
+            </text>
+            
+            {/* +4 point */}
+            <circle cx="420" cy="90" r="5" className="fill-green-600"/>
+            <text x="420" y="115" textAnchor="middle" className="fill-green-600 dark:fill-green-400 text-sm font-bold">
+              4
+            </text>
+            
+            {/* Distance arrows */}
+            <g>
+              <line x1="180" y1="50" x2="300" y2="50" className="stroke-blue-600 dark:stroke-blue-400" strokeWidth="2" markerEnd="url(#arrowBlue)"/>
+              <line x1="300" y1="50" x2="180" y2="50" className="stroke-blue-600 dark:stroke-blue-400" strokeWidth="2" markerStart="url(#arrowBlue)"/>
+              <text x="240" y="40" textAnchor="middle" className="fill-blue-600 dark:fill-blue-400 text-sm font-semibold">
+                {t('visuals.absoluteValue.distance')} = 4
+              </text>
+            </g>
+            
+            <g>
+              <line x1="300" y1="140" x2="420" y2="140" className="stroke-green-600 dark:stroke-green-400" strokeWidth="2" markerEnd="url(#arrowGreen)"/>
+              <line x1="420" y1="140" x2="300" y2="140" className="stroke-green-600 dark:stroke-green-400" strokeWidth="2" markerStart="url(#arrowGreen)"/>
+              <text x="360" y="160" textAnchor="middle" className="fill-green-600 dark:fill-green-400 text-sm font-semibold">
+                {t('visuals.absoluteValue.distance')} = 4
+              </text>
+            </g>
+            
+            <defs>
+              <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" className="fill-blue-600 dark:fill-blue-400" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" className="fill-green-600 dark:fill-green-400" />
+              </marker>
+            </defs>
+          </svg>
+        </VisualExplanation>
+      </section>
+
+      {/* Comparing Integers */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">{t('sections.comparing.title')}</h2>
+        <p className="mb-4">{t('sections.comparing.explanation')}</p>
+
+        <KeyConcept>
+          <p className="font-semibold mb-2">{t('keyConcepts.comparing.title')}</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>{t('keyConcepts.comparing.rule1')}</li>
+            <li>{t('keyConcepts.comparing.rule2')}</li>
+            <li>{t('keyConcepts.comparing.rule3')}</li>
+          </ul>
+        </KeyConcept>
+
+        <VisualExplanation 
+          title={t('visuals.comparing.title')}
+          caption={t('visuals.comparing.caption')}
+        >
+          <div className="space-y-4">
+            <div className="flex items-center justify-around p-4 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">-3</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('visuals.comparing.smaller')}</div>
+              </div>
+              <div className="text-4xl font-bold text-gray-400">&lt;</div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400">2</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('visuals.comparing.larger')}</div>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-around p-4 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-red-600 dark:text-red-400">-8</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('visuals.comparing.smaller')}</div>
+              </div>
+              <div className="text-4xl font-bold text-gray-400">&lt;</div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">-5</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('visuals.comparing.larger')}</div>
+              </div>
+            </div>
+          </div>
+        </VisualExplanation>
+      </section>
+
+      {/* Integer Operations */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">{t('sections.operations.title')}</h2>
+
+        {/* Addition */}
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold mb-3">{t('sections.operations.addition.title')}</h3>
+          <KeyConcept>
+            <p className="font-semibold mb-2">{t('sections.operations.addition.rulesTitle')}</p>
+            <ul className="space-y-2">
+              <li><strong>{t('sections.operations.addition.rule1Title')}:</strong> {t('sections.operations.addition.rule1')}</li>
+              <li><strong>{t('sections.operations.addition.rule2Title')}:</strong> {t('sections.operations.addition.rule2')}</li>
+            </ul>
+          </KeyConcept>
+        </div>
+
+        {/* Multiplication */}
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold mb-3">{t('sections.operations.multiplication.title')}</h3>
+          <VisualExplanation 
+            title={t('visuals.multiplication.title')}
+            caption={t('visuals.multiplication.caption')}
+          >
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-2 border-gray-300 dark:border-gray-600">
+                <thead className="bg-blue-100 dark:bg-blue-900">
+                  <tr>
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.multiplication.header1')}</th>
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.multiplication.header2')}</th>
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2">{t('visuals.multiplication.header3')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-white dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="(+) \times (+)" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="3 \times 4 = 12" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-green-600 dark:text-green-400 font-semibold text-center">
+                      {t('visuals.multiplication.positive')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="(-) \times (-)" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="(-3) \times (-4) = 12" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-green-600 dark:text-green-400 font-semibold text-center">
+                      {t('visuals.multiplication.positive')}
+                    </td>
+                  </tr>
+                  <tr className="bg-white dark:bg-gray-800">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="(+) \times (-)" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="3 \times (-4) = -12" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-red-600 dark:text-red-400 font-semibold text-center">
+                      {t('visuals.multiplication.negative')}
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-50 dark:bg-gray-700">
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="(-) \times (+)" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                      <MathRenderer math="(-3) \times 4 = -12" />
+                    </td>
+                    <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-red-600 dark:text-red-400 font-semibold text-center">
+                      {t('visuals.multiplication.negative')}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </VisualExplanation>
+        </div>
+      </section>
+
+      {/* Rational Numbers */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">{t('sections.rational.title')}</h2>
+        
+        <Definition term={t('definition.rational.title')}>
+          <p>{t.rich('definition.rational.intro', { strong: (chunks) => <strong>{chunks}</strong> })}</p>
+          <div className="mt-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded">
+            <p className="font-semibold mb-2">{t('definition.rational.examples')}</p>
+            <div className="flex flex-wrap gap-4 text-lg">
+              <MathRenderer math="\frac{1}{2}" />
+              <MathRenderer math="\frac{-3}{4}" />
+              <MathRenderer math="0.5" />
+              <MathRenderer math="-2.75" />
+              <MathRenderer math="5 = \frac{5}{1}" />
+            </div>
+          </div>
+        </Definition>
+
+        <KeyConcept>
+          <p className="font-semibold mb-2">{t('keyConcepts.rational.title')}</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>{t('keyConcepts.rational.point1')}</li>
+            <li>{t('keyConcepts.rational.point2')}</li>
+            <li>{t('keyConcepts.rational.point3')}</li>
+          </ul>
+        </KeyConcept>
+      </section>
+
+      {/* Examples */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">📝 {t('examples.title')}</h2>
+
+        <Example
+          title={t('examples.example1.title')}
+          problem={<p>{t('examples.example1.question')}</p>}
+          solution={
+            <>
+              <StepByStep steps={[
+                { content: <p>{t('examples.example1.step1')}</p> },
+                { content: <p>{t('examples.example1.step2')}</p> },
+                { content: <p>{t('examples.example1.step3')}</p> }
+              ]} />
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <p className="font-semibold">{t('examples.example1.answerLabel')}</p>
+                <MathRenderer math={t('examples.example1.answer')} />
+              </div>
+            </>
+          }
+        />
+
+        <Example
+          title={t('examples.example2.title')}
+          problem={<p>{t('examples.example2.question')}</p>}
+          solution={
+            <>
+              <StepByStep steps={[
+                { content: <p>{t('examples.example2.step1')}</p> },
+                { content: <p>{t('examples.example2.step2')}</p> }
+              ]} />
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <p className="font-semibold">{t('examples.example2.answerLabel')}</p>
+                <p>{t('examples.example2.answer')}</p>
+              </div>
+            </>
+          }
+        />
+
+        <Example
+          title={t('examples.example3.title')}
+          problem={<p>{t('examples.example3.question')}</p>}
+          solution={
+            <>
+              <StepByStep steps={[
+                { content: <p>{t('examples.example3.step1')}</p> },
+                { content: <p>{t('examples.example3.step2')}</p> },
+                { content: <p>{t('examples.example3.step3')}</p> }
+              ]} />
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <p className="font-semibold">{t('examples.example3.answerLabel')}</p>
+                <MathRenderer math={t('examples.example3.answer')} />
+              </div>
+            </>
+          }
+        />
+      </section>
+
+      {/* Practice Exercises */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">✏️ {t('exercises.title')}</h2>
+
+        <MultipleChoiceExercise
+          question={t('exercises.exercise1.question')}
+          choices={[
+            { id: 'a', text: t('exercises.exercise1.option1'), isCorrect: false },
+            { id: 'b', text: t('exercises.exercise1.option2'), isCorrect: true },
+            { id: 'c', text: t('exercises.exercise1.option3'), isCorrect: false },
+            { id: 'd', text: t('exercises.exercise1.option4'), isCorrect: false }
+          ]}
+          explanation={t('exercises.exercise1.explanation')}
+        />
+
+        <NumericInputExercise
+          question={t('exercises.exercise2.question')}
+          correctAnswer={5}
+          hint={t('exercises.exercise2.hint')}
+          solution={<p>{t('exercises.exercise2.explanation')}</p>}
+        />
+
+        <NumericInputExercise
+          question={t('exercises.exercise3.question')}
+          correctAnswer={-2}
+          hint={t('exercises.exercise3.hint')}
+          solution={<p>{t('exercises.exercise3.explanation')}</p>}
+        />
+
+        <MultipleChoiceExercise
+          question={t('exercises.exercise4.question')}
+          choices={[
+            { id: 'a', text: t('exercises.exercise4.option1'), isCorrect: false },
+            { id: 'b', text: t('exercises.exercise4.option2'), isCorrect: false },
+            { id: 'c', text: t('exercises.exercise4.option3'), isCorrect: true },
+            { id: 'd', text: t('exercises.exercise4.option4'), isCorrect: false }
+          ]}
+          explanation={t('exercises.exercise4.explanation')}
+        />
+
+        <NumericInputExercise
+          question={t('exercises.exercise5.question')}
+          correctAnswer={-15}
+          hint={t('exercises.exercise5.hint')}
+          solution={<p>{t('exercises.exercise5.explanation')}</p>}
+        />
+      </section>
+
+      {/* Tips and Notes */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">💡 {t('notes.title')}</h2>
+        
+        <Note>{t('notes.tip1')}</Note>
+        <Note>{t('notes.tip2')}</Note>
+        <Note>{t('notes.tip3')}</Note>
+        <Note>{t('notes.warning1')}</Note>
+      </section>
+
+      {/* Conclusion */}
+      <section className="my-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
+        <h2 className="text-2xl font-bold mb-4">{t('conclusion.title')}</h2>
+        <p className="mb-4">{t('conclusion.summary')}</p>
+        
+        <div className="mt-4">
+          <p className="font-semibold mb-2">{t('conclusion.keyTakeawaysTitle')}</p>
+          <ul className="space-y-2">
+            <li className="flex items-start">
+              <span className="mr-2">✓</span>
+              <span>{t('conclusion.takeaway1')}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">✓</span>
+              <span>{t('conclusion.takeaway2')}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">✓</span>
+              <span>{t('conclusion.takeaway3')}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">✓</span>
+              <span>{t('conclusion.takeaway4')}</span>
+            </li>
+          </ul>
+        </div>
+      </section>
 
       <LessonNavigation navigation={navigation} />
     </div>

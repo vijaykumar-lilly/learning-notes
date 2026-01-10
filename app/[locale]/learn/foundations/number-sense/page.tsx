@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 import MathRenderer from '@/components/math/MathRenderer'
 import { 
