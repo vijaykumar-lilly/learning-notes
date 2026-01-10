@@ -119,6 +119,31 @@
       "answerLabel": "Answer:"
     }
   },
+  "realWorld": {
+    "title": "Real World Applications",
+    "intro": "Algebraic expressions are everywhere in daily life! Here's where you'll use them:",
+    "app1": {
+      "title": "💰 Shopping & Discounts",
+      "description": "Stores use algebraic expressions to calculate sale prices and discounts.",
+      "exampleLabel": "Example:",
+      "example": "A shirt costs $p. During a 20% off sale, you save 0.2p dollars. The final price is p - 0.2p = 0.8p dollars.",
+      "expression": "Expression"
+    },
+    "app2": {
+      "title": "🌡️ Temperature Conversion",
+      "description": "Converting between Celsius and Fahrenheit uses an algebraic expression.",
+      "exampleLabel": "Example:",
+      "example": "To convert 25°C to Fahrenheit: F = (9/5) × 25 + 32 = 45 + 32 = 77°F. Scientists and weather forecasters use this daily!",
+      "expression": "Formula"
+    },
+    "app3": {
+      "title": "🚗 Speed, Distance & Time",
+      "description": "Planning trips involves algebraic expressions relating speed, distance, and time.",
+      "exampleLabel": "Example:",
+      "example": "If you drive at 60 mph for t hours, the distance traveled is 60t miles. After 3 hours: d = 60 × 3 = 180 miles.",
+      "expression": "Formula"
+    }
+  },
   "exercises": {
     "title": "Practice Exercises",
     "exercise1": {

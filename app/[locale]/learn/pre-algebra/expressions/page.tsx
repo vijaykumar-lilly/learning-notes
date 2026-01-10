@@ -336,6 +336,47 @@ export default function AlgebraicExpressionsLesson() {
         />
       </section>
 
+      {/* Real World Applications */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">🌍 {t('realWorld.title')}</h2>
+        <p className="mb-4">{t('realWorld.intro')}</p>
+        
+        <div className="space-y-4">
+          {/* Application 1: Shopping & Discounts */}
+          <div className="p-4 bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg">
+            <h3 className="font-semibold text-lg mb-2">{t('realWorld.app1.title')}</h3>
+            <p className="mb-2">{t('realWorld.app1.description')}</p>
+            <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <p><strong>{t('realWorld.app1.exampleLabel')}</strong></p>
+              <p>{t('realWorld.app1.example')}</p>
+              <p className="mt-2 text-xs italic">{t('realWorld.app1.expression')}: <MathRenderer math="p - 0.2p" /></p>
+            </div>
+          </div>
+
+          {/* Application 2: Temperature Conversion */}
+          <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
+            <h3 className="font-semibold text-lg mb-2">{t('realWorld.app2.title')}</h3>
+            <p className="mb-2">{t('realWorld.app2.description')}</p>
+            <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <p><strong>{t('realWorld.app2.exampleLabel')}</strong></p>
+              <p>{t('realWorld.app2.example')}</p>
+              <p className="mt-2 text-xs italic">{t('realWorld.app2.expression')}: <MathRenderer math="F = \\frac{9}{5}C + 32" /></p>
+            </div>
+          </div>
+
+          {/* Application 3: Speed & Distance */}
+          <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg">
+            <h3 className="font-semibold text-lg mb-2">{t('realWorld.app3.title')}</h3>
+            <p className="mb-2">{t('realWorld.app3.description')}</p>
+            <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <p><strong>{t('realWorld.app3.exampleLabel')}</strong></p>
+              <p>{t('realWorld.app3.example')}</p>
+              <p className="mt-2 text-xs italic">{t('realWorld.app3.expression')}: <MathRenderer math="d = s \\times t" /></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Practice Exercises */}
       <section className="my-8">
         <h2 className="text-2xl font-bold mb-4">✏️ {t('exercises.title')}</h2>
