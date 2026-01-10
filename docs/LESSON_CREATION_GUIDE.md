@@ -300,6 +300,137 @@ When using visual demonstrations (like ArithmeticVisualizer), **always match the
 <ArithmeticVisualizer itemType="apples" ... />
 
 // Subtraction with cookies
+"8 cookies - 3 cookies = 5 cookies"
+<ArithmeticVisualizer itemType="cookies" ... />
+```
+
+### 3. **Interactive vs Static Visual Components** ⭐ **CRITICAL DISTINCTION**
+
+**There are TWO types of visual components - use them correctly!**
+
+#### 📊 **Static Visual Explanations** (Teaching/Explaining)
+Use these to **explain concepts** with clear, non-interactive diagrams:
+
+```tsx
+import { VisualExplanation, RatioDiagram, ProportionDiagram, UnitRateDiagram } from '@/components/lesson'
+
+// Explain a concept with a static diagram
+<VisualExplanation
+  title="Understanding Proportions"
+  caption="Notice how 1:2 = 2:4 show the same relationship"
+>
+  <ProportionDiagram
+    ratio1a={1} ratio1b={2}
+    ratio2a={2} ratio2b={4}
+    label="Equal Ratios"
+  />
+</VisualExplanation>
+
+// Show a specific ratio
+<VisualExplanation title="Ratio Example">
+  <RatioDiagram
+    ratio1={3} ratio2={5}
+    label1="Part A" label2="Part B"
+    color1="#3b82f6" color2="#f59e0b"
+    showSimplified={true}
+  />
+</VisualExplanation>
+
+// Demonstrate unit rates
+<VisualExplanation title="Speed Concept">
+  <UnitRateDiagram
+    value={60}
+    unit="miles per hour"
+    icon="speed"  // or "money", "distance"
+  />
+</VisualExplanation>
+```
+
+**When to use static diagrams:**
+- ✅ Right after a Definition (to explain the concept)
+- ✅ Within Examples (to show a specific case)
+- ✅ In KeyConcepts (to illustrate relationships)
+- ✅ Showing step-by-step visual progression
+
+#### 🎮 **Interactive Visualizers** (Exploration/Practice)
+Use these when students should **manipulate and explore**:
+
+```tsx
+import { RatioVisualizer } from '@/components/visualizations'
+import { InteractiveFractionSlider } from '@/components/interactive'
+
+// Let students change scale and explore
+<RatioVisualizer
+  ratio1={3}
+  ratio2={5}
+  label1="Apples"
+  label2="Oranges"
+  showScale={true}  // Adds interactive slider!
+/>
+
+// Students adjust numerator/denominator
+<InteractiveFractionSlider
+  maxNumerator={12}
+  maxDenominator={12}
+  initialNumerator={3}
+  initialDenominator={4}
+  visualType="circle"
+  showDecimal={true}
+/>
+```
+
+**When to use interactive components:**
+- ✅ After students understand basics (exploration phase)
+- ✅ For discovering patterns through manipulation
+- ✅ Testing different scenarios
+- ✅ Hands-on experimentation
+- ✅ Usually 1-2 per major concept section
+
+#### ❌ **Common Mistakes:**
+```tsx
+// ❌ DON'T: Use interactive for simple explanations
+<Definition term="Ratio">
+  <p>A ratio is...</p>
+</Definition>
+<RatioVisualizer ratio1={2} ratio2={3} showScale={true} />
+// Problem: Students see controls before understanding concept
+
+// ✅ DO: Use static diagram first
+<Definition term="Ratio">
+  <p>A ratio is...</p>
+</Definition>
+<VisualExplanation title="What is 2:3?">
+  <RatioDiagram ratio1={2} ratio2={3} label1="Part 1" label2="Part 2" />
+</VisualExplanation>
+
+// THEN add interactive after they understand
+<KeyConcept title="Explore Scaling">
+  <p>Try changing the scale...</p>
+</KeyConcept>
+<RatioVisualizer ratio1={2} ratio2={3} showScale={true} />
+```
+
+#### 📋 **Typical Lesson Visual Flow:**
+```tsx
+// 1. EXPLAIN with static (2-3 times)
+Definition → VisualExplanation (static diagram)
+Example → VisualExplanation (static diagram)
+KeyConcept → VisualExplanation (static diagram)
+
+// 2. EXPLORE with interactive (1-2 times)
+KeyConcept → Interactive Visualizer (with controls)
+Practice Section → Interactive Visualizer (hands-on)
+```
+
+**Component Count Guidelines per Lesson:**
+- Static Visual Explanations: **2-4** (explain different concepts)
+- Interactive Visualizers: **1-2** (deep exploration)
+- Too many interactive = overwhelming
+- Too few visuals = boring text
+
+### 4. **Variety is Key**
+
+// Subtraction with cookies
 "9 cookies - 4 cookies = 5 cookies left"
 <ArithmeticVisualizer itemType="cookies" ... />
 
@@ -832,6 +963,50 @@ return {
 };
 ```
 
+### 3.4: Register Lesson in Sidebar Navigation
+
+**File**: `lib/curriculum-data.ts`
+
+After creating your lesson, you must add it to the curriculum data to make it appear in the sidebar navigation.
+
+**Steps**:
+
+1. Open `lib/curriculum-data.ts`
+2. Find the appropriate domain (e.g., `foundations`, `pre-algebra`, `geometry`, etc.)
+3. Add your lesson to the `topics` array
+
+**Example** - Adding "Ratios & Proportions" to Foundations:
+
+```typescript
+{
+  id: '1',
+  title: 'Foundations',
+  description: 'Ages 5-11 / Grades K-5',
+  level: 'Elementary',
+  slug: 'foundations',
+  topics: [
+    { id: '1.1', title: 'Number Sense & Place Value', slug: 'number-sense', exerciseCount: 25 },
+    { id: '1.2', title: 'Basic Arithmetic', slug: 'arithmetic', exerciseCount: 80 },
+    { id: '1.3', title: 'Fractions', slug: 'fractions', exerciseCount: 60 },
+    { id: '1.4', title: 'Decimals', slug: 'decimals', exerciseCount: 50 },
+    { id: '1.5', title: 'Percentages', slug: 'percentages', exerciseCount: 40 },
+    // Add your new lesson here
+    { id: '1.6', title: 'Ratios & Proportions', slug: 'ratios-proportions', exerciseCount: 6 },
+  ],
+}
+```
+
+**Important**: 
+- The `slug` must **exactly match** your folder name in `app/[locale]/learn/[domain]/[slug]/`
+- The `id` should follow the sequential pattern (e.g., `1.6`, `1.7`, etc.)
+- Set `exerciseCount` to the actual number of exercises in your lesson
+- If your lesson includes proofs, add `proofCount` property
+
+**Example with proofs**:
+```typescript
+{ id: '4.2', title: 'Triangle Properties', slug: 'triangles', exerciseCount: 45, proofCount: 15 }
+```
+
 ### Translation Best Practices
 
 1. **Organize by sections**: Group related translations together
@@ -1104,6 +1279,8 @@ This demonstrates:
 - [ ] Implement lesson content using translation keys
 - [ ] Use `t.rich()` for any HTML formatting
 - [ ] Add English translations to `messages/en/your-lesson.json`
+- [ ] Register namespace in `i18n.ts` configuration
+- [ ] **Update sidebar: Add lesson to `lib/curriculum-data.ts`** (see below)
 - [ ] Test `/en/` route works correctly
 - [ ] Verify all exercises function correctly
 - [ ] Review math rendering displays properly

@@ -25,7 +25,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       arithmetic: (await import(`./messages/${locale}/arithmetic.json`)).default,
       decimals: (await import(`./messages/${locale}/decimals.json`)).default,
       fractions: (await import(`./messages/${locale}/fractions.json`)).default,
-      percentages: (await import(`./messages/${locale}/percentages.json`)).default
+      percentages: (await import(`./messages/${locale}/percentages.json`)).default,
+      'ratios-proportions': (await import(`./messages/${locale}/ratios-proportions.json`)).default
     }
   };
 });
