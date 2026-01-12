@@ -1,0 +1,215 @@
+{
+  "title": "Coordinate Plane & Graphing",
+  "description": "Learn to plot points, identify quadrants, and graph equations on the coordinate plane",
+  "definition": {
+    "title": "What is the Coordinate Plane?",
+    "intro": "The coordinate plane is a two-dimensional surface where we can locate points using ordered pairs of numbers. It's like a map with a grid!",
+    "axes": {
+      "title": "The Two Axes",
+      "xAxis": "X-Axis (Horizontal)",
+      "xDescription": "Runs left and right. Positive numbers go right, negative numbers go left.",
+      "yAxis": "Y-Axis (Vertical)",
+      "yDescription": "Runs up and down. Positive numbers go up, negative numbers go down."
+    },
+    "point": {
+      "title": "Ordered Pairs",
+      "description": "Every point on the coordinate plane is identified by an ordered pair:",
+      "format": "x-coordinate comes first, then y-coordinate",
+      "example": "Example: (3, 2) means 3 units right and 2 units up from the origin"
+    }
+  },
+  "concepts": {
+    "title": "Key Concepts",
+    "quadrants": {
+      "title": "The Four Quadrants",
+      "intro": "The axes divide the plane into four sections called quadrants, numbered counterclockwise:",
+      "q1": "Quadrant I",
+      "q1desc": "Both positive",
+      "q2": "Quadrant II",
+      "q2desc": "x negative, y positive",
+      "q3": "Quadrant III",
+      "q3desc": "Both negative",
+      "q4": "Quadrant IV",
+      "q4desc": "x positive, y negative"
+    },
+    "plotting": {
+      "title": "How to Plot a Point",
+      "step1": "Start at the origin (0, 0)",
+      "step2": "Move horizontally according to the x-coordinate (right if positive, left if negative)",
+      "step3": "Move vertically according to the y-coordinate (up if positive, down if negative)",
+      "step4": "Mark the point and label it"
+    },
+    "origin": {
+      "title": "The Origin",
+      "description": "The point where the x-axis and y-axis intersect. It has coordinates:"
+    }
+  },
+  "visual": {
+    "title": "Visual Guide: Reading Coordinates",
+    "table": {
+      "point": "Point",
+      "x": "X-coordinate",
+      "y": "Y-coordinate",
+      "quadrant": "Quadrant",
+      "right": "right",
+      "left": "left",
+      "up": "up",
+      "down": "down",
+      "q1": "I",
+      "q2": "II",
+      "q3": "III",
+      "q4": "IV"
+    },
+    "distance": {
+      "title": "Distance Formula",
+      "intro": "To find the distance between two points on the coordinate plane:",
+      "formula": "Distance Formula:"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: Plotting a Point",
+      "problem": "Plot the point (-3, 4)",
+      "step1Label": "Step 1:",
+      "step1Text": "Start at the origin (0, 0)",
+      "step2Label": "Step 2:",
+      "step2Text": "Move 3 units to the LEFT (because x = -3)",
+      "step3Label": "Step 3:",
+      "step3Text": "Move 4 units UP (because y = 4)",
+      "resultLabel": "Result:",
+      "resultText": "The point (-3, 4) is in Quadrant II"
+    },
+    "example2": {
+      "title": "Example 2: Identifying Quadrants",
+      "problem": "Identify which quadrant each point is in:",
+      "pointA": "(5, 7):",
+      "pointAAnswer": "Both coordinates are positive → Quadrant I",
+      "pointB": "(-2, -6):",
+      "pointBAnswer": "Both coordinates are negative → Quadrant III",
+      "pointC": "(4, -3):",
+      "pointCAnswer": "x is positive, y is negative → Quadrant IV"
+    },
+    "example3": {
+      "title": "Example 3: Finding Distance Between Points",
+      "problem": "Find the distance between (1, 2) and (4, 6)",
+      "step1Label": "Identify the coordinates:",
+      "step2Label": "Apply the distance formula:",
+      "step3Label": "Simplify:",
+      "answerLabel": "Answer:",
+      "units": "units"
+    },
+    "example4": {
+      "title": "Example 4: Graphing a Linear Equation",
+      "problem": "Graph the equation y = x + 1",
+      "step1Label": "Create a table of values:",
+      "step1Text": "Choose several x-values and calculate the corresponding y-values",
+      "point": "Point",
+      "step2Label": "Plot the points and connect them:",
+      "step2Text": "Mark each point on the coordinate plane and draw a line through them",
+      "resultLabel": "Result:",
+      "resultText": "The points form a straight line with a slope of 1"
+    }
+  },
+  "realWorld": {
+    "title": "Real World Applications",
+    "intro": "The coordinate plane is used everywhere in the modern world!",
+    "app1": {
+      "title": "🗺️ Maps & Navigation",
+      "description": "GPS systems and maps use coordinate systems to show your location and give directions.",
+      "exampleLabel": "Example:",
+      "example": "Your phone uses latitude and longitude (similar to coordinates) to pinpoint your exact location on Earth.",
+      "meaning": "Every location has unique coordinates, just like every point on the coordinate plane!"
+    },
+    "app2": {
+      "title": "🎮 Video Games",
+      "description": "Game developers use coordinate planes to track character positions and movements.",
+      "exampleLabel": "Example:",
+      "example": "When your character moves in a game, the computer updates their (x, y) coordinates to show their new position on screen.",
+      "meaning": "Everything you see moving in a video game is based on changing coordinates!"
+    },
+    "app3": {
+      "title": "📊 Data Visualization",
+      "description": "Scientists, economists, and analysts use graphs to visualize data and identify trends.",
+      "exampleLabel": "Example:",
+      "example": "A scatter plot showing the relationship between study time (x-axis) and test scores (y-axis) helps identify patterns.",
+      "meaning": "Coordinate planes help us see patterns and make predictions from data!"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "instruction": "Try these problems to test your understanding!",
+    "exercise1": {
+      "title": "Exercise 1: Identify the Quadrant",
+      "question": "In which quadrant is the point (-7, 5) located?",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "solution": "x is negative and y is positive, so the point is in Quadrant II.",
+      "answerLabel": "Answer:",
+      "answer": "Quadrant II"
+    },
+    "exercise2": {
+      "title": "Exercise 2: Plot and Describe",
+      "question": "What are the coordinates of a point that is 4 units left and 3 units down from the origin?",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "solution": "4 units left means x = -4, and 3 units down means y = -3",
+      "answerLabel": "Answer:",
+      "answer": "(-4, -3)"
+    },
+    "exercise3": {
+      "title": "Exercise 3: Distance Between Points",
+      "question": "Find the distance between (3, 4) and (7, 1).",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:",
+      "answer": "5 units"
+    },
+    "exercise4": {
+      "title": "Exercise 4: Table of Values",
+      "question": "Create a table of values for y = 2x - 1 using x = 0, 1, 2",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "pointHeader": "Point",
+      "answerLabel": "Answer:",
+      "answer": "Plot these three points and connect them to graph the line"
+    },
+    "exercise5": {
+      "title": "Exercise 5: Midpoint",
+      "question": "Find the midpoint between (2, 3) and (8, 7).",
+      "showAnswer": "Show Solution",
+      "solutionLabel": "Solution:",
+      "answerLabel": "Answer:",
+      "answer": "(5, 5)"
+    }
+  },
+  "tips": {
+    "title": "Tips & Common Mistakes",
+    "tip1": {
+      "title": "📍 Order Matters!",
+      "text": "Always remember: x comes first, then y. Think of it as going through a door - you walk across the floor (x) before going up the stairs (y)!"
+    },
+    "tip2": {
+      "title": "✅ Check Your Signs",
+      "text": "Pay careful attention to positive and negative signs. A small mistake with signs can put your point in the wrong quadrant!"
+    },
+    "tip3": {
+      "title": "📐 Use Graph Paper",
+      "text": "When graphing by hand, use graph paper to keep your axes straight and spacing even. This makes plotting points much easier and more accurate."
+    },
+    "tip4": {
+      "title": "🎯 Label Everything",
+      "text": "Always label your axes, mark the origin, and label important points. This helps you (and others) understand your graph clearly."
+    }
+  },
+  "conclusion": {
+    "title": "Summary",
+    "summary": "Excellent work! You've learned how to navigate the coordinate plane, a fundamental skill for advanced math and real-world applications.",
+    "keyPoints": "Key Takeaways:",
+    "point1": "The coordinate plane uses ordered pairs (x, y) to locate points",
+    "point2": "Four quadrants have different sign combinations for coordinates",
+    "point3": "Distance formula helps find the length between two points",
+    "point4": "Coordinate systems are used in GPS, gaming, graphing, and data visualization",
+    "next": "Next up: Introduction to Functions - understanding relationships between variables!"
+  }
+}

@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { locales } from '@/i18n';
+import { useEffect, useRef } from 'react';
 
 const LANGUAGES = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
@@ -13,11 +14,24 @@ export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const scrollPositionRef = useRef<number>(0);
   
   const currentLang = LANGUAGES.find(l => l.code === locale);
+
+  // Save scroll position before language change
+  useEffect(() => {
+    const savedScrollY = sessionStorage.getItem('scrollPosition');
+    if (savedScrollY) {
+      window.scrollTo(0, parseInt(savedScrollY, 10));
+      sessionStorage.removeItem('scrollPosition');
+    }
+  }, [locale]);
   
   const switchLanguage = (newLocale: string) => {
     if (newLocale === locale) return;
+    
+    // Save current scroll position
+    sessionStorage.setItem('scrollPosition', window.scrollY.toString());
     
     // Replace locale in pathname
     // pathname is like /en/learn/decimals or /ta/learn/decimals

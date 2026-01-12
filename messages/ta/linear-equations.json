@@ -127,35 +127,45 @@
       "question": "x-க்கு தீர்க்கவும்:",
       "showAnswer": "தீர்வைக் காட்டு",
       "solutionLabel": "தீர்வு:",
-      "answerLabel": "பதில்:"
+      "solution": "இரு பக்கங்களுக்கும் 7 சேர்க்கவும்: x - 7 + 7 = 12 + 7",
+      "answerLabel": "பதில்:",
+      "answer": "x = 19"
     },
     "exercise2": {
       "title": "பயிற்சி 2: இரண்டு-படி சமன்பாடு",
       "question": "y-க்கு தீர்க்கவும்:",
       "showAnswer": "தீர்வைக் காட்டு",
       "solutionLabel": "தீர்வு:",
-      "answerLabel": "பதில்:"
+      "solution": "இரு பக்கங்களிலும் 5 கழிக்கவும்: 3y + 5 - 5 = 17 - 5 → 3y = 12. பின்னர் இரு பக்கங்களையும் 3 ஆல் வகுக்கவும்: y = 4",
+      "answerLabel": "பதில்:",
+      "answer": "y = 4"
     },
     "exercise3": {
       "title": "பயிற்சி 3: விநியோக பண்பு",
       "question": "m-க்கு தீர்க்கவும்:",
       "showAnswer": "தீர்வைக் காட்டு",
       "solutionLabel": "தீர்வு:",
-      "answerLabel": "பதில்:"
+      "solution": "விநியோகம்: 4m + 8 = 32. 8 கழிக்கவும்: 4m = 24. 4 ஆல் வகுக்கவும்: m = 6",
+      "answerLabel": "பதில்:",
+      "answer": "m = 6"
     },
     "exercise4": {
       "title": "பயிற்சி 4: இரு பக்கங்களிலும் மாறி",
       "question": "n-க்கு தீர்க்கவும்:",
       "showAnswer": "தீர்வைக் காட்டு",
       "solutionLabel": "தீர்வு:",
-      "answerLabel": "பதில்:"
+      "solution": "இரு பக்கங்களிலும் 2n கழிக்கவும்: 7n - 2n = 2n + 15 - 2n → 5n = 15. 5 ஆல் வகுக்கவும்: n = 3",
+      "answerLabel": "பதில்:",
+      "answer": "n = 3"
     },
     "exercise5": {
       "title": "பயிற்சி 5: பின்னங்களுடன் சமன்பாடு",
       "question": "x-க்கு தீர்க்கவும்:",
       "showAnswer": "தீர்வைக் காட்டு",
       "solutionLabel": "தீர்வு:",
-      "answerLabel": "பதில்:"
+      "solution": "பின்னத்தை நீக்க இரு பக்கங்களையும் 2 ஆல் பெருக்கவும்: x/2 × 2 = 9 × 2 → x = 18",
+      "answerLabel": "பதில்:",
+      "answer": "x = 18"
     }
   },
   "tips": {

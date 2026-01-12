@@ -127,35 +127,45 @@
       "question": "Solve for x:",
       "showAnswer": "Show Solution",
       "solutionLabel": "Solution:",
-      "answerLabel": "Answer:"
+      "solution": "Add 7 to both sides: x - 7 + 7 = 12 + 7",
+      "answerLabel": "Answer:",
+      "answer": "x = 19"
     },
     "exercise2": {
       "title": "Exercise 2: Two-Step Equation",
       "question": "Solve for y:",
       "showAnswer": "Show Solution",
       "solutionLabel": "Solution:",
-      "answerLabel": "Answer:"
+      "solution": "Subtract 5 from both sides: 3y + 5 - 5 = 17 - 5 → 3y = 12. Then divide both sides by 3: y = 4",
+      "answerLabel": "Answer:",
+      "answer": "y = 4"
     },
     "exercise3": {
       "title": "Exercise 3: Distributive Property",
       "question": "Solve for m:",
       "showAnswer": "Show Solution",
       "solutionLabel": "Solution:",
-      "answerLabel": "Answer:"
+      "solution": "Distribute: 4m + 8 = 32. Subtract 8: 4m = 24. Divide by 4: m = 6",
+      "answerLabel": "Answer:",
+      "answer": "m = 6"
     },
     "exercise4": {
       "title": "Exercise 4: Variable on Both Sides",
       "question": "Solve for n:",
       "showAnswer": "Show Solution",
       "solutionLabel": "Solution:",
-      "answerLabel": "Answer:"
+      "solution": "Subtract 2n from both sides: 7n - 2n = 2n + 15 - 2n → 5n = 15. Divide by 5: n = 3",
+      "answerLabel": "Answer:",
+      "answer": "n = 3"
     },
     "exercise5": {
       "title": "Exercise 5: Equation with Fractions",
       "question": "Solve for x:",
       "showAnswer": "Show Solution",
       "solutionLabel": "Solution:",
-      "answerLabel": "Answer:"
+      "solution": "Multiply both sides by 2 to clear the fraction: x/2 × 2 = 9 × 2 → x = 18",
+      "answerLabel": "Answer:",
+      "answer": "x = 18"
     }
   },
   "tips": {
