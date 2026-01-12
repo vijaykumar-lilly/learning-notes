@@ -24,8 +24,78 @@ server = Server("math-lesson-server")
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 TEMPLATES_DIR = Path(__file__).parent.parent / "templates"
 
+# Project context files for MCP resources
+INSTRUCTIONS_FILE = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+EXAMPLE_LESSON_TSX = PROJECT_ROOT / "app" / "[locale]" / "learn" / "pre-algebra" / "expressions" / "page.tsx"
+EXAMPLE_LESSON_EN = PROJECT_ROOT / "messages" / "en" / "expressions.json"
+EXAMPLE_LESSON_TA = PROJECT_ROOT / "messages" / "ta" / "expressions.json"
+
 # Initialize Jinja2
 jinja_env = Environment(loader=FileSystemLoader(str(TEMPLATES_DIR)))
+
+
+@server.list_resources()
+async def handle_list_resources() -> list[types.Resource]:
+    """List available resources for context."""
+    return [
+        types.Resource(
+            uri="file:///project-instructions",
+            name="Project Instructions & Style Guide",
+            description="Complete guidelines: tech stack (Next.js 16, TypeScript, Tailwind, KaTeX), component usage, required sections, styling rules",
+            mimeType="text/markdown"
+        ),
+        types.Resource(
+            uri="file:///example-lesson-tsx",
+            name="Example Lesson: Algebraic Expressions (TypeScript/TSX)",
+            description="Reference lesson page.tsx showing proper component usage, imports, structure, and interactive exercises",
+            mimeType="text/typescript"
+        ),
+        types.Resource(
+            uri="file:///example-lesson-en",
+            name="Example Lesson: English Translation (JSON)",
+            description="Complete English translation structure with all sections, examples, exercises, and real-world applications",
+            mimeType="application/json"
+        ),
+        types.Resource(
+            uri="file:///example-lesson-ta",
+            name="Example Lesson: Tamil Translation (JSON)",
+            description="Complete Tamil translation showing parallel structure to English version",
+            mimeType="application/json"
+        )
+    ]
+
+
+@server.read_resource()
+async def handle_read_resource(uri: str) -> str:
+    """Read resource content."""
+    print(f"Reading resource: {uri}", file=sys.stderr)
+    
+    if uri == "file:///project-instructions":
+        if INSTRUCTIONS_FILE.exists():
+            return INSTRUCTIONS_FILE.read_text()
+        else:
+            return "ERROR: Instructions file not found at .github/copilot-instructions.md"
+    
+    if uri == "file:///example-lesson-tsx":
+        if EXAMPLE_LESSON_TSX.exists():
+            return EXAMPLE_LESSON_TSX.read_text()
+        else:
+            return "ERROR: Example lesson TSX not found"
+    
+    if uri == "file:///example-lesson-en":
+        if EXAMPLE_LESSON_EN.exists():
+            return EXAMPLE_LESSON_EN.read_text()
+        else:
+            return "ERROR: Example lesson English translation not found"
+    
+    if uri == "file:///example-lesson-ta":
+        if EXAMPLE_LESSON_TA.exists():
+            return EXAMPLE_LESSON_TA.read_text()
+        else:
+            return "ERROR: Example lesson Tamil translation not found"
+    
+    # Unknown URI
+    return f"ERROR: Unknown resource URI: {uri}"
 
 
 @server.list_tools()
@@ -34,7 +104,30 @@ async def handle_list_tools() -> list[types.Tool]:
     return [
         types.Tool(
             name="create_lesson",
-            description="Create a complete lesson with page.tsx and EN/TA translations",
+            description="""Create a complete, content-filled lesson following project guidelines.
+
+CRITICAL: Before using this tool, READ these MCP resources for complete context:
+1. file:///project-instructions - Tech stack, component usage, styling rules, required sections
+2. file:///example-lesson-tsx - Reference lesson page.tsx with proper structure
+3. file:///example-lesson-en - English translation with complete content examples
+4. file:///example-lesson-ta - Tamil translation showing parallel structure
+
+The lesson MUST include COMPLETE CONTENT (not templates/TODOs):
+✅ Full definitions with clear explanations and analogies
+✅ 3-5 detailed worked examples with step-by-step solutions
+✅ 2-3 real-world applications (relatable scenarios)
+✅ 5+ practice exercises with solutions and hints
+✅ Tips and common mistakes section
+✅ Visual explanations (tables, color-coded examples)
+✅ Both English and Tamil translations
+
+Use these components (from @/components/lesson):
+- <Definition> for formal definitions
+- <KeyConcept> for important concepts
+- <Example> for worked problems
+- <StepByStep> for multi-step procedures
+- <VisualExplanation> for tables/diagrams
+- <Note> for tips and warnings""",
             inputSchema={
                 "type": "object",
                 "properties": {
@@ -88,14 +181,14 @@ async def handle_list_tools() -> list[types.Tool]:
         ),
         types.Tool(
             name="list_lessons",
-            description="List all existing lessons in a domain",
+            description="List all lessons showing curriculum status (created ✅ vs planned ⏳)",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "domain": {
                         "type": "string",
-                        "description": "Domain to list lessons from",
-                        "enum": ["foundations", "pre-algebra", "all"]
+                        "description": "Domain to list: foundations, pre-algebra, algebra, geometry, or all",
+                        "enum": ["foundations", "pre-algebra", "algebra", "geometry", "all"]
                     }
                 },
                 "required": ["domain"]
@@ -178,28 +271,76 @@ async def create_lesson(domain: str, slug: str, title_en: str, title_ta: str,
         ta_file.write_text(ta_content)
         
         # 5. Return success message with next steps
-        result = f"""✅ Lesson created successfully!
+        result = f"""✅ Lesson template created successfully!
 
 **Files created:**
 - {page_file.relative_to(PROJECT_ROOT)}
 - {en_file.relative_to(PROJECT_ROOT)}
 - {ta_file.relative_to(PROJECT_ROOT)}
 
-**Next steps:**
-1. Update `lib/curriculum-data.ts` to register this lesson
-2. Update `i18n.ts` to include the translation files
-3. Add lesson content (definitions, examples, exercises)
-4. Run validation: validate_lesson("{domain}", "{slug}")
+**⚠️ TEMPLATES ONLY - CONTENT NEEDED**
 
-**Template structure includes:**
-- Definition component
-- Key Concepts section
-- Visual Explanations placeholder
-- Worked Examples section (needs content)
-- Real World Applications section (needs content)
-- Practice Exercises section (needs content)
-- Tips & Notes section
-- Conclusion section
+The files contain structural templates with TODO comments. To create a complete lesson:
+
+**STEP 1: Read Project Guidelines**
+Use the MCP resource system to read:
+- `file:///project-instructions` - Full tech stack and styling rules
+- `file:///example-lesson` - Reference lesson (Algebraic Expressions)
+
+**STEP 2: Fill in Content**
+Based on the topic "{title_en}", you need to provide:
+
+1. **Definition Section** (1-2 paragraphs)
+   - Clear explanation of the concept
+   - 2-3 simple examples
+
+2. **Key Concepts** (3-5 concepts)
+   - Important terminology
+   - Fundamental principles
+
+3. **Visual Explanations** (2-3 visuals)
+   - Tables, diagrams, or color-coded examples
+   - Use VisualExplanation component
+
+4. **Worked Examples** (3-5 examples)
+   - Step-by-step solutions
+   - Use Example and StepByStep components
+   - Show common scenarios
+
+5. **Real World Applications** (2-3 applications)
+   - Practical uses in daily life
+   - Relatable scenarios for students
+   - WHY this math matters
+
+6. **Practice Exercises** (5+ exercises)
+   - Mix of difficulty levels
+   - Include solutions and answers
+   - Use NumericInputExercise or MultipleChoiceExercise
+
+7. **Tips & Notes** (3-5 tips)
+   - Common mistakes to avoid
+   - Helpful shortcuts
+   - Memory aids
+
+8. **Conclusion** (1 paragraph)
+   - Summary of key takeaways
+   - Connection to next topics
+
+**STEP 3: Component Usage**
+Import and use these components from `@/components/lesson`:
+- `<Definition>` - for formal definitions
+- `<KeyConcept>` - for important concepts
+- `<Example>` - for worked examples
+- `<StepByStep>` - for multi-step procedures
+- `<VisualExplanation>` - for tables/diagrams
+- `<Note>` - for tips and warnings
+
+**STEP 4: Register Lesson**
+1. Add to `lib/curriculum-data.ts` in topics array
+2. Add translation key to `i18n.ts`
+
+**Would you like me to help fill in the actual content for this lesson?**
+Say: "Fill in content for {slug} lesson about [brief description of what to cover]"
 """
         
         return [types.TextContent(type="text", text=result)]
@@ -263,27 +404,84 @@ async def validate_lesson(domain: str, slug: str) -> list[types.TextContent]:
 
 
 async def list_lessons(domain: str) -> list[types.TextContent]:
-    """List all lessons in a domain."""
+    """List all lessons showing both created and planned from curriculum."""
     
-    domains = ["foundations", "pre-algebra"] if domain == "all" else [domain]
-    lessons_by_domain = {}
+    # Full curriculum structure (from curriculum-data.ts)
+    curriculum = {
+        "foundations": [
+            {"id": "1.1", "title": "Number Sense & Place Value", "slug": "number-sense"},
+            {"id": "1.2", "title": "Basic Arithmetic", "slug": "arithmetic"},
+            {"id": "1.3", "title": "Fractions", "slug": "fractions"},
+            {"id": "1.4", "title": "Decimals", "slug": "decimals"},
+            {"id": "1.5", "title": "Percentages", "slug": "percentages"},
+            {"id": "1.6", "title": "Ratios & Proportions", "slug": "ratios-proportions"},
+            {"id": "1.7", "title": "Basic Geometry", "slug": "basic-geometry"},
+            {"id": "1.8", "title": "Measurement", "slug": "measurement"},
+            {"id": "1.9", "title": "Basic Data & Graphs", "slug": "data-graphs"},
+            {"id": "1.10", "title": "Patterns & Sequences", "slug": "patterns-sequences"},
+        ],
+        "pre-algebra": [
+            {"id": "2.1", "title": "Integers & Rational Numbers", "slug": "integers"},
+            {"id": "2.2", "title": "Exponents & Powers", "slug": "exponents"},
+            {"id": "2.3", "title": "Algebraic Expressions", "slug": "expressions"},
+            {"id": "2.4", "title": "Linear Equations (One Variable)", "slug": "linear-equations"},
+            {"id": "2.5", "title": "Inequalities", "slug": "inequalities"},
+            {"id": "2.6", "title": "Coordinate Plane & Graphing", "slug": "coordinate-plane"},
+            {"id": "2.7", "title": "Introduction to Functions", "slug": "functions-intro"},
+            {"id": "2.8", "title": "Systems of Equations (Introduction)", "slug": "systems-intro"},
+            {"id": "2.9", "title": "Polynomials (Introduction)", "slug": "polynomials-intro"},
+        ],
+        "algebra": [
+            {"id": "3.1", "title": "Advanced Linear Equations", "slug": "advanced-linear"},
+            {"id": "3.2", "title": "Quadratic Equations", "slug": "quadratics"},
+            {"id": "3.3", "title": "Polynomial Functions", "slug": "polynomials"},
+            {"id": "3.4", "title": "Rational Expressions", "slug": "rational"},
+            {"id": "3.5", "title": "Radical Expressions", "slug": "radicals"},
+            {"id": "3.6", "title": "Exponential & Logarithmic Functions", "slug": "exp-log"},
+            {"id": "3.7", "title": "Sequences & Series", "slug": "sequences"},
+            {"id": "3.8", "title": "Matrices (Introduction)", "slug": "matrices-intro"},
+        ],
+        "geometry": [
+            {"id": "4.1", "title": "Geometric Reasoning & Proofs", "slug": "reasoning-proofs"},
+            {"id": "4.2", "title": "Triangle Properties", "slug": "triangles"},
+            {"id": "4.3", "title": "Similarity & Proportions", "slug": "similarity"},
+            {"id": "4.4", "title": "Right Triangle Trigonometry", "slug": "right-triangles"},
+            {"id": "4.5", "title": "Polygons & Quadrilaterals", "slug": "polygons"},
+            {"id": "4.6", "title": "Circles", "slug": "circles"},
+            {"id": "4.7", "title": "Area & Volume", "slug": "area-volume"},
+            {"id": "4.8", "title": "Transformations", "slug": "transformations"},
+            {"id": "4.9", "title": "Coordinate Geometry", "slug": "coordinate-geometry"},
+        ]
+    }
     
-    for d in domains:
-        learn_dir = PROJECT_ROOT / "app" / "[locale]" / "learn" / d
-        if learn_dir.exists():
-            lessons = [
-                item.name for item in learn_dir.iterdir() 
-                if item.is_dir() and not item.name.startswith("_")
-            ]
-            lessons_by_domain[d] = sorted(lessons)
+    # Check which lessons actually exist
+    def lesson_exists(domain: str, slug: str) -> bool:
+        lesson_dir = PROJECT_ROOT / "app" / "[locale]" / "learn" / domain / slug
+        return (lesson_dir / "page.tsx").exists()
     
-    # Format output
-    result = "📚 **Mathematics Lessons**\n\n"
-    for d, lessons in lessons_by_domain.items():
-        result += f"**{d.replace('-', ' ').title()}** ({len(lessons)} lessons):\n"
+    # Determine which domains to show
+    domains_to_show = list(curriculum.keys()) if domain == "all" else [domain]
+    
+    # Build output
+    result = "📚 **Mathematics Curriculum**\n\n"
+    
+    for d in domains_to_show:
+        if d not in curriculum:
+            continue
+            
+        lessons = curriculum[d]
+        created = sum(1 for l in lessons if lesson_exists(d, l["slug"]))
+        total = len(lessons)
+        
+        result += f"**{d.replace('-', ' ').title()}** ({created}/{total} created)\n"
+        
         for lesson in lessons:
-            result += f"  - {lesson}\n"
+            status = "✅" if lesson_exists(d, lesson["slug"]) else "⏳"
+            result += f"  {status} {lesson['id']} - {lesson['title']} ({lesson['slug']})\n"
+        
         result += "\n"
+    
+    result += "Legend: ✅ Created | ⏳ Planned"
     
     return [types.TextContent(type="text", text=result)]
 
