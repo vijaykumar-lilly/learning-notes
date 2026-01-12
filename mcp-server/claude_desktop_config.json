@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "math-lesson-server": {
+      "command": "/Users/L066916/math_teacher/mcp-server/start-server.sh"
+    }
+  }
+}

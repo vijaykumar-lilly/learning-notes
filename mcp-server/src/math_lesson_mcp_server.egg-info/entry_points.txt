@@ -1,0 +1,2 @@
+[console_scripts]
+math-lesson-server = src.server:main
