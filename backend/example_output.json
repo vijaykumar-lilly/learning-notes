@@ -1,0 +1,61 @@
+{
+  "subject": "Pre-Algebra",
+  "grade_level": "Grade 7",
+  "standards": "Common Core Math",
+  "curriculum": [
+    {
+      "name": "Number Systems and Operations",
+      "slug": "number-systems-and-operations",
+      "description": "Understanding different types of numbers and how to work with them",
+      "level": "beginner",
+      "topics": [
+        {
+          "name": "Integers and Absolute Value",
+          "slug": "integers-and-absolute-value",
+          "learning_objectives": [
+            "Understand positive and negative integers",
+            "Calculate absolute values",
+            "Compare and order integers on a number line"
+          ],
+          "estimated_time_minutes": 45,
+          "prerequisites": []
+        },
+        {
+          "name": "Rational Numbers and Decimals",
+          "slug": "rational-numbers-and-decimals",
+          "learning_objectives": [
+            "Convert between fractions and decimals",
+            "Understand rational number concepts",
+            "Perform operations with rational numbers"
+          ],
+          "estimated_time_minutes": 50,
+          "prerequisites": ["integers-and-absolute-value"]
+        }
+      ]
+    },
+    {
+      "name": "Variables and Expressions",
+      "slug": "variables-and-expressions",
+      "description": "Introduction to algebraic thinking with variables and expressions",
+      "level": "beginner",
+      "topics": [
+        {
+          "name": "Understanding Variables",
+          "slug": "understanding-variables",
+          "learning_objectives": [
+            "Recognize variables in expressions",
+            "Understand variables as placeholders",
+            "Evaluate expressions with given values"
+          ],
+          "estimated_time_minutes": 40,
+          "prerequisites": []
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "total_domains": 2,
+    "total_topics": 3
+  },
+  "tokens_used": 3245
+}

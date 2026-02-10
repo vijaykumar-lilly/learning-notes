@@ -25,18 +25,27 @@ class ExerciseDifficulty(enum.Enum):
 
 
 # Import all models to ensure they're registered with SQLAlchemy
-from app.models.domain import Domain
+# Import order matters - base models first, then models that reference them
+from app.models.user import User
+from app.models.subject import Subject, SubjectStatus
+from app.models.domain import Domain, ContentStatus
 from app.models.topic import Topic
 from app.models.lesson import Lesson
 from app.models.lesson_content import LessonSection
 from app.models.translation import Translation
 from app.models.exercise import Exercise
-from app.models.user import User
 from app.models.progress import LessonProgress, ExerciseSubmission
+from app.models.generation_task import GenerationTask, TaskType, TaskStatus
 
 # Export all models
 __all__ = [
+    'Subject',
+    'SubjectStatus',
+    'GenerationTask',
+    'TaskType',
+    'TaskStatus',
     'Domain',
+    'ContentStatus',
     'Topic',
     'Lesson',
     'LessonSection',

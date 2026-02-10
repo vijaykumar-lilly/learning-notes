@@ -28,8 +28,15 @@ async def get_curriculum(
     """
     Get complete curriculum structure with all domains and topics.
     Returns localized titles and descriptions.
+
+    IMPORTANT: Only returns PUBLISHED domains (students can't see drafts)
     """
-    domains = db.query(Domain).order_by(Domain.display_order).all()
+    # Only show published domains to students
+    from app.models.domain import ContentStatus
+
+    domains = db.query(Domain).filter(
+        Domain.status == ContentStatus.PUBLISHED
+    ).order_by(Domain.display_order).all()
 
     domains_response = []
     for domain in domains:
@@ -72,8 +79,13 @@ async def get_domain(
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
-    """Get a specific domain by slug"""
-    domain = db.query(Domain).filter(Domain.slug == domain_slug).first()
+    """Get a specific domain by slug (only if published)"""
+    from app.models.domain import ContentStatus
+
+    domain = db.query(Domain).filter(
+        Domain.slug == domain_slug,
+        Domain.status == ContentStatus.PUBLISHED  # Only published domains
+    ).first()
 
     if not domain:
         raise HTTPException(status_code=404, detail="Domain not found")
@@ -97,8 +109,13 @@ async def get_domain_topics(
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
-    """Get all topics for a specific domain"""
-    domain = db.query(Domain).filter(Domain.slug == domain_slug).first()
+    """Get all topics for a specific domain (only if published)"""
+    from app.models.domain import ContentStatus
+
+    domain = db.query(Domain).filter(
+        Domain.slug == domain_slug,
+        Domain.status == ContentStatus.PUBLISHED  # Only published domains
+    ).first()
 
     if not domain:
         raise HTTPException(status_code=404, detail="Domain not found")

@@ -53,11 +53,25 @@ async def get_lesson(
     """
     Get complete lesson content by topic slug.
     Includes sections, exercises, and navigation.
+
+    IMPORTANT: Only returns lessons for PUBLISHED domains
     """
     # Find topic by slug
     topic = db.query(Topic).filter(Topic.slug == topic_slug).first()
     if not topic:
         raise HTTPException(status_code=404, detail="Topic not found")
+
+    # Check if domain is published
+    domain = db.query(Domain).filter(Domain.id == topic.domain_id).first()
+    if not domain:
+        raise HTTPException(status_code=404, detail="Domain not found")
+
+    from app.models.domain import ContentStatus
+    if domain.status != ContentStatus.PUBLISHED:
+        raise HTTPException(
+            status_code=404,
+            detail="Lesson not available (domain not published)"
+        )
 
     # Find lesson for this topic
     lesson = db.query(Lesson).filter(Lesson.topic_id == topic.id).first()
