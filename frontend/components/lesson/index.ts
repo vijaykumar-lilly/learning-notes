@@ -7,11 +7,8 @@ export { default as Exercise } from './Exercise'
 export { default as Note } from './Note'
 export { default as StepByStep } from './StepByStep'
 export { VisualExplanation } from './VisualExplanation'
-export { RatioDiagram } from './RatioDiagram'
-export { ProportionDiagram } from './ProportionDiagram'
-export { UnitRateDiagram } from './UnitRateDiagram'
 
-// New enhanced components
+// Enhanced components
 export { default as BeforeYouStart } from './BeforeYouStart'
 export { default as CommonMistake } from './CommonMistake'
 export { default as WhatsNext } from './WhatsNext'
