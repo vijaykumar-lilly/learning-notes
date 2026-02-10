@@ -1,0 +1,171 @@
+{
+  "title": "Systems of Equations (Introduction)",
+  "definition": {
+    "system": {
+      "title": "What is a System of Equations?",
+      "intro": "A <strong>system of equations</strong> is a set of two or more equations with the same variables that we solve together.",
+      "example": "Example of a system:",
+      "explanation": "We need to find values of x and y that make BOTH equations true at the same time!"
+    }
+  },
+  "notes": {
+    "title": "Tips and Tricks",
+    "solution": {
+      "content": "The solution to a system is an ordered pair (x, y) that satisfies ALL equations in the system. Think of it as finding the point where two paths cross!"
+    },
+    "tip1": "Choose the method that looks easiest! If one equation is already solved for a variable, use substitution.",
+    "tip2": "If coefficients of a variable are the same or opposites, use elimination.",
+    "tip3": "Always check your solution by substituting back into BOTH original equations!"
+  },
+  "realWorld": {
+    "title": "Real-World Applications",
+    "tickets": {
+      "title": "🎫 Concert Tickets",
+      "problem": "You bought 50 tickets (adult and child) for $650. Adult tickets cost $15 and child tickets cost $10. How many of each did you buy?",
+      "equation1Label": "Total tickets: ",
+      "equation2Label": "Total cost: ",
+      "note": "This system helps us find how many adult (a) and child (c) tickets were purchased!"
+    }
+  },
+  "methods": {
+    "graphing": {
+      "title": "Method 1: Graphing",
+      "description": "Graph both equations on the same coordinate plane. The solution is where the lines intersect (cross)!"
+    },
+    "substitution": {
+      "title": "Method 2: Substitution",
+      "description": "Solve one equation for a variable, then substitute that expression into the other equation."
+    },
+    "elimination": {
+      "title": "Method 3: Elimination (Addition/Subtraction)",
+      "description": "Add or subtract the equations to eliminate one variable, then solve for the remaining variable."
+    }
+  },
+  "visuals": {
+    "graphing": {
+      "title": "Graphing Method Visual",
+      "caption": "The solution is where the two lines intersect!",
+      "heading": "System: y = -2x + 4  and  y = x + 1",
+      "solution": "Solution"
+    },
+    "substitution": {
+      "title": "Substitution Method Steps",
+      "caption": "Follow the arrows to see how substitution works!",
+      "step1Label": "Start with the system:",
+      "step2Label": "Substitute y = 2x - 1 into the second equation:",
+      "step3Label": "Solve for x:",
+      "step4Label": "Find y by substituting x = 2:",
+      "solution": "Solution"
+    },
+    "elimination": {
+      "title": "Elimination Method Steps",
+      "caption": "Add or subtract to eliminate a variable!",
+      "step1Label": "Start with the system:",
+      "step2Label": "Subtract equations to eliminate x:",
+      "step3Label": "Solve for y:",
+      "step4Label": "Substitute back to find x:",
+      "solution": "Solution"
+    }
+  },
+  "keyConcept": {
+    "graphing": {
+      "title": "Key Point About Graphing:",
+      "content": "The intersection point represents values that satisfy BOTH equations simultaneously. If lines don't intersect, there's no solution!"
+    }
+  },
+  "examples": {
+    "graphing": {
+      "title": "Example 1: Using Graphing",
+      "problem": "Solve by graphing:",
+      "step1": "Step 1: Graph both lines on the same plane",
+      "step2": "Step 2: Find where they intersect",
+      "step3": "Step 3: The intersection point is (-1, 2)",
+      "answerLabel": "Solution:"
+    },
+    "substitution": {
+      "title": "Example 2: Using Substitution",
+      "problem": "Solve using substitution:",
+      "step1": "Step 1: Substitute x = 3y + 2 into the second equation",
+      "step2": "Step 2: Expand and simplify",
+      "step3": "Step 3: Solve for y",
+      "step4": "Step 4: Find x using the first equation",
+      "answerLabel": "Solution:"
+    },
+    "elimination": {
+      "title": "Example 3: Using Elimination",
+      "problem": "Solve using elimination:",
+      "step1": "Step 1: Subtract the second equation from the first",
+      "step2": "Step 2: Simplify to find y",
+      "step3": "Step 3: y = 4",
+      "step4": "Step 4: Substitute back to find x",
+      "answerLabel": "Solution:"
+    }
+  },
+  "sections": {
+    "solutions": {
+      "title": "Types of Solutions",
+      "one": {
+        "title": "One Solution",
+        "description": "Lines intersect at exactly one point. The system is CONSISTENT and INDEPENDENT.",
+        "graph": "Lines cross at one point"
+      },
+      "none": {
+        "title": "No Solution",
+        "description": "Lines are parallel (never intersect). The system is INCONSISTENT.",
+        "graph": "Parallel lines"
+      },
+      "infinite": {
+        "title": "Infinitely Many Solutions",
+        "description": "Lines are the same (coincide). The system is CONSISTENT and DEPENDENT.",
+        "graph": "Same line (overlap)"
+      }
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "exercise1": {
+      "question": "Solve the system: x + y = 5 and x - y = -1. What is the solution?",
+      "explanation": "Adding the equations: 2x = 4, so x = 2. Substitute: 2 + y = 5, so y = 3. Solution: (2, 3)"
+    },
+    "exercise2": {
+      "question": "Using substitution, solve: y = 2x and x + y = 12. What is the value of x?",
+      "hint": "Substitute y = 2x into the second equation.",
+      "explanation": "x + 2x = 12, so 3x = 12, x = 4"
+    },
+    "exercise3": {
+      "question": "Two lines have equations y = 2x + 1 and y = 2x - 3. How many solutions does this system have?",
+      "option1": "One solution",
+      "option2": "Two solutions",
+      "option3": "No solution",
+      "option4": "Infinitely many solutions",
+      "explanation": "The lines have the same slope (2) but different y-intercepts, so they are parallel and never intersect. No solution."
+    },
+    "exercise4": {
+      "question": "Solve using elimination: 2x + y = 14 and 2x - y = 6. What is the value of y? Enter the number.",
+      "hint": "Subtract the second equation from the first to eliminate x.",
+      "explanation": "Subtracting: (2x + y) - (2x - y) = 14 - 6 gives 2y = 8, so y = 4. Then find x: 2x + 4 = 14, x = 5. But we only need y = 4."
+    },
+    "exercise5": {
+      "question": "A system of equations has the solution (3, 5). Which equation must be in the system?",
+      "option1": "x + y = 7",
+      "option2": "x + y = 8",
+      "option3": "x - y = 2",
+      "option4": "2x + y = 10",
+      "explanation": "Check (3, 5) in each: 3 + 5 = 8 ✓. The answer is x + y = 8."
+    },
+    "exercise6": {
+      "question": "Solve: 2x + y = 12 and x = 2. What is the value of y? Enter the number.",
+      "hint": "Substitute x = 2 into the first equation.",
+      "explanation": "2(2) + y = 12, so 4 + y = 12, therefore y = 8"
+    }
+  },
+  "conclusion": {
+    "title": "Mastering Systems of Equations!",
+    "summary": "You've learned three powerful methods to solve systems of equations. Each method has its advantages depending on the problem!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "A system solution must satisfy ALL equations",
+    "takeaway2": "Graphing shows the visual relationship between equations",
+    "takeaway3": "Substitution works well when a variable is already isolated",
+    "takeaway4": "Elimination is efficient when coefficients line up nicely"
+  }
+}

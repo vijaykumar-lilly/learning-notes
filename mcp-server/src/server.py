@@ -26,6 +26,8 @@ TEMPLATES_DIR = Path(__file__).parent.parent / "templates"
 
 # Project context files for MCP resources
 INSTRUCTIONS_FILE = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+COMPONENT_SCHEMA = Path(__file__).parent.parent / "COMPONENT_SCHEMA.md"
+LESSON_PROMPT = Path(__file__).parent.parent / "LESSON_CREATION_PROMPT.md"
 EXAMPLE_LESSON_TSX = PROJECT_ROOT / "app" / "[locale]" / "learn" / "pre-algebra" / "expressions" / "page.tsx"
 EXAMPLE_LESSON_EN = PROJECT_ROOT / "messages" / "en" / "expressions.json"
 EXAMPLE_LESSON_TA = PROJECT_ROOT / "messages" / "ta" / "expressions.json"
@@ -39,9 +41,21 @@ async def handle_list_resources() -> list[types.Resource]:
     """List available resources for context."""
     return [
         types.Resource(
+            uri="file:///lesson-creation-prompt",
+            name="⭐ COMPLETE LESSON CREATION PROMPT ⭐",
+            description="COPY-PASTE READY template with all steps, instructions, and structure to create production-ready lessons. Just fill in domain/slug/title and topic details!",
+            mimeType="text/markdown"
+        ),
+        types.Resource(
             uri="file:///project-instructions",
             name="Project Instructions & Style Guide",
             description="Complete guidelines: tech stack (Next.js 16, TypeScript, Tailwind, KaTeX), component usage, required sections, styling rules",
+            mimeType="text/markdown"
+        ),
+        types.Resource(
+            uri="file:///component-schema",
+            name="Component Schema & Content Requirements",
+            description="Detailed specification of every component (Definition, Example, KeyConcept, etc.) with props, content requirements, and usage examples",
             mimeType="text/markdown"
         ),
         types.Resource(
@@ -70,11 +84,23 @@ async def handle_read_resource(uri: str) -> str:
     """Read resource content."""
     print(f"Reading resource: {uri}", file=sys.stderr)
     
+    if uri == "file:///lesson-creation-prompt":
+        if LESSON_PROMPT.exists():
+            return LESSON_PROMPT.read_text()
+        else:
+            return "ERROR: Lesson creation prompt file not found"
+    
     if uri == "file:///project-instructions":
         if INSTRUCTIONS_FILE.exists():
             return INSTRUCTIONS_FILE.read_text()
         else:
             return "ERROR: Instructions file not found at .github/copilot-instructions.md"
+    
+    if uri == "file:///component-schema":
+        if COMPONENT_SCHEMA.exists():
+            return COMPONENT_SCHEMA.read_text()
+        else:
+            return "ERROR: Component schema file not found"
     
     if uri == "file:///example-lesson-tsx":
         if EXAMPLE_LESSON_TSX.exists():
@@ -104,30 +130,37 @@ async def handle_list_tools() -> list[types.Tool]:
     return [
         types.Tool(
             name="create_lesson",
-            description="""Create a complete, content-filled lesson following project guidelines.
+            description="""⚠️ THIS TOOL ONLY CREATES TEMPLATE FILES - NOT COMPLETE CONTENT! ⚠️
 
-CRITICAL: Before using this tool, READ these MCP resources for complete context:
-1. file:///project-instructions - Tech stack, component usage, styling rules, required sections
-2. file:///example-lesson-tsx - Reference lesson page.tsx with proper structure
-3. file:///example-lesson-en - English translation with complete content examples
-4. file:///example-lesson-ta - Tamil translation showing parallel structure
+This tool generates the file structure with TODOs. To create a COMPLETE lesson with actual content:
 
-The lesson MUST include COMPLETE CONTENT (not templates/TODOs):
-✅ Full definitions with clear explanations and analogies
-✅ 3-5 detailed worked examples with step-by-step solutions
-✅ 2-3 real-world applications (relatable scenarios)
-✅ 5+ practice exercises with solutions and hints
-✅ Tips and common mistakes section
-✅ Visual explanations (tables, color-coded examples)
-✅ Both English and Tamil translations
+**STEP 1: Read ALL resources FIRST:**
+1. file:///project-instructions - Tech stack and style guide
+2. file:///component-schema - Complete component specifications with examples
+3. file:///example-lesson-tsx - Full reference implementation
+4. file:///example-lesson-en - Complete translation structure
+5. file:///example-lesson-ta - Tamil translation example
 
-Use these components (from @/components/lesson):
-- <Definition> for formal definitions
-- <KeyConcept> for important concepts
-- <Example> for worked problems
-- <StepByStep> for multi-step procedures
-- <VisualExplanation> for tables/diagrams
-- <Note> for tips and warnings""",
+**STEP 2: Call this tool to create template files**
+
+**STEP 3: After template creation, IMMEDIATELY use file editing to fill in:**
+- Complete definitions with clear explanations and 2-3 examples
+- 3-5 key concepts with descriptions  
+- 2-3 visual explanations (tables, diagrams, color-coded examples)
+- 3-5 worked examples with full step-by-step solutions using StepByStep component
+- 2-3 real-world applications with concrete examples
+- 5+ practice exercises with solutions
+- 3-5 tips/notes about common mistakes
+- Summary and conclusion
+
+The template will have TODOs - YOU MUST REPLACE THEM WITH ACTUAL CONTENT based on the lesson topic.
+
+Example workflow:
+1. Read resources to understand structure
+2. Create template with this tool
+3. Edit page.tsx to add complete Definition, Examples, etc.
+4. Edit EN translation with all content
+5. Edit TA translation with Tamil version""",
             inputSchema={
                 "type": "object",
                 "properties": {

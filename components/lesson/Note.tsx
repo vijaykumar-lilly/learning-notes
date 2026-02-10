@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import ZoomModal from '@/components/ui/ZoomModal'
 
 interface NoteProps {
-  type?: 'info' | 'warning' | 'success' | 'tip'
+  type?: 'info' | 'warning' | 'success' | 'tip' | 'mistake'
   children: ReactNode
 }
 
@@ -39,6 +39,13 @@ export default function Note({ type = 'info', children }: NoteProps) {
       icon: 'text-purple-600 dark:text-purple-400',
       iconBg: 'bg-purple-100 dark:bg-purple-900/40',
       iconPath: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'
+    },
+    mistake: {
+      bg: 'bg-red-50 dark:bg-red-900/20',
+      border: 'border-red-200 dark:border-red-800',
+      icon: 'text-red-600 dark:text-red-400',
+      iconBg: 'bg-red-100 dark:bg-red-900/40',
+      iconPath: 'M6 18L18 6M6 6l12 12'
     }
   }
 
@@ -48,7 +55,8 @@ export default function Note({ type = 'info', children }: NoteProps) {
     info: 'Information',
     warning: 'Warning',
     success: 'Success',
-    tip: 'Tip'
+    tip: 'Tip',
+    mistake: 'Common Mistake'
   }
 
   return (

@@ -1,0 +1,221 @@
+{
+  "title": "Advanced Linear Equations",
+  "prerequisites": {
+    "skill1": {
+      "title": "Solving Basic Linear Equations",
+      "description": "You should be able to solve equations like 2x + 5 = 13"
+    },
+    "skill2": {
+      "title": "Systems of Equations",
+      "description": "Understand how to work with multiple equations simultaneously"
+    },
+    "skill3": {
+      "title": "Distributive Property & Combining Like Terms",
+      "description": "Know how to simplify expressions like 3(x + 2) - 5x"
+    }
+  },
+  "definition": {
+    "advanced": {
+      "title": "What Are Advanced Linear Equations?",
+      "intro": "<strong>Advanced linear equations</strong> are equations where the variable appears to the first power, but solving them requires multiple steps and special techniques.",
+      "discovery": "Let's unlock powerful strategies for tackling complex equations! These skills are essential for physics, engineering, and real-world problem solving.",
+      "examples": "Types of advanced linear equations:"
+    },
+    "absolute": {
+      "title": "Absolute Value",
+      "concept": "<strong>Absolute value</strong> |x| represents the distance from zero, always positive or zero."
+    }
+  },
+  "sections": {
+    "multiStep": {
+      "title": "Multi-Step Equations",
+      "intro": "Multi-step equations require combining several algebraic techniques: distributing, combining like terms, and isolating the variable."
+    },
+    "fractions": {
+      "title": "Equations with Fractions",
+      "intro": "When equations contain fractions, multiply both sides by the LCD (Least Common Denominator) to clear the fractions!"
+    },
+    "absolute": {
+      "title": "Absolute Value Equations",
+      "intro": "Absolute value equations have TWO possible solutions because |x| can equal a positive number in two ways."
+    }
+  },
+  "visuals": {
+    "multiStep": {
+      "title": "Solving Multi-Step Equations",
+      "caption": "Follow the order: Distribute → Combine → Isolate",
+      "step1Label": "Start with the equation:",
+      "step2Label": "Distribute:",
+      "step3Label": "Combine like terms:",
+      "step4Label": "Get variables on one side:",
+      "step5Label": "Solve:"
+    },
+    "fractions": {
+      "title": "Clearing Fractions",
+      "caption": "Multiply by LCD to eliminate all fractions at once!",
+      "equation": "Original equation:",
+      "lcdLabel": "Find LCD:",
+      "lcdValue": "LCD of 3 and 4 is 12",
+      "multiplyLabel": "Multiply every term by 12:",
+      "result": "Simplified (no fractions):"
+    },
+    "absolute": {
+      "title": "Solving Absolute Value Equations",
+      "caption": "Split into TWO cases: positive and negative",
+      "problem": "Solve:",
+      "case1": "Case 1: Positive",
+      "case2": "Case 2: Negative",
+      "solutions": "Solutions",
+      "or": "or"
+    }
+  },
+  "keyConcept": {
+    "steps": {
+      "title": "Order of Operations for Solving:",
+      "content": "1) Distribute, 2) Combine like terms, 3) Get variables on one side, 4) Isolate the variable, 5) Check your solution!"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: Multi-Step with Distribution",
+      "problem": "Solve: 4(x - 5) + 4 = 3(x + 5)",
+      "step1": "Step 1: Distribute on both sides",
+      "step2": "Step 2: Expand",
+      "step3": "Step 3: Combine like terms and get variables on one side",
+      "step4": "Step 4: Solve",
+      "answerLabel": "Answer:"
+    },
+    "example2": {
+      "title": "Example 2: Equation with Fractions",
+      "problem": "Solve: (x/3) + (2x - 3)/6 = 7",
+      "step1": "Step 1: Find LCD of 3 and 6, which is 6. Multiply everything by 6",
+      "step2": "Step 2: Simplify",
+      "step3": "Step 3: Combine like terms",
+      "step4": "Step 4: Solve for x",
+      "answerLabel": "Answer:"
+    },
+    "example3": {
+      "title": "Example 3: Absolute Value",
+      "problem": "Solve: |3x + 1| = 10",
+      "step1": "Step 1: Set up two cases",
+      "step2": "Step 2: Solve both equations",
+      "or": "or",
+      "answerLabel": "Solutions:"
+    }
+  },
+  "commonMistakes": {
+    "title": "Common Mistakes to Avoid",
+    "mistake1": {
+      "title": "Only Distributing to the First Term",
+      "wrong": "When distributing 4(x - 2), students might only multiply the x:",
+      "correct": "Distribute to BOTH terms inside the parentheses:",
+      "explanation": "The distributive property means multiply EVERY term inside. Think of it like handing out 4 cookies to everyone in the room—nobody gets left out!",
+      "tip": "Always count: if there are 2 terms inside, you should get 2 products after distributing."
+    },
+    "mistake2": {
+      "title": "Forgetting the Second Solution in Absolute Value",
+      "wrong": "For |2x - 3| = 7, students only solve 2x - 3 = 7:",
+      "correct": "Absolute value equations need BOTH cases (positive and negative):",
+      "explanation": "The absolute value of a number can equal 7 in two ways: if the number is 7 OR if it's -7. Always solve both cases!",
+      "tip": "Remember: |?| = 7 means ? = 7 OR ? = -7"
+    },
+    "mistake3": {
+      "title": "Not Multiplying All Terms by LCD",
+      "wrong": "When clearing fractions, students forget to multiply the right side:",
+      "correct": "The LCD must multiply EVERY single term, including those on the right side:",
+      "explanation": "Think of multiplying by LCD as a rule that applies to the entire equation, not just one side. Every term gets multiplied—no exceptions!"
+    }
+  },
+  "realWorld": {
+    "title": "Real-World Applications",
+    "intro": "Advanced linear equations aren't just classroom exercises—they're problem-solving tools used by professionals every day!",
+    "app1": {
+      "title": "⚗️ Chemistry & Solution Mixing",
+      "description": "Chemists use linear equations to calculate how to mix solutions of different concentrations.",
+      "example": "Example: Mixing 30% acid with 50% acid to get 40% solution uses: 0.3x + 0.5(20-x) = 0.4(20)"
+    },
+    "app2": {
+      "title": "💼 Business Break-Even Analysis",
+      "description": "Businesses find break-even points where revenue equals costs.",
+      "example": "If costs are 5x + 2000 and revenue is 12x, break-even: 12x = 5x + 2000"
+    },
+    "app3": {
+      "title": "🔧 Engineering & Physics",
+      "description": "Engineers model physical relationships using linear equations.",
+      "example": "Unit conversion, force calculations, equilibrium points all use these equations"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "warmup": {
+      "title": "Warm-up Problems",
+      "description": "Build your confidence with these foundational problems!"
+    },
+    "practice": {
+      "title": "Practice Problems",
+      "description": "Master multi-step and special cases."
+    },
+    "challenge": {
+      "title": "Challenge Problem",
+      "description": "Real-world application requiring multiple concepts!"
+    },
+    "exercise1": {
+      "question": "Solve: 2x + 5 = 3x - 2. What is x?",
+      "explanation": "Subtract 2x: 5 = x - 2. Add 2: x = 7"
+    },
+    "exercise2": {
+      "question": "Solve: 3(x + 2) = 18. Enter x.",
+      "hint": "Distribute 3 first.",
+      "explanation": "3x + 6 = 18, so 3x = 12, x = 4"
+    },
+    "exercise3": {
+      "question": "Solve: 2(x + 1) = 3x - 4. What is x?",
+      "explanation": "Distribute: 2x + 2 = 3x - 4. Subtract 2x: 2 = x - 4. Add 4: x = 6"
+    },
+    "exercise4": {
+      "question": "Solve: |x - 2| = 5. What is the SMALLER solution? Enter the value.",
+      "hint": "Two cases: x - 2 = 5 OR x - 2 = -5",
+      "explanation": "Case 1: x = 7. Case 2: x = -3. The smaller solution is -3"
+    },
+    "exercise5": {
+      "question": "Which has infinitely many solutions?",
+      "option1": "2x + 3 = 2x + 5",
+      "option2": "3(x + 1) = 3x + 3",
+      "option3": "x = x + 1",
+      "option4": "|x| = -2",
+      "explanation": "3(x + 1) = 3x + 3 simplifies to 3x + 3 = 3x + 3, which is true for all x!"
+    },
+    "exercise6": {
+      "question": "A phone plan costs $15/month plus $0.50/min. Your bill was $30. How many minutes did you use? Enter the number.",
+      "hint": "Set up equation: 15 + 0.50m = 30",
+      "explanation": "15 + 0.50m = 30. Subtract 15: 0.50m = 15. Divide by 0.50: m = 30 minutes"
+    }
+  },
+  "notes": {
+    "title": "Tips & Strategies",
+    "tip1": "📝 Always distribute FIRST before combining like terms. This prevents sign errors!",
+    "tip2": "🎯 For fractions, find the LCD and multiply the ENTIRE equation by it. This eliminates all fractions in one step.",
+    "tip3": "💡 After solving, always check your answer by substituting back into the original equation. This catches calculation errors!"
+  },
+  "whatsNext": {
+    "motivation": "Outstanding work! You've mastered advanced linear equations—a crucial foundation for all higher mathematics. Ready to explore new frontiers?",
+    "topic1": {
+      "title": "Quadratic Equations",
+      "description": "Discover equations with x² and learn powerful solving techniques"
+    },
+    "topic2": {
+      "title": "Systems of Equations",
+      "description": "Apply your skills to solve multiple equations simultaneously"
+    }
+  },
+  "conclusion": {
+    "title": "You're Now an Equation-Solving Expert! 🎉",
+    "summary": "Advanced linear equations prepare you for complex problem-solving in science, engineering, and everyday life. You've learned to handle multi-step problems, fractions, and absolute values—skills that will serve you throughout your mathematical journey!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Multi-step equations: distribute, combine, isolate, solve",
+    "takeaway2": "Clear fractions by multiplying entire equation by LCD",
+    "takeaway3": "Absolute value equations have TWO solutions (check both cases)",
+    "takeaway4": "Always verify your solution in the original equation"
+  }
+}

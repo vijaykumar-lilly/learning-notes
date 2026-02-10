@@ -1,0 +1,232 @@
+{
+  "title": "Quadratic Equations",
+  "prerequisites": {
+    "skill1": {
+      "title": "Polynomial Operations",
+      "description": "Know how to expand and simplify expressions like (x + 3)(x - 2)"
+    },
+    "skill2": {
+      "title": "Factoring Basics",
+      "description": "Understand how to factor expressions like x² + 5x + 6"
+    },
+    "skill3": {
+      "title": "Square Roots",
+      "description": "Be comfortable with square roots and solving equations like x² = 25"
+    }
+  },
+  "definition": {
+    "quadratic": {
+      "title": "What is a Quadratic Equation?",
+      "intro": "A <strong>quadratic equation</strong> is an equation where the highest power of the variable is 2 (squared).",
+      "discovery": "Imagine throwing a basketball—its path through the air forms a curve called a parabola. Quadratic equations describe this beautiful curved motion!",
+      "standardForm": "Standard form of a quadratic equation:",
+      "where": "where a ≠ 0 (a, b, c are constants)"
+    }
+  },
+  "sections": {
+    "parabola": {
+      "title": "Understanding Parabolas",
+      "intro": "The graph of a quadratic function is a U-shaped curve called a parabola. Let's explore its key features!"
+    },
+    "factoring": {
+      "title": "Solving by Factoring",
+      "intro": "When a quadratic can be factored, it's often the quickest solution method. The idea: if (x + a)(x + b) = 0, then either factor must equal zero!"
+    },
+    "formula": {
+      "title": "The Quadratic Formula",
+      "intro": "The quadratic formula is the ultimate weapon—it works for ANY quadratic equation!",
+      "formulaTitle": "The Quadratic Formula",
+      "works": "This formula always works, even when factoring is difficult or impossible."
+    },
+    "completing": {
+      "title": "Completing the Square",
+      "intro": "This method converts any quadratic into a perfect square form. It's like solving a puzzle to reveal the solutions!"
+    }
+  },
+  "visuals": {
+    "parabola": {
+      "title": "Anatomy of a Parabola",
+      "caption": "Every parabola has these key features",
+      "vertex": "Vertex (0,0)",
+      "axis": "Axis of Symmetry",
+      "root1": "Root",
+      "root2": "Root"
+    },
+    "factoring": {
+      "title": "Factoring Method Step-by-Step",
+      "caption": "Find two numbers that multiply to c and add to b",
+      "step1": "Start with equation:",
+      "step2": "Find two numbers that multiply to 6 and add to 5:",
+      "numbers": "2 and 3 work! (2 × 3 = 6, 2 + 3 = 5)",
+      "step3": "Factor:",
+      "step4": "Solve each factor:"
+    },
+    "formula": {
+      "title": "Using the Quadratic Formula",
+      "caption": "Identify a, b, c then substitute into the formula",
+      "equation": "Given equation:",
+      "identify": "Identify coefficients:",
+      "substitute": "Substitute into formula:",
+      "solutions": "Solutions:"
+    },
+    "completing": {
+      "title": "Completing the Square Method",
+      "caption": "Add (b/2)² to both sides to create a perfect square",
+      "start": "Start:",
+      "half": "Take half of 6, then square it:",
+      "add": "Add 9 to both sides:",
+      "factor": "Factor left side as perfect square:",
+      "solve": "Take square root and solve:"
+    }
+  },
+  "keyConcept": {
+    "parts": {
+      "title": "Key Parts of a Parabola:",
+      "vertex": "Vertex: The highest or lowest point (turning point)",
+      "axis": "Axis of Symmetry: Vertical line through the vertex",
+      "roots": "Roots (zeros): Where the parabola crosses the x-axis"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: Solving by Factoring",
+      "problem": "Solve: x² + x - 6 = 0",
+      "step1": "Step 1: Find two numbers that multiply to -6 and add to 1. Answer: 3 and -2",
+      "step2": "Step 2: Factor",
+      "step3": "Step 3: Set each factor to zero and solve",
+      "or": "or",
+      "answerLabel": "Solutions:"
+    },
+    "example2": {
+      "title": "Example 2: Using the Quadratic Formula",
+      "problem": "Solve: x² - 3x - 4 = 0",
+      "step1": "Step 1: Identify a = 1, b = -3, c = -4",
+      "step2": "Step 2: Substitute into formula",
+      "step3": "Step 3: Simplify",
+      "answerLabel": "Solutions:"
+    },
+    "example3": {
+      "title": "Example 3: Real-World Projectile",
+      "problem": "A ball is thrown upward with height h(t) = -16t² + 64t feet after t seconds. When does it hit the ground?",
+      "step1": "Step 1: Set height to 0 (ground level): -16t² + 64t = 0",
+      "step2": "Step 2: Factor out -16t",
+      "step3": "Step 3: Solve: t = 0 (initial) or t - 4 = 0",
+      "answerLabel": "Answer:",
+      "answer": "The ball hits the ground at t = 4 seconds (t = 0 is when it was thrown)"
+    }
+  },
+  "commonMistakes": {
+    "title": "Common Mistakes to Avoid",
+    "mistake1": {
+      "title": "Forgetting the ± in the Quadratic Formula",
+      "wrong": "Students write only the + part of ±:",
+      "correct": "The ± symbol means TWO solutions (one with +, one with -):",
+      "explanation": "The ± symbol is there because quadratics can have up to 2 solutions! You must calculate both the addition and subtraction to find all solutions.",
+      "tip": "Think of ± as \"plus OR minus\"—it gives you two separate calculations to do!"
+    },
+    "mistake2": {
+      "title": "Sign Errors When Factoring",
+      "wrong": "For x² - 5x + 6, students might write (x - 5)(x + 6):",
+      "correct": "Check: what two numbers multiply to +6 and add to -5? Answer: -2 and -3",
+      "explanation": "When factoring, you need two numbers that multiply to give c AND add to give b. Both conditions must be satisfied! Check your factors by expanding."
+    },
+    "mistake3": {
+      "title": "Confusing Vertex with Y-Intercept",
+      "wrong": "Students think the vertex is always at x = 0:",
+      "correct": "The vertex x-coordinate is found using the formula:",
+      "explanation": "The y-intercept is where x = 0, but the vertex is the turning point, found at x = -b/(2a). These are usually different points!"
+    }
+  },
+  "realWorld": {
+    "title": "Real-World Applications",
+    "intro": "Quadratics model countless real-world phenomena—from sports to business to physics!",
+    "app1": {
+      "title": "🏀 Projectile Motion",
+      "description": "Any object thrown through the air follows a parabolic path.",
+      "example": "Basketball shot, water fountain arc, rocket trajectory all use quadratics: h(t) = -16t² + v₀t + h₀"
+    },
+    "app2": {
+      "title": "💰 Business Profit Maximization",
+      "description": "Companies use quadratics to find maximum profit.",
+      "example": "If profit P = -2x² + 100x - 500, the vertex formula finds the optimal production level"
+    },
+    "app3": {
+      "title": "🏛️ Architecture & Design",
+      "description": "Parabolic arches are used in bridges and buildings for strength.",
+      "example": "The Gateway Arch in St. Louis, suspension bridges, and satellite dishes all use parabolic curves"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "warmup": {
+      "title": "Warm-up Problems",
+      "description": "Build confidence with basic quadratic concepts!"
+    },
+    "practice": {
+      "title": "Practice Problems",
+      "description": "Master different solution methods."
+    },
+    "challenge": {
+      "title": "Challenge Problem",
+      "description": "Apply quadratics to a real-world scenario!"
+    },
+    "exercise1": {
+      "question": "Solve by factoring: x² + 5x + 6 = 0. What are the solutions?",
+      "explanation": "Factor: (x + 2)(x + 3) = 0, so x = -2 or x = -3"
+    },
+    "exercise2": {
+      "question": "What is the discriminant (b² - 4ac) for x² - 6x + 9 = 0? Enter the value.",
+      "hint": "a = 1, b = -6, c = 9. Calculate: (-6)² - 4(1)(9)",
+      "explanation": "b² - 4ac = 36 - 36 = 0. Discriminant of 0 means one repeated solution"
+    },
+    "exercise3": {
+      "question": "Solve using the quadratic formula: x² - x - 6 = 0",
+      "explanation": "Using formula: x = (1 ± √25)/2 = (1 ± 5)/2, so x = 3 or x = -2"
+    },
+    "exercise4": {
+      "question": "For f(x) = x² - 4x + 3, what is the x-coordinate of the vertex?",
+      "hint": "Use x = -b/(2a)",
+      "explanation": "x = -(-4)/(2·1) = 4/2 = 2"
+    },
+    "exercise5": {
+      "question": "How many real solutions does x² + 2x + 5 = 0 have?",
+      "option1": "Two distinct solutions",
+      "option2": "One repeated solution",
+      "option3": "No real solutions",
+      "option4": "Infinitely many",
+      "explanation": "Discriminant = 4 - 20 = -16 (negative), so no real solutions!"
+    },
+    "exercise6": {
+      "question": "A garden has length 3m more than width. Area is 28 m². What is the width? Enter the value.",
+      "hint": "Let w = width. Length = w + 3. Area: w(w + 3) = 28",
+      "explanation": "w² + 3w - 28 = 0. Factor: (w + 7)(w - 4) = 0. Width must be positive, so w = 4 meters"
+    }
+  },
+  "notes": {
+    "title": "Tips & Strategies",
+    "tip1": "📝 Try factoring first—it's fastest when it works! If factoring seems difficult, use the quadratic formula.",
+    "tip2": "🎯 The discriminant tells you: positive = 2 solutions, zero = 1 solution, negative = 0 real solutions.",
+    "tip3": "💡 Always check your solutions by substituting back into the original equation!"
+  },
+  "whatsNext": {
+    "motivation": "Fantastic! You've mastered quadratics—one of the most powerful tools in algebra. Ready to explore more?",
+    "topic1": {
+      "title": "Polynomial Functions",
+      "description": "Extend your knowledge to cubic and higher-degree equations"
+    },
+    "topic2": {
+      "title": "Radical Equations",
+      "description": "Learn to solve equations with square roots and radicals"
+    }
+  },
+  "conclusion": {
+    "title": "You've Conquered Quadratics! 🎉",
+    "summary": "Quadratic equations are fundamental to physics, engineering, business, and advanced mathematics. You now have three powerful methods: factoring, the quadratic formula, and completing the square. These skills will serve you throughout your STEM journey!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Quadratic equations: ax² + bx + c = 0 where a ≠ 0",
+    "takeaway2": "Three methods: factoring, quadratic formula, completing the square",
+    "takeaway3": "Discriminant determines number of real solutions",
+    "takeaway4": "Quadratics model parabolic motion, optimization, and real-world phenomena"
+  }
+}

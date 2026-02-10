@@ -1,0 +1,231 @@
+{
+  "title": "Introduction to Functions",
+  "prerequisites": {
+    "skill1": {
+      "title": "Coordinate Plane",
+      "description": "You should know how to plot points like (3, 4) and understand x and y axes"
+    },
+    "skill2": {
+      "title": "Linear Equations",
+      "description": "Be comfortable solving simple equations like 2x + 3 = 11"
+    },
+    "skill3": {
+      "title": "Tables and Patterns",
+      "description": "Able to identify patterns in number sequences and tables"
+    }
+  },
+  "definition": {
+    "function": {
+      "title": "What is a Function?",
+      "intro": "A <strong>function</strong> is a special relationship between inputs and outputs where each input has exactly one output.",
+      "discovery": "Let's discover what makes functions so special! Imagine you're at a vending machine...",
+      "keyIdea": "The Key Idea:",
+      "keyRule": "Every input must produce exactly ONE output. Think of it like a vending machine: you press one button (input) and get one specific snack (output).",
+      "realWorldTitle": "Real-world examples of functions:",
+      "example1": "🏫 Your student ID number → Your name (each ID matches exactly one student)",
+      "example2": "🗓️ Today's date → Temperature at noon (each day has one temperature at that time)",
+      "example3": "🚗 Miles driven → Gallons of gas used (for each distance, there's one amount of gas needed)",
+      "example4": "🎮 Hours of gaming → Your score (each time period produces one score)"
+    },
+    "notation": {
+      "title": "Function Notation",
+      "explanation": "Function notation is a mathematical shorthand for describing functions. It looks like this:",
+      "part1": "<strong>f</strong> is the name of the function (like a nickname)",
+      "part2": "<strong>x</strong> is the input variable (what goes in)",
+      "part3": "<strong>f(x)</strong> means \"the output of function f when the input is x\"",
+      "examples": "Reading function notation:",
+      "example1": "means \"the value of f when x is 5\"",
+      "example2": "is a different function named g",
+      "example3": "means \"the value of h when the input is 3\""
+    },
+    "domainRange": {
+      "title": "Domain and Range",
+      "domainTitle": "Domain",
+      "domain": "All possible input values (x-values)",
+      "domainExample": "Think of it as all the buttons on your vending machine.",
+      "rangeTitle": "Range",
+      "range": "All possible output values (y-values)",
+      "rangeExample": "Think of it as all the snacks that can come out of the machine.",
+      "analogy": "Remember the vending machine analogy?",
+      "analogyContent": "The domain is all the button numbers you can press (like A1, A2, B1, etc.). The range is all the different snacks you can get out."
+    },
+    "representations": {
+      "title": "Ways to Represent Functions",
+      "intro": "Functions can be shown in four different ways. They all describe the same relationship!",
+      "table": {
+        "title": "1. Table (T-table)",
+        "description": "Lists input-output pairs in an organized way:",
+        "headerX": "x (input)",
+        "headerY": "f(x) (output)",
+        "pattern": "Pattern: Each output is double the input, plus 1"
+      },
+      "equation": {
+        "title": "3. Equation",
+        "description": "Expresses the relationship using mathematical symbols:"
+      }
+    }
+  },
+  "visuals": {
+    "functionMachine": {
+      "title": "The Function Machine",
+      "caption": "Think of a function as a machine: you put a number in, the machine follows a rule, and out comes your answer!",
+      "input": "INPUT",
+      "machine": "Function Machine",
+      "rule": "Rule:",
+      "ruleDetail": "Double it, then add 1",
+      "output": "OUTPUT",
+      "exampleInput": "Example: x = 3",
+      "exampleOutput": "Result: 2(3) + 1 = 7"
+    },
+    "mapping": {
+      "title": "Function Mapping Diagram",
+      "caption": "This shows how each input maps to exactly one output.",
+      "heading": "f(x) = 2x + 1",
+      "domainLabel": "Domain (Inputs)",
+      "rangeLabel": "Range (Outputs)"
+    },
+    "graph": {
+      "title": "Graph of a Function",
+      "caption": "Graphs show the function visually on a coordinate plane.",
+      "heading": "Graph: f(x) = 2x + 1"
+    }
+  },
+  "keyConcept": {
+    "oneToOne": {
+      "title": "The One-to-One Rule",
+      "content": "For a relation to be a function, each input must have EXACTLY ONE output. However, different inputs CAN have the same output!"
+    }
+  },
+  "commonMistakes": {
+    "title": "Common Mistakes to Avoid",
+    "mistake1": {
+      "title": "Not Substituting the Value",
+      "wrong": "When asked to find f(5) for f(x) = 2x + 3, students leave it as 2x + 3:",
+      "correct": "Always substitute the number for x:",
+      "explanation": "f(x) is a template. When we write f(5), we're asking \"what's the output when x equals 5?\" You must replace every x with 5!",
+      "tip": "Think: f(5) means \"plug in 5 wherever you see x\""
+    },
+    "mistake2": {
+      "title": "Confusing Domain and Range",
+      "wrong": "Students mix up which is inputs and which is outputs:",
+      "correct": "Remember: Domain comes first (like in alphabetical order: D before R):",
+      "explanation": "Domain = all possible INputs (think: D for Data you put IN). Range = all possible outputs (think: R for Results that come out)."
+    },
+    "mistake3": {
+      "title": "Thinking One Input Can Have Multiple Outputs",
+      "wrong": "Students think a function can have x = 2 → both y = 5 and y = 7",
+      "correct": "This violates the function rule! Each input gets exactly ONE output.",
+      "explanation": "If one input produces two different outputs, it's NOT a function. It's like a broken vending machine—not reliable!",
+      "tip": "Use the Vertical Line Test on graphs: if any vertical line touches the graph more than once, it's not a function."
+    }
+  },
+  "notes": {
+    "title": "Tips and Tricks",
+    "inputOutput": {
+      "content": "Think: Input → Process → Output. Just like following a recipe: you start with ingredients (input), follow the recipe steps (function rule), and get your dish (output)!"
+    },
+    "verticalLine": {
+      "content": "To check if a graph represents a function, use the Vertical Line Test: If any vertical line touches the graph more than once, it's NOT a function!"
+    },
+    "realWorld": {
+      "title": "Functions Are Everywhere!",
+      "example1": "📱 Your phone number → Your contact (each number belongs to one person)",
+      "example2": "🍕 Number of pizza slices → Total calories (each slice count has one calorie total)",
+      "example3": "⏰ Time since you started homework → Pages completed",
+      "example4": "💰 Items purchased → Total cost (for a fixed price per item)"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "evaluate": {
+      "title": "Example 1: Evaluating a Function",
+      "problem": "If f(x) = 3x - 5, find f(4).",
+      "step1": "Step 1: Write the function",
+      "step2": "Step 2: Substitute 4 for x",
+      "step3": "Step 3: Calculate",
+      "answerLabel": "Answer:"
+    },
+    "domainRange": {
+      "title": "Example 2: Finding Domain and Range",
+      "problem": "A function has the following input-output pairs: (1, 5), (2, 7), (3, 9), (4, 11). What are the domain and range?",
+      "solution1": "The domain includes all the input values (first numbers in each pair).",
+      "domain": "Domain: {1, 2, 3, 4}",
+      "range": "Range: {5, 7, 9, 11}"
+    },
+    "writeRule": {
+      "title": "Example 3: Writing a Function Rule",
+      "problem": "Look at this pattern: When x = 1, y = 4. When x = 2, y = 8. When x = 3, y = 12. Write a function rule.",
+      "step1": "Step 1: Look for the pattern",
+      "step1Content": "The output is always 4 times the input",
+      "step2": "Step 2: Check your pattern",
+      "step2Content": "1 × 4 = 4 ✓, 2 × 4 = 8 ✓, 3 × 4 = 12 ✓",
+      "step3": "Step 3: Write the rule"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "warmup": {
+      "title": "Warm-up Problems",
+      "description": "Build your confidence with these easier problems!"
+    },
+    "practice": {
+      "title": "Practice Problems",
+      "description": "Master the core concepts with these exercises."
+    },
+    "challenge": {
+      "title": "Challenge Problem",
+      "description": "Ready to test your skills? This one requires deeper thinking!"
+    },
+    "exercise1": {
+      "question": "If g(x) = 2x + 3, what is g(5)?",
+      "explanation": "Substitute 5 for x: g(5) = 2(5) + 3 = 10 + 3 = 13"
+    },
+    "exercise2": {
+      "question": "For the function h(x) = x² - 7, find h(4). Enter your answer as a number.",
+      "hint": "Remember: x² means x × x. So 4² = 4 × 4 = 16",
+      "explanation": "h(4) = 4² - 7 = 16 - 7 = 9"
+    },
+    "exercise3": {
+      "question": "Which of the following represents a function?",
+      "option1": "{(1, 3), (2, 5), (3, 7), (4, 9)}",
+      "option2": "{(1, 3), (1, 5), (2, 7), (3, 9)}",
+      "option3": "{(1, 3), (2, 3), (3, 3), (1, 9)}",
+      "option4": "{(5, 1), (5, 2), (6, 3), (7, 4)}",
+      "explanation": "The first option is a function because each input (1, 2, 3, 4) has exactly one output. The others have inputs that map to multiple outputs."
+    },
+    "exercise4": {
+      "question": "If f(x) = 10 - 2x, for what value of x does f(x) = 4? Enter the value of x.",
+      "hint": "Set up the equation: 10 - 2x = 4, then solve for x.",
+      "explanation": "10 - 2x = 4, subtract 10 from both sides: -2x = -6, divide by -2: x = 3"
+    },
+    "exercise5": {
+      "question": "A table shows: x: 1, 2, 3, 4 and y: 3, 6, 9, 12. Which equation represents this function?",
+      "explanation": "Each y-value is 3 times the x-value: when x=1, y=3; when x=2, y=6; etc. So y = 3x."
+    },
+    "exercise6": {
+      "question": "The function c(n) = 5n represents the cost in dollars for n tickets. What is the cost for 5 tickets? Enter your answer in dollars.",
+      "hint": "Substitute n = 5 into the function c(n) = 5n",
+      "explanation": "c(5) = 5(5) = 25 dollars"
+    }
+  },
+  "whatsNext": {
+    "motivation": "Excellent work! You've mastered functions—one of the most powerful tools in mathematics. Ready to use them?",
+    "topic1": {
+      "title": "Systems of Equations",
+      "description": "Solve problems with multiple functions working together"
+    },
+    "topic2": {
+      "title": "Quadratic Functions",
+      "description": "Explore curved graphs and parabolic functions"
+    }
+  },
+  "conclusion": {
+    "title": "You've Mastered Functions!",
+    "summary": "Functions are one of the most important concepts in mathematics. They describe relationships between quantities and appear everywhere—from science to engineering to everyday life!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "A function maps each input to exactly ONE output",
+    "takeaway2": "Functions can be represented as equations, tables, graphs, or mappings",
+    "takeaway3": "Function notation f(x) is just a shorthand way to show the relationship",
+    "takeaway4": "Domain = all inputs, Range = all outputs"
+  }
+}

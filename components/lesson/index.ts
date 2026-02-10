@@ -10,3 +10,8 @@ export { VisualExplanation } from './VisualExplanation'
 export { RatioDiagram } from './RatioDiagram'
 export { ProportionDiagram } from './ProportionDiagram'
 export { UnitRateDiagram } from './UnitRateDiagram'
+
+// New enhanced components
+export { default as BeforeYouStart } from './BeforeYouStart'
+export { default as CommonMistake } from './CommonMistake'
+export { default as WhatsNext } from './WhatsNext'

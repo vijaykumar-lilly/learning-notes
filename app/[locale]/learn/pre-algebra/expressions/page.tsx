@@ -7,7 +7,10 @@ import {
   KeyConcept, 
   Note, 
   StepByStep,
-  VisualExplanation
+  VisualExplanation,
+  BeforeYouStart,
+  CommonMistake,
+  WhatsNext
 } from '@/components/lesson'
 import { NumericInputExercise, MultipleChoiceExercise } from '@/components/interactive'
 import LessonNavigation from '@/components/lesson/LessonNavigation'
@@ -19,13 +22,32 @@ export default function AlgebraicExpressionsLesson() {
   const navigation = getLessonNavigation('pre-algebra', 'expressions')
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 relative">
+    <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">{t('title')}</h1>
 
-      {/* Introduction */}
+      {/* NEW: Before You Start */}
+      <BeforeYouStart 
+        prerequisites={[
+          {
+            title: t('prerequisites.skill1.title'),
+            description: t('prerequisites.skill1.description')
+          },
+          {
+            title: t('prerequisites.skill2.title'),
+            description: t('prerequisites.skill2.description')
+          },
+          {
+            title: t('prerequisites.skill3.title'),
+            description: t('prerequisites.skill3.description')
+          }
+        ]} 
+      />
+
+      {/* Introduction - ENHANCED LANGUAGE */}
       <Definition term={t('definition.algebraic.title')}>
         <p>{t.rich('definition.algebraic.intro', { strong: (chunks) => <strong>{chunks}</strong> })}</p>
-        <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+        <p className="mt-2">{t('definition.algebraic.analogy')}</p>
+        <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
           <div className="space-y-3">
             <div>
               <p className="font-semibold text-sm text-gray-600 dark:text-gray-400 mb-1">{t('definition.algebraic.example1Label')}</p>
@@ -39,15 +61,16 @@ export default function AlgebraicExpressionsLesson() {
         </div>
       </Definition>
 
-      {/* Variables and Constants */}
+      {/* Variables and Constants - ENHANCED WITH ZOOM */}
       <section className="my-8">
         <h2 className="text-2xl font-bold mb-4">{t('sections.variables.title')}</h2>
         
         <VisualExplanation 
           title={t('visuals.variables.title')}
           caption={t('visuals.variables.caption')}
+          zoomable={true}
         >
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg">
                 <h4 className="font-semibold mb-2 text-purple-700 dark:text-purple-400">{t('visuals.variables.variableTitle')}</h4>
@@ -135,8 +158,9 @@ export default function AlgebraicExpressionsLesson() {
           <VisualExplanation 
             title={t('visuals.likeTerms.title')}
             caption={t('visuals.likeTerms.caption')}
+            zoomable={true}
           >
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto w-full">
               <table className="min-w-full border-2 border-gray-300 dark:border-gray-600">
                 <thead className="bg-blue-100 dark:bg-blue-900">
                   <tr>
@@ -205,8 +229,9 @@ export default function AlgebraicExpressionsLesson() {
         <VisualExplanation 
           title={t('visuals.combining.title')}
           caption={t('visuals.combining.caption')}
+          zoomable={true}
         >
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{t('visuals.combining.step1')}</p>
               <div className="text-xl font-bold mb-2">
@@ -255,8 +280,9 @@ export default function AlgebraicExpressionsLesson() {
         <VisualExplanation 
           title={t('visuals.evaluating.title')}
           caption={t('visuals.evaluating.caption')}
+          zoomable={true}
         >
-          <div className="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 rounded-lg">
+          <div className="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 rounded-lg w-full">
             <p className="font-semibold mb-2">{t('visuals.evaluating.problemLabel')}</p>
             <div className="text-xl mb-3"><MathRenderer math="2x + 5" /> {t('visuals.evaluating.when')} <MathRenderer math="x = 3" /></div>
             
@@ -336,6 +362,40 @@ export default function AlgebraicExpressionsLesson() {
         />
       </section>
 
+      {/* NEW: Common Mistakes Section */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">⚠️ {t('commonMistakes.title')}</h2>
+        
+        <CommonMistake
+          title={t('commonMistakes.mistake1.title')}
+          wrongApproach={<p>{t('commonMistakes.mistake1.wrong')}</p>}
+          wrongMath="3x + 2x^2 + 5x = 8x^2 + 5x"
+          correctApproach={<p>{t('commonMistakes.mistake1.correct')}</p>}
+          correctMath="3x + 2x^2 + 5x = 2x^2 + 8x"
+          explanation={<p>{t('commonMistakes.mistake1.explanation')}</p>}
+          tip={<p>{t('commonMistakes.mistake1.tip')}</p>}
+        />
+
+        <CommonMistake
+          title={t('commonMistakes.mistake2.title')}
+          wrongApproach={<p>{t('commonMistakes.mistake2.wrong')}</p>}
+          wrongMath="(4x + 3) - (2x + 1) = 4x + 3 - 2x + 1 = 2x + 4"
+          correctApproach={<p>{t('commonMistakes.mistake2.correct')}</p>}
+          correctMath="(4x + 3) - (2x + 1) = 4x + 3 - 2x - 1 = 2x + 2"
+          explanation={<p>{t('commonMistakes.mistake2.explanation')}</p>}
+          tip={<p>{t('commonMistakes.mistake2.tip')}</p>}
+        />
+
+        <CommonMistake
+          title={t('commonMistakes.mistake3.title')}
+          wrongApproach={<p>{t('commonMistakes.mistake3.wrong')}</p>}
+          wrongMath="3(x + 2) = 3x + 2"
+          correctApproach={<p>{t('commonMistakes.mistake3.correct')}</p>}
+          correctMath="3(x + 2) = 3x + 6"
+          explanation={<p>{t('commonMistakes.mistake3.explanation')}</p>}
+        />
+      </section>
+
       {/* Real World Applications */}
       <section className="my-8">
         <h2 className="text-2xl font-bold mb-4">🌍 {t('realWorld.title')}</h2>
@@ -377,11 +437,19 @@ export default function AlgebraicExpressionsLesson() {
         </div>
       </section>
 
-      {/* Practice Exercises */}
+      {/* NEW: Practice Exercises with Difficulty Levels */}
       <section className="my-8">
         <h2 className="text-2xl font-bold mb-4">✏️ {t('exercises.title')}</h2>
 
+        {/* Warm-up Problems */}
+        <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+          <span className="text-2xl">🌤️</span>
+          {t('exercises.warmup.title')}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('exercises.warmup.description')}</p>
+
         <MultipleChoiceExercise
+          difficulty="easy"
           question={t('exercises.exercise1.question')}
           choices={[
             { id: 'a', text: t('exercises.exercise1.option1'), isCorrect: false },
@@ -393,13 +461,22 @@ export default function AlgebraicExpressionsLesson() {
         />
 
         <NumericInputExercise
+          difficulty="easy"
           question={t('exercises.exercise2.question')}
           correctAnswer={15}
           hint={t('exercises.exercise2.hint')}
           solution={<p>{t('exercises.exercise2.explanation')}</p>}
         />
 
+        {/* Practice Problems */}
+        <h3 className="text-xl font-semibold mb-3 mt-8 flex items-center gap-2">
+          <span className="text-2xl">💪</span>
+          {t('exercises.practice.title')}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('exercises.practice.description')}</p>
+
         <MultipleChoiceExercise
+          difficulty="medium"
           question={t('exercises.exercise3.question')}
           choices={[
             { id: 'a', text: t('exercises.exercise3.option1'), isCorrect: false },
@@ -411,13 +488,22 @@ export default function AlgebraicExpressionsLesson() {
         />
 
         <NumericInputExercise
+          difficulty="medium"
           question={t('exercises.exercise4.question')}
           correctAnswer={3}
           hint={t('exercises.exercise4.hint')}
           solution={<p>{t('exercises.exercise4.explanation')}</p>}
         />
 
+        {/* Challenge Problem */}
+        <h3 className="text-xl font-semibold mb-3 mt-8 flex items-center gap-2">
+          <span className="text-2xl">🚀</span>
+          {t('exercises.challenge.title')}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('exercises.challenge.description')}</p>
+
         <MultipleChoiceExercise
+          difficulty="hard"
           question={t('exercises.exercise5.question')}
           choices={[
             { id: 'a', text: t('exercises.exercise5.option1'), isCorrect: false },
@@ -433,13 +519,13 @@ export default function AlgebraicExpressionsLesson() {
       <section className="my-8">
         <h2 className="text-2xl font-bold mb-4">💡 {t('notes.title')}</h2>
         
-        <Note>{t('notes.tip1')}</Note>
-        <Note>{t('notes.tip2')}</Note>
-        <Note>{t('notes.tip3')}</Note>
-        <Note>{t('notes.warning1')}</Note>
+        <Note type="tip">{t('notes.tip1')}</Note>
+        <Note type="tip">{t('notes.tip2')}</Note>
+        <Note type="tip">{t('notes.tip3')}</Note>
+        <Note type="warning">{t('notes.warning1')}</Note>
       </section>
 
-      {/* Conclusion */}
+      {/* Conclusion - ENHANCED */}
       <section className="my-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">{t('conclusion.title')}</h2>
         <p className="mb-4">{t('conclusion.summary')}</p>
@@ -466,6 +552,23 @@ export default function AlgebraicExpressionsLesson() {
           </ul>
         </div>
       </section>
+
+      {/* NEW: What's Next */}
+      <WhatsNext
+        motivationalText={<p>{t('whatsNext.motivation')}</p>}
+        topics={[
+          {
+            title: t('whatsNext.topic1.title'),
+            description: t('whatsNext.topic1.description'),
+            link: '/en/learn/pre-algebra/linear-equations'
+          },
+          {
+            title: t('whatsNext.topic2.title'),
+            description: t('whatsNext.topic2.description'),
+            link: '/en/learn/pre-algebra/polynomials-intro'
+          }
+        ]}
+      />
 
       <LessonNavigation navigation={navigation} />
     </div>

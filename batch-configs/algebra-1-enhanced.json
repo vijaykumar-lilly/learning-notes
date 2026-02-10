@@ -1,0 +1,90 @@
+[
+  {
+    "topic": "Advanced Linear Equations",
+    "slug": "advanced-linear",
+    "domain": "algebra-1",
+    "ageRange": "Ages 13-15 / Grade 9",
+    "exercises": 50,
+    "prerequisites": [
+      "Linear Equations (One Variable)",
+      "Systems of Equations",
+      "Algebraic Expressions"
+    ],
+    "commonMistakes": [
+      "Losing variables when simplifying",
+      "Sign errors with absolute value",
+      "Not checking solutions in original equation"
+    ],
+    "realWorldApps": [
+      "Physics formulas and problem solving",
+      "Business break-even analysis",
+      "Engineering calculations"
+    ]
+  },
+  {
+    "topic": "Quadratic Equations",
+    "slug": "quadratics",
+    "domain": "algebra-1",
+    "ageRange": "Ages 13-15 / Grade 9",
+    "exercises": 65,
+    "prerequisites": [
+      "Polynomial Functions",
+      "Factoring",
+      "Square roots"
+    ],
+    "commonMistakes": [
+      "Forgetting ± in quadratic formula",
+      "Sign errors when factoring",
+      "Confusing vertex and y-intercept"
+    ],
+    "realWorldApps": [
+      "Projectile motion (basketball, rockets)",
+      "Profit maximization in business",
+      "Architecture (parabolic arches)"
+    ]
+  },
+  {
+    "topic": "Polynomial Functions",
+    "slug": "polynomials",
+    "domain": "algebra-1",
+    "ageRange": "Ages 13-15 / Grade 9",
+    "exercises": 55,
+    "prerequisites": [
+      "Polynomials (Introduction)",
+      "Factoring basics",
+      "Graphing linear functions"
+    ],
+    "commonMistakes": [
+      "Confusing degree with number of terms",
+      "Sign errors in long division",
+      "Forgetting to check all factors"
+    ],
+    "realWorldApps": [
+      "Population modeling",
+      "Economics and cost analysis",
+      "Computer graphics (curves)"
+    ]
+  },
+  {
+    "topic": "Exponential Functions (Introduction)",
+    "slug": "exponentials-intro",
+    "domain": "algebra-1",
+    "ageRange": "Ages 13-15 / Grade 9",
+    "exercises": 40,
+    "prerequisites": [
+      "Exponents & Powers",
+      "Functions Introduction",
+      "Graphing basics"
+    ],
+    "commonMistakes": [
+      "Confusing exponential and polynomial growth",
+      "Sign errors with negative exponents",
+      "Misunderstanding compound interest formula"
+    ],
+    "realWorldApps": [
+      "Population growth and epidemics",
+      "Compound interest and savings",
+      "Radioactive decay in science"
+    ]
+  }
+]

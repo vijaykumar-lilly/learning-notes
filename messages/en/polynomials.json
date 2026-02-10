@@ -1,0 +1,215 @@
+{
+  "title": "Polynomial Functions",
+  "prerequisites": {
+    "skill1": {
+      "title": "Polynomials Introduction",
+      "description": "Understand basic polynomial terminology and operations"
+    },
+    "skill2": {
+      "title": "Factoring",
+      "description": "Know how to factor expressions and find common factors"
+    },
+    "skill3": {
+      "title": "Graphing Functions",
+      "description": "Be able to plot points and understand function behavior"
+    }
+  },
+  "definition": {
+    "polynomial": {
+      "title": "What is a Polynomial Function?",
+      "intro": "A <strong>polynomial function</strong> is a function made up of terms that are variables raised to whole number powers, multiplied by coefficients.",
+      "discovery": "Let's explore the beautiful world of polynomials! From modeling population growth to designing roller coasters, these versatile functions power modern technology and science.",
+      "examples": "Examples of polynomial functions:",
+      "example1": "Degree 2 (quadratic)",
+      "example2": "Degree 4",
+      "example3": "Degree 1 (linear)"
+    }
+  },
+  "sections": {
+    "degree": {
+      "title": "Degree and Classification"
+    },
+    "operations": {
+      "title": "Operations with Polynomials",
+      "intro": "Just like numbers, polynomials can be added, subtracted, multiplied, and divided. The key is organizing terms by their degree!"
+    }
+  },
+  "visuals": {
+    "anatomy": {
+      "title": "Anatomy of a Polynomial",
+      "caption": "Each term has a coefficient, variable, and exponent (degree)",
+      "leading": "Leading Term",
+      "term2": "2nd Term",
+      "term3": "Linear Term",
+      "constant": "Constant",
+      "degree": "Degree"
+    },
+    "adding": {
+      "title": "Adding Polynomials",
+      "caption": "Combine like terms (same degree)",
+      "problem": "Add:",
+      "align": "Align by degree:",
+      "result": "Combine like terms:"
+    },
+    "multiplying": {
+      "title": "Multiplying Polynomials",
+      "caption": "Distribute each term to every term in the other polynomial",
+      "problem": "Multiply:",
+      "distribute": "Distribute each term:",
+      "combine": "Combine all terms:"
+    }
+  },
+  "keyConcept": {
+    "degree": {
+      "title": "Polynomial Degree Determines Its Name:",
+      "content": "The degree is the highest exponent in the polynomial.",
+      "linear": "Degree 1:",
+      "linearEx": "(Example: 3x + 2)",
+      "quadratic": "Degree 2:",
+      "quadraticEx": "(Example: x² - 4x + 1)",
+      "cubic": "Degree 3:",
+      "cubicEx": "(Example: 2x³ + x² - 5)"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: Adding Polynomials",
+      "problem": "Add: (5x³ - 3x² + 7x) + (-2x³ + x² - 4x + 1)",
+      "step1": "Step 1: Remove parentheses",
+      "step2": "Step 2: Write all terms",
+      "step3": "Step 3: Combine like terms by degree",
+      "answerLabel": "Answer:"
+    },
+    "example2": {
+      "title": "Example 2: Factoring and Finding Roots",
+      "problem": "Find the roots of f(x) = x² + x - 12",
+      "step1": "Step 1: Factor",
+      "step2": "Step 2: Set equal to zero and solve",
+      "or": "or",
+      "answerLabel": "Roots:"
+    },
+    "example3": {
+      "title": "Example 3: Evaluating a Polynomial",
+      "problem": "If f(x) = 2x³ - 3x² + 1, find f(0) and explain what it represents.",
+      "step1": "Step 1: Identify coefficients",
+      "step2": "Step 2: Substitute x = 0",
+      "step3": "Step 3: This is the y-intercept!",
+      "answerLabel": "Answer:",
+      "answer": "f(0) = 1, which is the y-intercept (where the graph crosses the y-axis)"
+    }
+  },
+  "commonMistakes": {
+    "title": "Common Mistakes to Avoid",
+    "mistake1": {
+      "title": "Confusing Degree with Number of Terms",
+      "wrong": "Students think x³ has degree 3 because \"it has 3 in the exponent and must have 3 terms\":",
+      "correct": "Degree is the highest exponent, NOT the number of terms:",
+      "explanation": "A polynomial's degree tells you the highest power of x, not how many terms it has. x³ is a single term with degree 3. Meanwhile, x + x² + 1 has 3 terms but degree 2!",
+      "tip": "Count terms by counting the + and - signs (plus one). Count degree by finding the biggest exponent."
+    },
+    "mistake2": {
+      "title": "FOIL Errors When Multiplying",
+      "wrong": "When multiplying (x + 2)(x - 3), students forget the middle terms:",
+      "correct": "Use FOIL (First, Outer, Inner, Last) for ALL four products:",
+      "explanation": "You must multiply EVERY term in the first binomial by EVERY term in the second. That's 2 × 2 = 4 products. Missing any term gives the wrong answer!"
+    },
+    "mistake3": {
+      "title": "Adding Exponents Instead of Coefficients",
+      "wrong": "When simplifying x²(x + 3), students might write x² + 3x:",
+      "correct": "When multiplying, ADD exponents; when adding, combine coefficients:",
+      "explanation": "x² · x = x³ (exponents add: 2 + 1 = 3). But x² + x cannot be simplified further because they're not like terms!"
+    }
+  },
+  "realWorld": {
+    "title": "Real-World Applications",
+    "intro": "Polynomial functions model countless real-world phenomena—from economics to physics to computer graphics!",
+    "app1": {
+      "title": "📈 Population Modeling",
+      "description": "Scientists use polynomial functions to model population growth over time.",
+      "example": "A city's population might be P(t) = 0.01t³ - 0.5t² + 10t + 50000, where t is years since 2000"
+    },
+    "app2": {
+      "title": "💼 Economics & Cost Analysis",
+      "description": "Businesses use polynomials to model costs, revenue, and profit.",
+      "example": "Total cost might be C(x) = 0.002x³ - 0.5x² + 50x + 1000, where x is units produced"
+    },
+    "app3": {
+      "title": "🎮 Computer Graphics",
+      "description": "Polynomial curves (Bezier curves) create smooth shapes in animation and design.",
+      "example": "Video game characters, font designs, and 3D models all use polynomial curves for smooth motion"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "warmup": {
+      "title": "Warm-up Problems",
+      "description": "Get comfortable with polynomial basics!"
+    },
+    "practice": {
+      "title": "Practice Problems",
+      "description": "Master polynomial operations."
+    },
+    "challenge": {
+      "title": "Challenge Problem",
+      "description": "Combine multiple concepts!"
+    },
+    "exercise1": {
+      "question": "What is the degree of 4x³ - 2x² + 7x - 5?",
+      "explanation": "The degree is the highest exponent, which is 3 (from the x³ term)"
+    },
+    "exercise2": {
+      "question": "How many terms does 3x⁴ - 2x² + 2x² + x - 7 have before combining like terms? Enter the number.",
+      "hint": "Count each separate piece before simplifying.",
+      "explanation": "Before combining: 3x⁴, -2x², +2x², x, -7. That's 5 terms. (After combining the x² terms, it becomes 3 terms)"
+    },
+    "exercise3": {
+      "question": "Simplify: (3x² - x + 1) + (-x² + 2x + 1). What is the result?",
+      "explanation": "Combine like terms: (3x² - x²) + (-x + 2x) + (1 + 1) = 2x² + x + 2"
+    },
+    "exercise4": {
+      "question": "If f(x) = x³ - 2x + 6, what is f(2)? Enter the number.",
+      "hint": "Substitute x = 2 into the function.",
+      "explanation": "f(2) = 2³ - 2(2) + 6 = 8 - 4 + 6 = 10"
+    },
+    "exercise5": {
+      "question": "Which polynomial has a y-intercept of -3?",
+      "option1": "f(x) = x² + 2x - 3",
+      "option2": "f(x) = x³ - 3",
+      "option3": "f(x) = 2x - 3",
+      "option4": "All of the above",
+      "explanation": "The y-intercept occurs when x = 0. All three functions equal -3 when x = 0, so the answer is 'All of the above'!"
+    },
+    "exercise6": {
+      "question": "A box has volume V(x) = x³ - 6x² + 9x. For what positive value of x is the volume zero? Enter the number.",
+      "hint": "Factor out x first, then factor the remaining quadratic.",
+      "explanation": "V(x) = x(x² - 6x + 9) = x(x - 3)². Solutions: x = 0 or x = 3. The positive value is 3."
+    }
+  },
+  "notes": {
+    "title": "Tips & Strategies",
+    "tip1": "📝 Always organize polynomials in descending order by degree (highest power first). This makes operations much easier!",
+    "tip2": "🎯 When adding or subtracting, ONLY combine like terms (same variable, same exponent). 3x² and 5x are NOT like terms!",
+    "tip3": "💡 The degree of the product when multiplying is the SUM of the degrees. (Degree 2) × (Degree 3) = Degree 5 polynomial!"
+  },
+  "whatsNext": {
+    "motivation": "Excellent work! Polynomial functions are building blocks for advanced mathematics. Ready to go even deeper?",
+    "topic1": {
+      "title": "Rational Functions",
+      "description": "Explore functions that are ratios of polynomials"
+    },
+    "topic2": {
+      "title": "Advanced Factoring Techniques",
+      "description": "Master complex factoring including grouping and special cases"
+    }
+  },
+  "conclusion": {
+    "title": "You're Now a Polynomial Pro! 🎉",
+    "summary": "Polynomial functions are among the most versatile tools in mathematics. From modeling real-world data to computer graphics, you'll use these skills throughout your STEM journey!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Polynomial degree is the highest exponent in the expression",
+    "takeaway2": "Add/subtract polynomials by combining like terms",
+    "takeaway3": "Multiply polynomials by distributing each term to all other terms",
+    "takeaway4": "The number of terms doesn't equal the degree!"
+  }
+}

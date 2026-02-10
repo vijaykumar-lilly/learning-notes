@@ -1,0 +1,196 @@
+{
+  "title": "Polynomials (Introduction)",
+  "definition": {
+    "polynomial": {
+      "title": "What is a Polynomial?",
+      "intro": "A <strong>polynomial</strong> is an algebraic expression made up of terms that contain variables raised to whole number powers, added or subtracted together.",
+      "examples": "Examples of polynomials:"
+    }
+  },
+  "notes": {
+    "title": "Tips and Tricks",
+    "poly": {
+      "content": "The word 'polynomial' comes from 'poly' (many) + 'nomial' (terms). So a polynomial has many terms!"
+    },
+    "distribute": {
+      "content": "IMPORTANT: When subtracting, distribute the negative sign to ALL terms in the second polynomial! This is the most common mistake."
+    },
+    "tip1": "Always write polynomials in standard form (highest degree first) to avoid confusion.",
+    "tip2": "Like terms have the EXACT same variables with the EXACT same exponents. 2x² and 3x² are like terms, but 2x² and 2x are NOT.",
+    "tip3": "When multiplying, remember: multiply coefficients AND add exponents. x² · x³ = x⁵"
+  },
+  "sections": {
+    "terms": {
+      "title": "Understanding Terms"
+    },
+    "types": {
+      "title": "Types of Polynomials",
+      "monomial": {
+        "title": "Monomial",
+        "description": "ONE term"
+      },
+      "binomial": {
+        "title": "Binomial",
+        "description": "TWO terms"
+      },
+      "trinomial": {
+        "title": "Trinomial",
+        "description": "THREE terms"
+      },
+      "standard": {
+        "title": "Standard Form",
+        "description": "Write terms in order from highest to lowest degree:",
+        "note": "(Descending powers)"
+      }
+    },
+    "adding": {
+      "title": "Adding Polynomials",
+      "description": "To add polynomials, combine like terms (terms with the same variable and exponent)."
+    },
+    "subtracting": {
+      "title": "Subtracting Polynomials",
+      "description": "To subtract polynomials, distribute the negative sign, then combine like terms."
+    },
+    "multiplying": {
+      "title": "Multiplying Polynomials",
+      "description": "To multiply a monomial by a polynomial, use the distributive property: multiply the monomial by EACH term.",
+      "monomial": "Multiplying by a Monomial:"
+    },
+    "factoring": {
+      "title": "Factoring Out the GCF",
+      "description": "Factoring is the reverse of multiplying. We find the Greatest Common Factor (GCF) of all terms and factor it out."
+    }
+  },
+  "visuals": {
+    "anatomy": {
+      "title": "Anatomy of a Polynomial",
+      "caption": "Understanding each part of a polynomial",
+      "term1": "First term (degree 3)",
+      "term2": "Second term (degree 2)",
+      "term3": "Third term (degree 1)",
+      "term4": "Constant term (degree 0)",
+      "coefficient": "Coefficient",
+      "degree": "Degree",
+      "polyDegree": "Degree of the polynomial",
+      "polyDegreeValue": "3 (highest degree of any term)"
+    },
+    "adding": {
+      "title": "Adding Polynomials Visually",
+      "caption": "Combine like terms!",
+      "problem": "Add the polynomials:",
+      "step1": "Group like terms together:",
+      "step2": "Combine:"
+    },
+    "subtracting": {
+      "title": "Subtracting Polynomials Visually",
+      "caption": "Distribute the negative, then combine!",
+      "problem": "Subtract the polynomials:",
+      "step1": "Distribute the negative sign:",
+      "step2": "Combine like terms:"
+    },
+    "factoring": {
+      "title": "Factoring with GCF",
+      "caption": "Find what's common and pull it out!",
+      "problem": "Factor completely:",
+      "step1": "Find the GCF:",
+      "step1Detail": "GCF of 6 and 9 is 3, GCF of x² and x is x. So GCF = 3x",
+      "step2": "Factor out 3x:"
+    }
+  },
+  "keyConcept": {
+    "degree": {
+      "title": "Degree of a Polynomial:",
+      "content": "The degree is the highest exponent in the polynomial. It tells us important information about the polynomial's behavior!"
+    },
+    "multiply": {
+      "title": "Exponent Rule for Multiplication:",
+      "content": "When multiplying powers with the same base, ADD the exponents: xᵃ · xᵇ = x⁽ᵃ⁺ᵇ⁾"
+    }
+  },
+  "examples": {
+    "adding": {
+      "title": "Example 1: Adding Polynomials",
+      "problem": "Add:",
+      "step1": "Combine x² terms",
+      "step2": "Combine x terms",
+      "step3": "Combine constants",
+      "step4": "Write the result",
+      "answerLabel": "Answer:"
+    },
+    "subtracting": {
+      "title": "Example 2: Subtracting Polynomials",
+      "problem": "Subtract:",
+      "step1": "Distribute the negative sign",
+      "step2": "Group like terms",
+      "step3": "Combine like terms",
+      "answerLabel": "Answer:"
+    },
+    "multiplying": {
+      "title": "Example 3: Multiplying by a Monomial",
+      "problem": "Multiply:",
+      "step1": "Distribute 4x to each term inside the parentheses",
+      "step2": "Multiply the first term",
+      "step3": "Multiply the second term",
+      "step4": "Multiply the third term",
+      "answerLabel": "Answer:"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "exercise1": {
+      "question": "What is the degree of the polynomial 5x³ - 2x² + 7x - 1?",
+      "explanation": "The degree is the highest exponent, which is 3 in the term 5x³."
+    },
+    "exercise2": {
+      "question": "Add: (3x² + 5x - 1) + (2x² + 2x + 8). What is the constant term in the result? Enter the number.",
+      "hint": "Combine like terms: (3x² + 2x²) + (5x + 2x) + (-1 + 8)",
+      "explanation": "Result is 5x² + 7x + 7. The constant term is 7."
+    },
+    "exercise3": {
+      "question": "Which of the following is a binomial?",
+      "option1": "3x",
+      "option2": "2x + 5",
+      "option3": "x² + 3x - 1",
+      "option4": "7",
+      "explanation": "A binomial has exactly TWO terms. 2x + 5 has two terms, so it's a binomial."
+    },
+    "exercise4": {
+      "question": "Subtract: (3x² - 5x + 2) - (x² + 3x - 6). What is the constant term in the result? Enter the number.",
+      "hint": "Distribute the negative, then combine. Pay attention to the constant terms: 2 - (-6)",
+      "explanation": "Distribute negative: 3x² - 5x + 2 - x² - 3x + 6. Combine: 2x² - 8x + 8. Constant is 8."
+    },
+    "exercise5": {
+      "question": "Multiply: 3x(2x² - 4x + 1). What is the result?",
+      "option1": "6x³ - 12x² + 3x",
+      "option2": "6x² - 12x + 3",
+      "option3": "6x³ - 12x² + 3",
+      "option4": "6x³ - 4x + 3x",
+      "explanation": "Multiply 3x by each term: 3x·2x² = 6x³, 3x·(-4x) = -12x², 3x·1 = 3x. Answer: 6x³ - 12x² + 3x"
+    },
+    "exercise6": {
+      "question": "Factor: 6x² + 9x. If we write it as 3x(ax + b), what is the value of a? Enter the number.",
+      "hint": "Find the GCF first. GCF of 6 and 9 is 3, and both terms have at least x.",
+      "explanation": "GCF is 3x. Factor it out: 3x(2x + 3). So a = 2."
+    }
+  },
+  "realWorld": {
+    "title": "Real-World Applications",
+    "area": {
+      "title": "📐 Area Calculations",
+      "description": "If a rectangle has length (x + 3) and width (x + 2), its area is the polynomial x² + 5x + 6."
+    },
+    "physics": {
+      "title": "🚀 Physics & Motion",
+      "description": "The height of a thrown ball over time is often modeled by polynomials like h = -16t² + 32t + 48."
+    }
+  },
+  "conclusion": {
+    "title": "Mastering Polynomials!",
+    "summary": "Polynomials are the foundation of algebra! You've learned how to identify, classify, add, subtract, multiply, and factor them.",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Polynomials are sums of terms with whole number exponents",
+    "takeaway2": "Combine like terms when adding or subtracting",
+    "takeaway3": "Distribute carefully when subtracting (watch those signs!)",
+    "takeaway4": "Factoring is the reverse of multiplying"
+  }
+}

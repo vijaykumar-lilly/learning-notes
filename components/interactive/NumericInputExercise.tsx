@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import Celebration from '@/components/ui/Celebration'
+import DifficultyBadge from '@/components/ui/DifficultyBadge'
 
 interface NumericInputExerciseProps {
   question: React.ReactNode
@@ -11,6 +12,7 @@ interface NumericInputExerciseProps {
   hint?: React.ReactNode
   solution?: React.ReactNode
   unit?: string // e.g., "meters", "°", etc.
+  difficulty?: 'easy' | 'medium' | 'hard'
   onCorrect?: () => void
   onIncorrect?: () => void
 }
@@ -22,6 +24,7 @@ export default function NumericInputExercise({
   hint,
   solution,
   unit,
+  difficulty,
   onCorrect,
   onIncorrect
 }: NumericInputExerciseProps) {
@@ -66,6 +69,13 @@ export default function NumericInputExercise({
       <Celebration show={showCelebration} onComplete={() => setShowCelebration(false)} />
       
       <div className="my-6 p-4 sm:p-6 rounded-xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+      {/* Difficulty Badge */}
+      {difficulty && (
+        <div className="mb-3">
+          <DifficultyBadge level={difficulty} />
+        </div>
+      )}
+      
       {/* Question */}
       <div className="mb-4 text-sm sm:text-base text-gray-800 dark:text-gray-200">
         {question}

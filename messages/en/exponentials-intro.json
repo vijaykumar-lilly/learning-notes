@@ -1,0 +1,206 @@
+{
+  "title": "Exponential Functions (Introduction)",
+  "prerequisites": {
+    "skill1": {
+      "title": "Exponents & Powers",
+      "description": "Understand exponent rules like 2³ = 8 and negative exponents"
+    },
+    "skill2": {
+      "title": "Functions Introduction",
+      "description": "Know function notation f(x) and how to evaluate functions"
+    },
+    "skill3": {
+      "title": "Graphing Basics",
+      "description": "Be able to plot points and understand coordinate plane"
+    }
+  },
+  "definition": {
+    "exponential": {
+      "title": "What is an Exponential Function?",
+      "intro": "An <strong>exponential function</strong> is a function where the variable appears in the exponent, creating incredibly rapid growth or decay.",
+      "discovery": "Imagine a single bacterium that doubles every hour. After 24 hours, how many bacteria are there? Not 24, not 240, but over 16 MILLION! This explosive growth is the power of exponential functions!",
+      "standardForm": "Standard Form:",
+      "where": "where a = initial value, b = base (b > 0, b ≠ 1), and x = exponent"
+    }
+  },
+  "sections": {
+    "growthDecay": {
+      "title": "Exponential Growth vs Decay"
+    },
+    "comparison": {
+      "title": "Exponential vs Linear Growth",
+      "intro": "The difference between exponential and linear growth is dramatic—exponential functions grow MUCH faster!"
+    }
+  },
+  "visuals": {
+    "growthDecay": {
+      "title": "Growth and Decay Curves",
+      "caption": "Base > 1 grows, base < 1 decays",
+      "growth": "Growth (b > 1)",
+      "decay": "Decay (0 < b < 1)"
+    },
+    "comparison": {
+      "title": "Linear vs Exponential Growth",
+      "caption": "Watch how exponential growth explodes!",
+      "headerX": "x",
+      "headerLinear": "Linear (y = 2x)",
+      "headerExp": "Exponential (y = 2ˣ)",
+      "note": "Notice: By x = 5, exponential is already 3× larger than linear!"
+    }
+  },
+  "keyConcept": {
+    "baseRules": {
+      "title": "Base Determines Behavior:",
+      "growth": "b > 1: Exponential growth (curve goes up)",
+      "decay": "0 < b < 1: Exponential decay (curve goes down)",
+      "constant": "b = 1: Constant function (horizontal line)"
+    }
+  },
+  "examples": {
+    "title": "Worked Examples",
+    "example1": {
+      "title": "Example 1: Evaluating Exponential Functions",
+      "problem": "If f(x) = 2 · 3ˣ, find f(3).",
+      "step1": "Step 1: Substitute x = 3",
+      "step2": "Step 2: Calculate 3³",
+      "step3": "Step 3: Multiply",
+      "answerLabel": "Answer:"
+    },
+    "example2": {
+      "title": "Example 2: Compound Interest",
+      "problem": "You invest $1000 at 5% annual interest compounded yearly. How much after 5 years?",
+      "step1": "Step 1: Use A = P(1 + r)ᵗ",
+      "step2": "Step 2: Calculate (1.05)⁵",
+      "step3": "Step 3: Multiply by principal",
+      "answerLabel": "Answer:",
+      "answer": "After 5 years, you'll have approximately $1,276"
+    },
+    "example3": {
+      "title": "Example 3: Population Growth",
+      "problem": "A bacteria population doubles every hour. Starting with 100, how many after 4 hours?",
+      "step1": "Step 1: Write exponential function",
+      "step2": "Step 2: Substitute t = 4 hours",
+      "step3": "Step 3: Calculate",
+      "answerLabel": "Answer:",
+      "answer": "After 4 hours: 1,600 bacteria!"
+    }
+  },
+  "commonMistakes": {
+    "title": "Common Mistakes to Avoid",
+    "mistake1": {
+      "title": "Confusing Exponentiation with Multiplication",
+      "wrong": "Students think 2³ means 2 × 3:",
+      "correct": "2³ means 2 multiplied by itself 3 times:",
+      "explanation": "Exponents mean repeated multiplication, NOT multiplying the base by the exponent. 2³ = 2 × 2 × 2 = 8, not 2 × 3 = 6!",
+      "tip": "Remember: The exponent tells you HOW MANY TIMES to multiply the base by itself."
+    },
+    "mistake2": {
+      "title": "Negative Exponent Errors",
+      "wrong": "Students think 3⁻² means negative nine:",
+      "correct": "Negative exponents mean reciprocal (flip it!):",
+      "explanation": "A negative exponent doesn't make the answer negative—it makes it a fraction! Think: 3⁻² = 1/3² = 1/9 (positive fraction)."
+    },
+    "mistake3": {
+      "title": "Thinking Exponential and Polynomial Grow the Same",
+      "wrong": "Students think y = x³ and y = 3ˣ grow at similar rates:",
+      "correct": "Exponential functions grow MUCH faster than any polynomial:",
+      "explanation": "At x = 10: x³ = 1,000 but 3ˣ = 59,049! Exponential growth accelerates while polynomial growth stays steady. This is why compound interest and viral spread are so powerful!"
+    }
+  },
+  "realWorld": {
+    "title": "Real-World Applications",
+    "intro": "Exponential functions model some of the most important phenomena in our world—from pandemics to investments!",
+    "app1": {
+      "title": "🦠 Population Growth & Epidemics",
+      "description": "Populations grow exponentially when resources are unlimited.",
+      "example": "COVID-19 spread exponentially initially. If each person infects 2 others, growth follows N(t) = N₀ · 2ᵗ"
+    },
+    "app2": {
+      "title": "💵 Compound Interest & Savings",
+      "description": "Your money grows exponentially when interest compounds.",
+      "example": "Invest $1000 at 7% annually: A = 1000(1.07)ᵗ. After 30 years: $7,612! The power of exponential growth."
+    },
+    "app3": {
+      "title": "☢️ Radioactive Decay",
+      "description": "Radioactive materials decay exponentially over time.",
+      "example": "Carbon-14 used in dating fossils follows N(t) = N₀(0.5)^(t/5730), where half decays every 5,730 years"
+    }
+  },
+  "exercises": {
+    "title": "Practice Exercises",
+    "warmup": {
+      "title": "Warm-up Problems",
+      "description": "Get comfortable with exponential notation!"
+    },
+    "practice": {
+      "title": "Practice Problems",
+      "description": "Apply exponential concepts."
+    },
+    "challenge": {
+      "title": "Challenge Problem",
+      "description": "Solve a real-world exponential problem!"
+    },
+    "exercise1": {
+      "question": "What is 2³?",
+      "explanation": "2³ = 2 × 2 × 2 = 8"
+    },
+    "exercise2": {
+      "question": "If f(x) = 2ˣ, what is f(4)? Enter the number.",
+      "hint": "Calculate 2 to the 4th power.",
+      "explanation": "f(4) = 2⁴ = 2 × 2 × 2 × 2 = 16"
+    },
+    "exercise3": {
+      "question": "Which function represents exponential growth?",
+      "option1": "f(x) = x²",
+      "option2": "f(x) = 2ˣ",
+      "option3": "f(x) = 2x",
+      "option4": "f(x) = x/2",
+      "explanation": "f(x) = 2ˣ is exponential (variable in exponent). The others are polynomial or linear."
+    },
+    "exercise4": {
+      "question": "A population doubles every year. Starting with 100, how many after 4 years? Enter the number.",
+      "hint": "Use N(t) = 100 · 2ᵗ with t = 4",
+      "explanation": "N(4) = 100 · 2⁴ = 100 · 16 = 1600"
+    },
+    "exercise5": {
+      "question": "Which represents exponential decay?",
+      "option1": "f(x) = 3x",
+      "option2": "f(x) = x³",
+      "option3": "f(x) = 3ˣ",
+      "option4": "f(x) = (1/3)ˣ",
+      "explanation": "f(x) = (1/3)ˣ has base 1/3 which is between 0 and 1, causing exponential decay."
+    },
+    "exercise6": {
+      "question": "A substance decays exponentially: N(t) = 81 · (1/3)ᵗ. After how many time periods will only 3 units remain? Enter the number.",
+      "hint": "Solve: 81 · (1/3)ᵗ = 3. What power of 1/3 equals 3/81 = 1/27?",
+      "explanation": "81 · (1/3)ᵗ = 3 means (1/3)ᵗ = 3/81 = 1/27. Since 1/27 = (1/3)³, we have t = 3"
+    }
+  },
+  "notes": {
+    "title": "Tips & Strategies",
+    "tip1": "📝 In exponential functions y = abˣ, the base b determines growth (b > 1) or decay (0 < b < 1).",
+    "tip2": "🎯 Exponential functions NEVER touch the x-axis—they approach it but never reach zero!",
+    "tip3": "💡 When comparing growth rates, exponential ALWAYS beats polynomial eventually, no matter how large the polynomial degree!",
+    "warning1": "⚠️ Don't confuse 2ˣ with x²! In 2ˣ the variable is the exponent; in x² the variable is the base."
+  },
+  "whatsNext": {
+    "motivation": "Brilliant! You've discovered exponential functions—one of nature's most powerful patterns. Ready to go deeper?",
+    "topic1": {
+      "title": "Logarithms",
+      "description": "Learn the inverse of exponential functions and unlock new solving techniques"
+    },
+    "topic2": {
+      "title": "Advanced Exponential Functions",
+      "description": "Explore transformations, e (natural base), and continuous growth"
+    }
+  },
+  "conclusion": {
+    "title": "You've Unlocked Exponential Power! 🚀",
+    "summary": "Exponential functions describe rapid change in the natural world, from bacterial growth to radioactive decay. Understanding exponential growth is crucial in today's world—from understanding pandemics to managing investments!",
+    "keyTakeawaysTitle": "Key Takeaways:",
+    "takeaway1": "Exponential functions have the form f(x) = a · bˣ where b > 0, b ≠ 1",
+    "takeaway2": "Base b > 1 creates growth; 0 < b < 1 creates decay",
+    "takeaway3": "Exponential growth eventually surpasses any polynomial growth",
+    "takeaway4": "Real-world applications include compound interest, population, and radioactive decay"
+  }
+}
