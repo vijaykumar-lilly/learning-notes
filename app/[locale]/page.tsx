@@ -2,8 +2,29 @@ import Link from 'next/link'
 import MathRenderer from '@/components/math/MathRenderer'
 import AppLayout from '@/components/layout/AppLayout'
 import Logo from '@/components/Logo'
+import { getCurriculumData } from '@/lib/curriculum-api'
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+
+  // Fetch curriculum data from API
+  const domains = await getCurriculumData(locale)
+
+  // Calculate statistics from API data
+  const stats = {
+    totalDomains: domains.length,
+    totalTopics: domains.reduce((sum, domain) => sum + domain.topics.length, 0),
+    totalExercises: domains.reduce((sum, domain) => {
+      return sum + domain.topics.reduce((topicSum, topic) => topicSum + topic.exerciseCount, 0)
+    }, 0),
+    totalProofs: domains.reduce((sum, domain) => {
+      return sum + domain.topics.reduce((topicSum, topic) => topicSum + (topic.proofCount || 0), 0)
+    }, 0),
+  }
+
+  // Get first few domains for featured paths
+  const featuredDomains = domains.slice(0, 4)
+
   return (
     <AppLayout>
       <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-7xl">
@@ -17,7 +38,7 @@ export default function Home() {
             </div>
           </div>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300">
-            Complete mathematics curriculum covering 11 domains from foundational
+            Complete mathematics curriculum covering {stats.totalDomains} domains from foundational
             arithmetic to advanced topics like real analysis and machine learning mathematics.
           </p>
         </section>
@@ -28,78 +49,65 @@ export default function Home() {
           <p className="mb-3 text-sm sm:text-base text-gray-700 dark:text-gray-300">
             For any quadratic equation in the form:
           </p>
-          <MathRenderer 
-            math="ax^2 + bx + c = 0" 
-            block 
+          <MathRenderer
+            math="ax^2 + bx + c = 0"
+            block
           />
           <p className="my-3 text-sm sm:text-base">
             The solutions are given by:
           </p>
-          <MathRenderer 
-            math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" 
-            block 
+          <MathRenderer
+            math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}"
+            block
           />
         </section>
 
-        {/* Learning Paths */}
+        {/* Learning Paths - Now Dynamic */}
         <section className="mb-8">
-          <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Popular Learning Paths</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">Featured Learning Paths</h3>
+            <Link
+              href={`/${locale}/curriculum`}
+              className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              View all →
+            </Link>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <Link 
-              href="/learn/foundations/number-sense" 
-              className="p-4 sm:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all"
-            >
-              <h4 className="font-semibold text-base sm:text-lg mb-2 text-gray-900 dark:text-white">Foundations (K-5)</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Number sense, arithmetic, fractions, decimals
-              </p>
-            </Link>
-            <Link 
-              href="/learn/pre-algebra/integers" 
-              className="p-4 sm:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-green-300 dark:hover:border-green-600 transition-all"
-            >
-              <h4 className="font-semibold text-base sm:text-lg mb-2 text-gray-900 dark:text-white">Pre-Algebra (6-8)</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Integers, exponents, expressions, equations
-              </p>
-            </Link>
-            <Link 
-              href="/learn/algebra/quadratics" 
-              className="p-4 sm:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-purple-300 dark:hover:border-purple-600 transition-all"
-            >
-              <h4 className="font-semibold text-base sm:text-lg mb-2 text-gray-900 dark:text-white">Algebra I & II</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Quadratics, polynomials, exponentials
-              </p>
-            </Link>
-            <Link 
-              href="/learn/calculus/limits" 
-              className="p-4 sm:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-orange-300 dark:hover:border-orange-600 transition-all"
-            >
-              <h4 className="font-semibold text-base sm:text-lg mb-2 text-gray-900 dark:text-white">Calculus</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Limits, derivatives, integrals, series
-              </p>
-            </Link>
+            {featuredDomains.map((domain) => (
+              <Link
+                key={domain.id}
+                href={`/${locale}/curriculum#${domain.slug}`}
+                className="p-4 sm:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all"
+              >
+                <h4 className="font-semibold text-base sm:text-lg mb-2 text-gray-900 dark:text-white">{domain.title}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  {domain.description}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-500">
+                  {domain.topics.length} topics
+                </p>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* Quick Stats */}
+        {/* Quick Stats - Now from API */}
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
           <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400">11</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.totalDomains}</div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Domains</div>
           </div>
           <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">87</div>
+            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">{stats.totalTopics}</div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Topics</div>
           </div>
           <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-purple-600 dark:text-purple-400">3,995</div>
+            <div className="text-2xl sm:text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.totalExercises.toLocaleString()}</div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Exercises</div>
           </div>
           <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-orange-600 dark:text-orange-400">275</div>
+            <div className="text-2xl sm:text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.totalProofs}</div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Proofs</div>
           </div>
         </section>
