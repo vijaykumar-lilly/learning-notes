@@ -1,29 +1,20 @@
 import Link from 'next/link'
-import MathRenderer from '@/components/math/MathRenderer'
 import AppLayout from '@/components/layout/AppLayout'
 import Logo from '@/components/Logo'
-import { getCurriculumData } from '@/lib/curriculum-api'
+import { getSubjects } from '@/lib/curriculum-api'
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
 
-  // Fetch curriculum data from API
-  const domains = await getCurriculumData(locale)
+  // Fetch subjects from API
+  const subjects = await getSubjects(locale)
 
   // Calculate statistics from API data
   const stats = {
-    totalDomains: domains.length,
-    totalTopics: domains.reduce((sum, domain) => sum + domain.topics.length, 0),
-    totalExercises: domains.reduce((sum, domain) => {
-      return sum + domain.topics.reduce((topicSum, topic) => topicSum + topic.exerciseCount, 0)
-    }, 0),
-    totalProofs: domains.reduce((sum, domain) => {
-      return sum + domain.topics.reduce((topicSum, topic) => topicSum + (topic.proofCount || 0), 0)
-    }, 0),
+    totalSubjects: subjects.length,
+    totalDomains: subjects.reduce((sum, subject) => sum + subject.total_domains, 0),
+    totalTopics: subjects.reduce((sum, subject) => sum + subject.total_topics, 0),
   }
-
-  // Get first few domains for featured paths
-  const featuredDomains = domains.slice(0, 4)
 
   return (
     <AppLayout>
@@ -33,82 +24,69 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="flex items-center gap-4 mb-4">
             <Logo size="xl" showText={false} />
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Welcome to MathLearn</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Your journey from basics to expertise</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Welcome to LearnHub</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Your comprehensive learning platform</p>
             </div>
           </div>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300">
-            Complete mathematics curriculum covering {stats.totalDomains} domains from foundational
-            arithmetic to advanced topics like real analysis and machine learning mathematics.
+            Explore {stats.totalSubjects} subjects covering {stats.totalDomains} domains with {stats.totalTopics} topics.
+            Start your learning journey today.
           </p>
         </section>
 
-        {/* Sample Math Rendering */}
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-4 sm:p-6 rounded-xl mb-8 shadow-sm border border-blue-100 dark:border-blue-900/50">
-          <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-900 dark:text-white">Sample: The Quadratic Formula</h3>
-          <p className="mb-3 text-sm sm:text-base text-gray-700 dark:text-gray-300">
-            For any quadratic equation in the form:
-          </p>
-          <MathRenderer
-            math="ax^2 + bx + c = 0"
-            block
-          />
-          <p className="my-3 text-sm sm:text-base">
-            The solutions are given by:
-          </p>
-          <MathRenderer
-            math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}"
-            block
-          />
-        </section>
-
-        {/* Learning Paths - Now Dynamic */}
+        {/* Subjects Grid */}
         <section className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">Featured Learning Paths</h3>
-            <Link
-              href={`/${locale}/curriculum`}
-              className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              View all →
-            </Link>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">Available Subjects</h3>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {featuredDomains.map((domain) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {subjects.map((subject) => (
               <Link
-                key={domain.id}
-                href={`/${locale}/curriculum#${domain.slug}`}
-                className="p-4 sm:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all"
+                key={subject.id}
+                href={`/${locale}/subjects/${subject.id}`}
+                className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all"
               >
-                <h4 className="font-semibold text-base sm:text-lg mb-2 text-gray-900 dark:text-white">{domain.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {domain.description}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-500">
-                  {domain.topics.length} topics
-                </p>
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="font-semibold text-lg text-gray-900 dark:text-white">{subject.name}</h4>
+                  {subject.grade_level && (
+                    <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded">
+                      {subject.grade_level}
+                    </span>
+                  )}
+                </div>
+                {subject.description && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    {subject.description}
+                  </p>
+                )}
+                <div className="flex gap-4 text-xs text-gray-500 dark:text-gray-500">
+                  <span>{subject.total_domains} domains</span>
+                  <span>{subject.total_topics} topics</span>
+                </div>
               </Link>
             ))}
           </div>
+
+          {subjects.length === 0 && (
+            <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-600 dark:text-gray-400">No subjects available yet. Check back soon!</p>
+            </div>
+          )}
         </section>
 
-        {/* Quick Stats - Now from API */}
-        <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        {/* Quick Stats */}
+        <section className="grid grid-cols-3 gap-3 sm:gap-4 mb-8">
           <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.totalDomains}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400">{stats.totalSubjects}</div>
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Subjects</div>
+          </div>
+          <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">{stats.totalDomains}</div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Domains</div>
           </div>
           <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">{stats.totalTopics}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.totalTopics}</div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Topics</div>
-          </div>
-          <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.totalExercises.toLocaleString()}</div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Exercises</div>
-          </div>
-          <div className="text-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div className="text-2xl sm:text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.totalProofs}</div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Proofs</div>
           </div>
         </section>
 
@@ -134,8 +112,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 </svg>
               </div>
               <div>
-                <h4 className="font-semibold text-sm sm:text-base mb-1 text-gray-900 dark:text-white">Complete Coverage</h4>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">From basics to advanced mathematics</p>
+                <h4 className="font-semibold text-sm sm:text-base mb-1 text-gray-900 dark:text-white">Multiple Subjects</h4>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Learn multiple subjects in one platform</p>
               </div>
             </div>
             <div className="flex gap-3">

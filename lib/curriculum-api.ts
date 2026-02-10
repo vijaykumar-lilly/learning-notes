@@ -3,22 +3,69 @@
  * Replaces static curriculum-data.ts with dynamic API calls
  */
 
-import { fetchCurriculum, type Domain as APIDomain, type Topic as APITopic } from './api-client'
+import {
+  fetchCurriculum,
+  fetchSubjects,
+  fetchSubjectDomains,
+  type Domain as APIDomain,
+  type Topic as APITopic,
+  type Subject as APISubject,
+  type SubjectSummary as APISubjectSummary
+} from './api-client'
 
 // Re-export types from api-client for compatibility
-export type { APIDomain as Domain, APITopic as Topic }
+export type { APIDomain as Domain, APITopic as Topic, APISubject as Subject, APISubjectSummary as SubjectSummary }
 
 /**
- * Server-side function to get curriculum data from API
+ * Server-side function to get all subjects
+ */
+export async function getSubjects(locale: string = 'en'): Promise<APISubjectSummary[]> {
+  try {
+    const response = await fetchSubjects(locale)
+    return response.subjects
+  } catch (error) {
+    console.error('Failed to fetch subjects:', error)
+    return []
+  }
+}
+
+/**
+ * Server-side function to get complete curriculum with subjects
+ */
+export async function getCurriculumWithSubjects(locale: string = 'en'): Promise<APISubject[]> {
+  try {
+    const response = await fetchCurriculum(locale)
+    return response.subjects
+  } catch (error) {
+    console.error('Failed to fetch curriculum:', error)
+    return []
+  }
+}
+
+/**
+ * Server-side function to get curriculum data from API (legacy - returns all domains)
  * Use this in Server Components and server actions
  */
 export async function getCurriculumData(locale: string = 'en'): Promise<APIDomain[]> {
   try {
     const response = await fetchCurriculum(locale)
-    return response.domains
+    // Flatten all subjects to return just domains for backwards compatibility
+    return response.subjects.flatMap(subject => subject.domains)
   } catch (error) {
     console.error('Failed to fetch curriculum:', error)
-    // Return empty array on error - can be handled by UI
+    return []
+  }
+}
+
+/**
+ * Get domains for a specific subject
+ */
+export async function getSubjectDomains(subjectId: number, locale: string = 'en'): Promise<APIDomain[]> {
+  try {
+    const response = await fetchSubjectDomains(subjectId, locale)
+    return response.domains
+  } catch (error) {
+    console.error(`Failed to fetch subject ${subjectId} domains:`, error)
     return []
   }
 }

@@ -13,19 +13,25 @@ import { useState } from 'react'
 
 export default function CurriculumPage() {
   const locale = useLocale()
-  const { domains, isLoading, error, refetch } = useCurriculum()
+  const { subjects, domains, isLoading, error, refetch } = useCurriculum()
   const [selectedLevel, setSelectedLevel] = useState<string>('all')
+  const [selectedSubject, setSelectedSubject] = useState<string>('all')
 
   // Get unique levels
   const levels = ['all', ...Array.from(new Set(domains.map(d => d.level)))]
 
-  // Filter domains by level
-  const filteredDomains = selectedLevel === 'all'
-    ? domains
-    : domains.filter(d => d.level === selectedLevel)
+  // Filter domains by level and subject
+  const filteredDomains = domains.filter(d => {
+    const matchesLevel = selectedLevel === 'all' || d.level === selectedLevel
+    // Find which subject this domain belongs to
+    const domainSubject = subjects.find(s => s.domains.some(sd => sd.id === d.id))
+    const matchesSubject = selectedSubject === 'all' || (domainSubject && domainSubject.name === selectedSubject)
+    return matchesLevel && matchesSubject
+  })
 
   // Calculate statistics
   const stats = {
+    totalSubjects: subjects.length,
     totalDomains: domains.length,
     totalTopics: domains.reduce((sum, domain) => sum + domain.topics.length, 0),
     totalExercises: domains.reduce((sum, domain) => {
@@ -74,14 +80,21 @@ export default function CurriculumPage() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">Mathematics Curriculum</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3">Learning Curriculum</h1>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Complete learning path from basics to advanced mathematics
+            Explore all subjects and learning paths
           </p>
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-6 border border-orange-200 dark:border-orange-800">
+            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-1">
+              {stats.totalSubjects}
+            </div>
+            <div className="text-sm text-gray-700 dark:text-gray-300">Subjects</div>
+          </div>
+
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
             <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">
               {stats.totalDomains}
@@ -104,23 +117,56 @@ export default function CurriculumPage() {
           </div>
         </div>
 
-        {/* Level Filter */}
-        <div className="mb-6">
-          <label className="block text-sm font-medium mb-2">Filter by Level:</label>
-          <div className="flex flex-wrap gap-2">
-            {levels.map((level) => (
+        {/* Filters */}
+        <div className="grid sm:grid-cols-2 gap-6 mb-6">
+          {/* Subject Filter */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Filter by Subject:</label>
+            <div className="flex flex-wrap gap-2">
               <button
-                key={level}
-                onClick={() => setSelectedLevel(level)}
+                onClick={() => setSelectedSubject('all')}
                 className={`px-4 py-2 rounded-lg transition ${
-                  selectedLevel === level
-                    ? 'bg-blue-600 text-white'
+                  selectedSubject === 'all'
+                    ? 'bg-orange-600 text-white'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
-                {level === 'all' ? 'All Levels' : level}
+                All Subjects
               </button>
-            ))}
+              {subjects.map((subject) => (
+                <button
+                  key={subject.id}
+                  onClick={() => setSelectedSubject(subject.name)}
+                  className={`px-4 py-2 rounded-lg transition ${
+                    selectedSubject === subject.name
+                      ? 'bg-orange-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {subject.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Level Filter */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Filter by Level:</label>
+            <div className="flex flex-wrap gap-2">
+              {levels.map((level) => (
+                <button
+                  key={level}
+                  onClick={() => setSelectedLevel(level)}
+                  className={`px-4 py-2 rounded-lg transition ${
+                    selectedLevel === level
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {level === 'all' ? 'All Levels' : level}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

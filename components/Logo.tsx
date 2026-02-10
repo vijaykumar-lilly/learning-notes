@@ -52,20 +52,24 @@ export default function Logo({ className = '', size = 'md', showText = true }: L
             className="dark:fill-[url(#logoGradientDark)]"
           />
           
-          {/* Mathematical Symbols - Sigma (Σ) */}
+          {/* Icon - Book with knowledge symbol */}
           <path
-            d="M 30 25 L 70 25 L 50 50 L 70 75 L 30 75 M 32 27 L 32 73"
+            d="M 25 30 L 25 75 L 50 70 L 75 75 L 75 30 L 50 35 Z"
             stroke="white"
-            strokeWidth="5"
+            strokeWidth="4"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-          
-          {/* Small decorative elements - dots representing equation */}
-          <circle cx="62" cy="35" r="2.5" fill="white" opacity="0.8" />
-          <circle cx="68" cy="35" r="2.5" fill="white" opacity="0.8" />
-          <circle cx="74" cy="35" r="2.5" fill="white" opacity="0.8" />
+
+          {/* Center line dividing pages */}
+          <line x1="50" y1="35" x2="50" y2="70" stroke="white" strokeWidth="2" opacity="0.6" />
+
+          {/* Knowledge sparkles */}
+          <circle cx="38" cy="45" r="2" fill="white" opacity="0.9" />
+          <circle cx="62" cy="45" r="2" fill="white" opacity="0.9" />
+          <circle cx="38" cy="55" r="2" fill="white" opacity="0.9" />
+          <circle cx="62" cy="55" r="2" fill="white" opacity="0.9" />
         </svg>
       </div>
 
@@ -73,10 +77,10 @@ export default function Logo({ className = '', size = 'md', showText = true }: L
       {showText && (
         <div className="flex flex-col">
           <span className={`font-bold text-gray-900 dark:text-white leading-tight ${textSizes[size]}`}>
-            MathLearn
+            LearnHub
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight">
-            Basics to Expertise
+            Learn Anything
           </span>
         </div>
       )}

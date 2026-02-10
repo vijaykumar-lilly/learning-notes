@@ -24,8 +24,25 @@ export interface Domain {
   topics: Topic[]
 }
 
-export interface CurriculumResponse {
+export interface Subject {
+  id: number
+  name: string
+  grade_level?: string
+  description?: string
   domains: Domain[]
+}
+
+export interface CurriculumResponse {
+  subjects: Subject[]
+}
+
+export interface SubjectSummary {
+  id: number
+  name: string
+  grade_level?: string
+  description?: string
+  total_domains: number
+  total_topics: number
 }
 
 export interface LessonSection {
@@ -161,10 +178,24 @@ async function apiFetch<T>(
 // ============================================================================
 
 /**
- * Fetch complete curriculum structure with all domains and topics
+ * Fetch complete curriculum structure with all subjects, domains and topics
  */
 export async function fetchCurriculum(locale: string = 'en'): Promise<CurriculumResponse> {
   return apiFetch<CurriculumResponse>(`/curriculum?locale=${locale}`)
+}
+
+/**
+ * Fetch all published subjects
+ */
+export async function fetchSubjects(locale: string = 'en'): Promise<{ subjects: SubjectSummary[] }> {
+  return apiFetch<{ subjects: SubjectSummary[] }>(`/curriculum/subjects?locale=${locale}`)
+}
+
+/**
+ * Fetch all domains for a specific subject
+ */
+export async function fetchSubjectDomains(subjectId: number, locale: string = 'en'): Promise<{ subject: string, domains: Domain[] }> {
+  return apiFetch<{ subject: string, domains: Domain[] }>(`/curriculum/subjects/${subjectId}/domains?locale=${locale}`)
 }
 
 /**

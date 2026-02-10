@@ -33,5 +33,16 @@ class DomainWithTopics(DomainBase):
         from_attributes = True
 
 
-class CurriculumResponse(BaseModel):
+class SubjectWithDomains(BaseModel):
+    id: int
+    name: str
+    grade_level: Optional[str] = None
+    description: Optional[str] = None
     domains: List[DomainWithTopics]
+
+    class Config:
+        from_attributes = True
+
+
+class CurriculumResponse(BaseModel):
+    subjects: List[SubjectWithDomains]
