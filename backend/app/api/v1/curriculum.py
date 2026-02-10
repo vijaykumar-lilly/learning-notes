@@ -42,6 +42,12 @@ async def get_curriculum(
 
     subjects_response = []
     for subject in subjects:
+        # Get localized subject info from translation keys
+        subject_name = get_translation(db, locale, "common", subject.name_key) or subject.name or subject.name_key
+        subject_description = None
+        if subject.description_key:
+            subject_description = get_translation(db, locale, "common", subject.description_key) or subject.description
+
         # Get published domains for this subject
         domains = db.query(Domain).filter(
             Domain.subject_id == subject.id,
@@ -82,9 +88,9 @@ async def get_curriculum(
 
         subjects_response.append(SubjectWithDomains(
             id=subject.id,
-            name=subject.name,
+            name=subject_name,
             grade_level=subject.grade_level,
-            description=subject.description,
+            description=subject_description,
             domains=domains_response
         ))
 
@@ -107,9 +113,9 @@ async def get_subjects(
         "subjects": [
             {
                 "id": subject.id,
-                "name": subject.name,
+                "name": get_translation(db, locale, "common", subject.name_key) or subject.name or subject.name_key,
                 "grade_level": subject.grade_level,
-                "description": subject.description,
+                "description": get_translation(db, locale, "common", subject.description_key) if subject.description_key else subject.description,
                 "total_domains": subject.total_domains,
                 "total_topics": subject.total_topics
             }

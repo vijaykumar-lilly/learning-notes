@@ -103,9 +103,15 @@ async def generate_curriculum(
             standards=request.standards
         )
 
+        # Generate translation key from subject name
+        # "Mathematics" -> "subjects.mathematics.name"
+        subject_key = request.subject.lower().replace(' ', '-').replace("'", '')
+
         # Save to database
         subject = Subject(
-            name=request.subject,
+            name_key=f"subjects.{subject_key}.name",
+            description_key=f"subjects.{subject_key}.description" if request.subject else None,
+            name=request.subject,  # Keep for backwards compatibility
             grade_level=request.grade_level,
             standards=request.standards,
             status=SubjectStatus.DRAFT,
@@ -117,6 +123,25 @@ async def generate_curriculum(
         )
         db.add(subject)
         db.flush()
+
+        # Create translations for the subject (initially in English)
+        # This allows the same subject to be shown in different languages
+        subject_name_translation = Translation(
+            locale='en',
+            namespace='common',
+            key=f"subjects.{subject_key}.name",
+            value=request.subject
+        )
+        db.add(subject_name_translation)
+
+        if request.subject:
+            subject_desc_translation = Translation(
+                locale='en',
+                namespace='common',
+                key=f"subjects.{subject_key}.description",
+                value=f"Learn {request.subject}"
+            )
+            db.add(subject_desc_translation)
 
         # Save domains and topics
         for domain_order, domain_data in enumerate(result['curriculum'], 1):

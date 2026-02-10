@@ -29,9 +29,16 @@ class Subject(Base):
     __tablename__ = "subjects"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(200), nullable=False)  # "Mathematics", "Physics", "Linear Algebra"
+
+    # Translation keys for language-agnostic content
+    name_key = Column(String(100), nullable=False)  # Translation key: "subjects.mathematics.name"
+    description_key = Column(String(100), nullable=True)  # Translation key: "subjects.mathematics.description"
+
+    # Legacy fields for backwards compatibility (will be deprecated)
+    name = Column(String(200), nullable=True)  # DEPRECATED: Use name_key with translations
+    description = Column(Text, nullable=True)  # DEPRECATED: Use description_key with translations
+
     grade_level = Column(String(100), nullable=True)  # OPTIONAL: "Grade 10", "High School", "College", etc.
-    description = Column(Text, nullable=True)
 
     # Curriculum standards (optional)
     standards = Column(Text, nullable=True)  # e.g., "Common Core", "NGSS"
