@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import LessonSectionRenderer from '@/components/lesson/LessonSectionRenderer'
 import ExercisesRenderer from '@/components/lesson/ExercisesRenderer'
-import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
-import { Clock } from 'lucide-react'
+import DifficultyBadge from '@/components/ui/DifficultyBadge'
 
 async function fetchLesson(slug: string, locale: string) {
   const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'
@@ -20,7 +19,8 @@ async function fetchLesson(slug: string, locale: string) {
     }
 
     const data = await res.json()
-    return data.lesson
+    // Backend returns the lesson directly, not wrapped in data.lesson
+    return data
   } catch (error) {
     console.error('Error fetching lesson:', error)
     throw error
@@ -68,13 +68,15 @@ export default async function LessonPage({ params }: PageProps) {
 
           <div className="flex items-center gap-4 flex-wrap">
             {lesson.difficulty && (
-              <DifficultyBadge difficulty={lesson.difficulty} />
+              <DifficultyBadge level={lesson.difficulty} />
             )}
 
-            {lesson.estimatedTime && (
+            {lesson.estimated_time && (
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                <Clock className="w-4 h-4" />
-                <span className="text-sm">{lesson.estimatedTime} minutes</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-sm">{lesson.estimated_time} minutes</span>
               </div>
             )}
           </div>

@@ -1,12 +1,12 @@
 'use client'
 
-import { BeforeYouStart } from '@/components/lesson/BeforeYouStart'
-import { Definition } from '@/components/lesson/Definition'
-import { Example } from '@/components/lesson/Example'
-import { Note } from '@/components/lesson/Note'
+import BeforeYouStart from '@/components/lesson/BeforeYouStart'
+import Definition from '@/components/lesson/Definition'
+import Example from '@/components/lesson/Example'
+import Note from '@/components/lesson/Note'
 import { VisualExplanation } from '@/components/lesson/VisualExplanation'
-import { CommonMistake } from '@/components/lesson/CommonMistake'
-import { WhatsNext } from '@/components/lesson/WhatsNext'
+import CommonMistake from '@/components/lesson/CommonMistake'
+import WhatsNext from '@/components/lesson/WhatsNext'
 
 interface LessonSection {
   section_type: string
@@ -27,9 +27,6 @@ export default function LessonSectionRenderer({ section, locale }: LessonSection
       return (
         <BeforeYouStart
           prerequisites={content.prerequisites || []}
-          learningObjectives={content.learningObjectives || []}
-          estimatedTime={content.estimatedTime}
-          difficulty={content.difficulty}
         />
       )
 
@@ -56,7 +53,7 @@ export default function LessonSectionRenderer({ section, locale }: LessonSection
           title={content.title}
           problem={content.problem}
           solution={content.solution}
-          steps={content.steps}
+          hint={content.hint}
         />
       )
 
@@ -83,9 +80,9 @@ export default function LessonSectionRenderer({ section, locale }: LessonSection
       return (
         <CommonMistake
           title={content.title}
-          wrong={content.wrong}
+          wrongApproach={content.wrong || content.wrongApproach}
           wrongMath={content.wrongMath}
-          correct={content.correct}
+          correctApproach={content.correct || content.correctApproach}
           correctMath={content.correctMath}
           explanation={content.explanation}
           tip={content.tip}
@@ -96,7 +93,7 @@ export default function LessonSectionRenderer({ section, locale }: LessonSection
       return (
         <WhatsNext
           topics={content.topics || []}
-          nextLesson={content.nextLesson}
+          motivationalText={content.motivationalText}
         />
       )
 

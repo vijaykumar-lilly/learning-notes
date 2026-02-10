@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { MultipleChoiceExercise } from '@/components/interactive/MultipleChoiceExercise'
-import { NumericInputExercise } from '@/components/interactive/NumericInputExercise'
-import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
+import MultipleChoiceExercise from '@/components/interactive/MultipleChoiceExercise'
+import NumericInputExercise from '@/components/interactive/NumericInputExercise'
+import DifficultyBadge from '@/components/ui/DifficultyBadge'
 
 interface Exercise {
   id: number
@@ -81,7 +81,7 @@ export default function ExercisesRenderer({ exercises, lessonSlug }: ExercisesRe
             Exercise {currentExerciseIndex + 1} of {exercises.length}
           </h3>
           {currentExercise.difficulty && (
-            <DifficultyBadge difficulty={currentExercise.difficulty} />
+            <DifficultyBadge level={currentExercise.difficulty as 'easy' | 'medium' | 'hard'} />
           )}
         </div>
 
@@ -126,6 +126,9 @@ export default function ExercisesRenderer({ exercises, lessonSlug }: ExercisesRe
 function renderExercise(exercise: Exercise, onComplete: (id: number, isCorrect: boolean) => void) {
   const { exercise_type, data, question, hint, explanation } = exercise
 
+  const handleCorrect = () => onComplete(exercise.id, true)
+  const handleIncorrect = () => onComplete(exercise.id, false)
+
   switch (exercise_type) {
     case 'multiple_choice':
       return (
@@ -134,7 +137,8 @@ function renderExercise(exercise: Exercise, onComplete: (id: number, isCorrect: 
           choices={data.choices || []}
           hint={hint}
           explanation={explanation}
-          onAnswer={(isCorrect) => onComplete(exercise.id, isCorrect)}
+          onCorrect={handleCorrect}
+          onIncorrect={handleIncorrect}
         />
       )
 
@@ -147,7 +151,8 @@ function renderExercise(exercise: Exercise, onComplete: (id: number, isCorrect: 
           unit={data.unit}
           hint={hint}
           solution={explanation}
-          onAnswer={(isCorrect) => onComplete(exercise.id, isCorrect)}
+          onCorrect={handleCorrect}
+          onIncorrect={handleIncorrect}
         />
       )
 

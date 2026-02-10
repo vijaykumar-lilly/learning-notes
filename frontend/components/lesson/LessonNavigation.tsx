@@ -1,5 +1,15 @@
 import Link from 'next/link'
-import { LessonNavigation as LessonNavigationType } from '@/lib/lesson-navigation'
+
+interface LessonNavigationType {
+  previous?: {
+    title: string
+    href: string
+  }
+  next?: {
+    title: string
+    href: string
+  }
+}
 
 interface LessonNavigationProps {
   navigation: LessonNavigationType
