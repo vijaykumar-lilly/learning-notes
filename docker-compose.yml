@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: learning_ocean_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: learning_ocean
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: learning_ocean_backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port ${APP_PORT:-8000} --reload
+    volumes:
+      - ./backend:/app
+    ports:
+      - "${APP_PORT:-8000}:${APP_PORT:-8000}"
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=${APP_PORT:-8000}
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/learning_ocean
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - ENVIRONMENT=development
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
