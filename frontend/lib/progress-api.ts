@@ -40,7 +40,7 @@ export interface Recommendation {
 // Helper to get auth token from localStorage
 function getAuthToken(): string | null {
   if (typeof window === 'undefined') return null
-  return localStorage.getItem('token')
+  return localStorage.getItem('auth_token')
 }
 
 // Helper to create auth headers
