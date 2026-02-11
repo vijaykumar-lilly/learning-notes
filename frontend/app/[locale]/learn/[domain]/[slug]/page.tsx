@@ -95,7 +95,12 @@ export default async function LessonPage({ params }: PageProps) {
             <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
               Practice Exercises
             </h2>
-            <ExercisesRenderer exercises={lesson.exercises} lessonSlug={slug} />
+            <ExercisesRenderer
+              exercises={lesson.exercises}
+              lessonSlug={slug}
+              lessonId={lesson.id}
+              locale={locale}
+            />
           </div>
         )}
 

@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   
   const titles = {
-    en: 'MathLearn - Mathematics Education from Basics to Expertise',
-    ta: 'MathLearn - அடிப்படையிலிருந்து நிபுணத்துவம் வரை கணிதக் கல்வி'
+    en: 'LearnHub - Mathematics Education from Basics to Expertise',
+    ta: 'LearnHub - அடிப்படையிலிருந்து நிபுணத்துவம் வரை கணிதக் கல்வி'
   };
   
   const descriptions = {
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: titles[locale as keyof typeof titles] || titles.en,
     description: descriptions[locale as keyof typeof descriptions] || descriptions.en,
     keywords: ['mathematics', 'math education', 'learning platform', 'calculus', 'algebra', 'geometry', 'open source', 'கணிதம்', 'கணிதக் கல்வி'],
-    authors: [{ name: 'MathLearn Team' }],
+    authors: [{ name: 'LearnHub Team' }],
     icons: {
       icon: [{ url: '/logo.svg', type: 'image/svg+xml' }],
       apple: [{ url: '/logo.svg', type: 'image/svg+xml' }],

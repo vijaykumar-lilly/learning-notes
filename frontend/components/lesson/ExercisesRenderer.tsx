@@ -4,6 +4,7 @@ import { useState } from 'react'
 import MultipleChoiceExercise from '@/components/interactive/MultipleChoiceExercise'
 import NumericInputExercise from '@/components/interactive/NumericInputExercise'
 import DifficultyBadge from '@/components/ui/DifficultyBadge'
+import { submitExercise } from '@/lib/progress-api'
 
 interface Exercise {
   id: number
@@ -19,11 +20,14 @@ interface Exercise {
 interface ExercisesRendererProps {
   exercises: Exercise[]
   lessonSlug: string
+  lessonId: number
+  locale?: string
 }
 
-export default function ExercisesRenderer({ exercises, lessonSlug }: ExercisesRendererProps) {
+export default function ExercisesRenderer({ exercises, lessonSlug, lessonId, locale = 'en' }: ExercisesRendererProps) {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
   const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set())
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   if (!exercises || exercises.length === 0) {
     return null
@@ -31,11 +35,24 @@ export default function ExercisesRenderer({ exercises, lessonSlug }: ExercisesRe
 
   const currentExercise = exercises[currentExerciseIndex]
 
-  const handleExerciseComplete = (exerciseId: number, isCorrect: boolean) => {
+  const handleExerciseComplete = async (exerciseId: number, userAnswer: any, isCorrect: boolean) => {
+    // Mark as completed locally
     if (isCorrect) {
       setCompletedExercises(prev => new Set([...prev, exerciseId]))
+    }
 
-      // Auto-advance to next exercise after 1 second
+    // Submit to backend if user is authenticated
+    setIsSubmitting(true)
+    try {
+      await submitExercise(exerciseId, userAnswer, locale)
+    } catch (error) {
+      console.error('Failed to submit exercise:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
+
+    // Auto-advance to next exercise after 1 second if correct
+    if (isCorrect) {
       setTimeout(() => {
         if (currentExerciseIndex < exercises.length - 1) {
           setCurrentExerciseIndex(currentExerciseIndex + 1)
@@ -123,11 +140,14 @@ export default function ExercisesRenderer({ exercises, lessonSlug }: ExercisesRe
   )
 }
 
-function renderExercise(exercise: Exercise, onComplete: (id: number, isCorrect: boolean) => void) {
+function renderExercise(
+  exercise: Exercise,
+  onComplete: (exerciseId: number, userAnswer: any, isCorrect: boolean) => void
+) {
   const { exercise_type, data, question, hint, explanation } = exercise
 
-  const handleCorrect = () => onComplete(exercise.id, true)
-  const handleIncorrect = () => onComplete(exercise.id, false)
+  const handleCorrect = (answer: any) => onComplete(exercise.id, answer, true)
+  const handleIncorrect = (answer: any) => onComplete(exercise.id, answer, false)
 
   switch (exercise_type) {
     case 'multiple_choice':

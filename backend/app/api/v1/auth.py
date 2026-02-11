@@ -7,6 +7,7 @@ from app.schemas.user import UserCreate, UserResponse, Token
 from app.models.user import User
 from app.utils.security import verify_password, get_password_hash, create_access_token
 from app.config import settings
+from app.middleware.auth import get_current_active_user
 
 router = APIRouter()
 
@@ -89,8 +90,7 @@ async def login(
 
 @router.get("/me", response_model=UserResponse)
 async def get_current_user_info(
-    db: Session = Depends(get_db)
+    current_user: User = Depends(get_current_active_user)
 ):
-    """Get current user information (requires auth)"""
-    # TODO: Add authentication dependency
-    raise HTTPException(status_code=501, detail="Not implemented - requires auth middleware")
+    """Get current user information (requires authentication)"""
+    return current_user

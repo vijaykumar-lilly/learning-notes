@@ -1,12 +1,40 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
+from datetime import datetime
 from app.database import get_db
 from app.schemas.exercise import ExerciseSubmission, ExerciseSubmissionResponse
 from app.models.exercise import Exercise
+from app.models.progress import ExerciseSubmission as ExerciseSubmissionModel
 from app.models.translation import Translation
-from typing import Any
+from app.models.user import User
+from typing import Any, Optional
 
 router = APIRouter()
+
+
+# Optional auth dependency - returns None if no token provided
+async def get_optional_current_user(request: Request, db: Session = Depends(get_db)) -> Optional[User]:
+    """Get current user if authenticated, None otherwise"""
+    try:
+        from app.middleware.auth import get_current_user
+        auth_header = request.headers.get("Authorization")
+        if not auth_header or not auth_header.startswith("Bearer "):
+            return None
+
+        token = auth_header.split(" ")[1]
+        from app.utils.security import decode_access_token
+        payload = decode_access_token(token)
+        if payload is None:
+            return None
+
+        username = payload.get("sub")
+        if username is None:
+            return None
+
+        user = db.query(User).filter(User.username == username).first()
+        return user if user and user.is_active else None
+    except:
+        return None
 
 
 def validate_answer(exercise: Exercise, user_answer: Any) -> bool:
@@ -64,11 +92,13 @@ async def submit_exercise(
     exercise_id: int,
     submission: ExerciseSubmission,
     locale: str = "en",
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_current_user)
 ):
     """
     Submit an answer to an exercise.
     Validates the answer and returns feedback.
+    Records submission if user is authenticated.
     """
     # Find exercise
     exercise = db.query(Exercise).filter(Exercise.id == exercise_id).first()
@@ -77,6 +107,33 @@ async def submit_exercise(
 
     # Validate answer
     is_correct = validate_answer(exercise, submission.answer)
+
+    # Record submission if user is authenticated
+    if current_user:
+        # Check if user has submitted this exercise before
+        existing_submission = db.query(ExerciseSubmissionModel).filter(
+            ExerciseSubmissionModel.user_id == current_user.id,
+            ExerciseSubmissionModel.exercise_id == exercise_id
+        ).first()
+
+        if existing_submission:
+            # Update existing submission
+            existing_submission.user_answer = submission.answer
+            existing_submission.is_correct = is_correct
+            existing_submission.attempts += 1
+            existing_submission.submitted_at = datetime.utcnow()
+        else:
+            # Create new submission record
+            new_submission = ExerciseSubmissionModel(
+                user_id=current_user.id,
+                exercise_id=exercise_id,
+                user_answer=submission.answer,
+                is_correct=is_correct,
+                attempts=1
+            )
+            db.add(new_submission)
+
+        db.commit()
 
     # Get explanation if available
     explanation = None

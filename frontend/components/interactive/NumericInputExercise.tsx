@@ -13,8 +13,8 @@ interface NumericInputExerciseProps {
   solution?: React.ReactNode
   unit?: string // e.g., "meters", "°", etc.
   difficulty?: 'easy' | 'medium' | 'hard'
-  onCorrect?: () => void
-  onIncorrect?: () => void
+  onCorrect?: (answer: number) => void
+  onIncorrect?: (answer: number) => void
 }
 
 export default function NumericInputExercise({
@@ -38,7 +38,7 @@ export default function NumericInputExercise({
 
   const checkAnswer = () => {
     const numericAnswer = parseFloat(userAnswer)
-    
+
     if (isNaN(numericAnswer)) {
       return
     }
@@ -50,9 +50,9 @@ export default function NumericInputExercise({
 
     if (correct) {
       setShowCelebration(true)
-      onCorrect?.()
+      onCorrect?.(numericAnswer)
     } else {
-      onIncorrect?.()
+      onIncorrect?.(numericAnswer)
     }
   }
 

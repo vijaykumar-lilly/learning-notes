@@ -17,8 +17,8 @@ interface MultipleChoiceExerciseProps {
   explanation?: React.ReactNode
   hint?: React.ReactNode
   difficulty?: 'easy' | 'medium' | 'hard'
-  onCorrect?: () => void
-  onIncorrect?: () => void
+  onCorrect?: (answer: string) => void
+  onIncorrect?: (answer: string) => void
 }
 
 export default function MultipleChoiceExercise({
@@ -47,9 +47,9 @@ export default function MultipleChoiceExercise({
 
     if (isCorrect) {
       setShowCelebration(true)
-      onCorrect?.()
+      onCorrect?.(selectedId)
     } else {
-      onIncorrect?.()
+      onIncorrect?.(selectedId)
     }
   }
 

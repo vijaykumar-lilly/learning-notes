@@ -9,6 +9,7 @@ from app.database import get_db
 from app.middleware.auth import get_current_admin_user, get_current_user
 from app.models.user import User
 from app.models import Subject, SubjectStatus, GenerationTask, TaskType, TaskStatus, Domain, Topic
+from app.models.domain import ContentStatus
 from app.agents.curriculum_agent import CurriculumAgent
 
 router = APIRouter()
@@ -292,7 +293,7 @@ async def approve_subject(
 
     # Update all domains to approved
     for domain in subject.domains:
-        domain.status = 'approved'
+        domain.status = ContentStatus.APPROVED
         domain.reviewed_by = current_user.id
         domain.reviewed_at = datetime.utcnow()
 

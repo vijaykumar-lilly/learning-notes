@@ -1,6 +1,6 @@
 {
-  "name": "MathLearn",
-  "short_name": "MathLearn",
+  "name": "LearnHub",
+  "short_name": "LearnHub",
   "description": "Open-source mathematics education from basics to expertise",
   "start_url": "/",
   "display": "standalone",
