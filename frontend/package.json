@@ -10,7 +10,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.34.0",
     "katex": "^0.16.11",
     "next": "16.1.1",
     "next-intl": "^4.7.0",
