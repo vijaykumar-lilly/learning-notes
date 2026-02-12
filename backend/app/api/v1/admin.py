@@ -1,15 +1,19 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from typing import Optional, List
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 
 from app.database import get_db
 from app.middleware.auth import get_current_admin_user, get_current_user
 from app.models.user import User
-from app.models import Subject, SubjectStatus, GenerationTask, TaskType, TaskStatus, Domain, Topic, Lesson, LessonSection, DifficultyLevel
+from app.models import Subject, SubjectStatus, GenerationTask, TaskType, TaskStatus, Domain, Topic, Lesson, LessonSection, DifficultyLevel, ProgressStatus
 from app.models.domain import ContentStatus
+from app.models.exercise import Exercise
+from app.models.progress import LessonProgress, ExerciseSubmission
+from app.models.translation import Translation
 from app.agents.curriculum_agent import CurriculumAgent
 
 router = APIRouter()
@@ -474,11 +478,180 @@ async def delete_lesson(
     raise HTTPException(status_code=501, detail="Not implemented")
 
 
+# ============================================================================
+# Dashboard & Analytics Endpoints
+# ============================================================================
+
+@router.get("/dashboard")
+async def get_dashboard(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_admin_user)
+):
+    """Get admin dashboard statistics"""
+    now = datetime.utcnow()
+
+    # Content counts
+    total_subjects = db.query(Subject).count()
+    total_domains = db.query(Domain).count()
+    total_topics = db.query(Topic).count()
+    total_lessons = db.query(Lesson).count()
+    total_exercises = db.query(Exercise).count()
+
+    # Subject status breakdown
+    draft_subjects = db.query(Subject).filter(Subject.status == SubjectStatus.DRAFT).count()
+    approved_subjects = db.query(Subject).filter(Subject.status == SubjectStatus.APPROVED).count()
+    published_subjects = db.query(Subject).filter(Subject.status == SubjectStatus.PUBLISHED).count()
+
+    # User counts
+    total_users = db.query(User).count()
+
+    # Recent users (last 10)
+    recent_users = db.query(User).order_by(User.created_at.desc()).limit(10).all()
+    recent_users_data = [
+        {
+            "id": u.id,
+            "email": u.email,
+            "username": u.username,
+            "full_name": u.full_name,
+            "preferred_locale": u.preferred_locale,
+            "is_active": u.is_active,
+            "is_admin": u.is_admin,
+            "created_at": u.created_at.isoformat() if u.created_at else None,
+        }
+        for u in recent_users
+    ]
+
+    return {
+        "total_users": total_users,
+        "total_subjects": total_subjects,
+        "total_domains": total_domains,
+        "total_topics": total_topics,
+        "total_lessons": total_lessons,
+        "total_exercises": total_exercises,
+        "draft_subjects": draft_subjects,
+        "approved_subjects": approved_subjects,
+        "published_subjects": published_subjects,
+        "recent_users": recent_users_data,
+    }
+
+
 @router.get("/analytics")
 async def get_analytics(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_admin_user)
 ):
-    """Get platform analytics (admin only)"""
-    # TODO: Implement in Phase 7 (Analytics)
-    raise HTTPException(status_code=501, detail="Not implemented")
+    """Get platform analytics"""
+    now = datetime.utcnow()
+
+    # User analytics
+    total_users = db.query(User).count()
+    active_30d = db.query(User).filter(User.is_active == True).count()  # Simplified
+    new_7d = db.query(User).filter(User.created_at >= now - timedelta(days=7)).count()
+    admin_count = db.query(User).filter(User.is_admin == True).count()
+
+    # Content analytics
+    subjects_count = db.query(Subject).count()
+    domains_count = db.query(Domain).count()
+    topics_count = db.query(Topic).count()
+    lessons_count = db.query(Lesson).count()
+    exercises_count = db.query(Exercise).count()
+    sections_count = db.query(LessonSection).count()
+
+    # Progress analytics
+    total_completions = db.query(LessonProgress).filter(
+        LessonProgress.status == ProgressStatus.completed
+    ).count()
+    total_submissions = db.query(ExerciseSubmission).count()
+
+    correct_submissions = db.query(ExerciseSubmission).filter(
+        ExerciseSubmission.is_correct == True
+    ).count()
+    avg_accuracy = (correct_submissions / total_submissions * 100) if total_submissions > 0 else 0
+
+    total_time = db.query(func.sum(LessonProgress.time_spent)).scalar() or 0
+    total_time_hours = round(total_time / 3600, 1)
+
+    return {
+        "users": {
+            "total": total_users,
+            "active_30d": active_30d,
+            "new_7d": new_7d,
+            "admins": admin_count,
+        },
+        "content": {
+            "subjects": subjects_count,
+            "domains": domains_count,
+            "topics": topics_count,
+            "lessons": lessons_count,
+            "exercises": exercises_count,
+            "sections": sections_count,
+        },
+        "progress": {
+            "total_completions": total_completions,
+            "total_submissions": total_submissions,
+            "avg_accuracy": round(avg_accuracy, 1),
+            "total_time_hours": total_time_hours,
+        },
+    }
+
+
+# ============================================================================
+# User Management Endpoints
+# ============================================================================
+
+@router.get("/users")
+async def list_users(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_admin_user)
+):
+    """List all users (admin only)"""
+    users = db.query(User).order_by(User.created_at.desc()).all()
+    return [
+        {
+            "id": u.id,
+            "email": u.email,
+            "username": u.username,
+            "full_name": u.full_name,
+            "preferred_locale": u.preferred_locale,
+            "is_active": u.is_active,
+            "is_admin": u.is_admin,
+            "created_at": u.created_at.isoformat() if u.created_at else None,
+        }
+        for u in users
+    ]
+
+
+@router.put("/users/{user_id}/role")
+async def update_user_role(
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_admin_user)
+):
+    """Toggle user admin role"""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.id == current_user.id:
+        raise HTTPException(status_code=400, detail="Cannot change your own role")
+
+    user.is_admin = not user.is_admin
+    db.commit()
+    return {"message": f"User {'promoted to' if user.is_admin else 'removed from'} admin", "is_admin": user.is_admin}
+
+
+@router.put("/users/{user_id}/status")
+async def update_user_status(
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_admin_user)
+):
+    """Toggle user active status"""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.id == current_user.id:
+        raise HTTPException(status_code=400, detail="Cannot deactivate yourself")
+
+    user.is_active = not user.is_active
+    db.commit()
+    return {"message": f"User {'activated' if user.is_active else 'deactivated'}", "is_active": user.is_active}

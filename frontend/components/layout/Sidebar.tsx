@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useCurriculum } from '@/hooks/useCurriculum'
 import { cn } from '@/lib/utils'
 import Logo from '@/components/Logo'
+import { useLocale } from 'next-intl'
 import type { Domain } from '@/lib/api-client'
 
 interface SidebarProps {
@@ -17,6 +18,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse }: SidebarProps) {
   const pathname = usePathname()
+  const locale = useLocale()
   const { subjects, domains, isLoading } = useCurriculum()
 
   // Determine which domain to expand based on current pathname
@@ -215,7 +217,7 @@ export default function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse
                   {!isCollapsed && expandedDomains.has(domain.id.toString()) && (
                     <div className="mt-1 ml-2 space-y-0.5">
                       {domain.topics.map((topic) => {
-                        const topicPath = `/learn/${domain.slug}/${topic.slug}`
+                        const topicPath = `/${locale}/learn/${domain.slug}/${topic.slug}`
                         const isActive = pathname?.endsWith(topicPath) || pathname === topicPath
 
                         return (

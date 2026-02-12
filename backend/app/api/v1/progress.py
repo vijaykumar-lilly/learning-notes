@@ -9,6 +9,7 @@ from app.models.progress import LessonProgress
 from app.models.lesson import Lesson
 from app.models.exercise import Exercise
 from app.models.progress import ExerciseSubmission
+from app.models.translation import Translation
 from app.models import ProgressStatus
 from app.middleware.auth import get_current_active_user
 from app.utils.errors import handle_errors, NotFoundError, ValidationError, log_info, log_error
@@ -61,11 +62,21 @@ async def get_progress_overview(
     recent_lessons = []
     for progress in recent_progress:
         lesson = db.query(Lesson).filter(Lesson.id == progress.lesson_id).first()
-        if lesson:
+        if lesson and lesson.topic:
+            topic = lesson.topic
+            domain = topic.domain
+            title = topic.title_key
+            title_trans = db.query(Translation).filter_by(
+                locale='en', namespace='common', key=f'topics.{topic.slug}.title'
+            ).first()
+            if title_trans:
+                title = title_trans.value
+
             recent_lessons.append({
                 "id": lesson.id,
-                "slug": lesson.slug,
-                "title_key": lesson.title_key,
+                "slug": topic.slug,
+                "domain_slug": domain.slug if domain else "unknown",
+                "title_key": title,
                 "status": progress.status.value,
                 "time_spent": progress.time_spent,
                 "last_accessed": progress.last_accessed_at.isoformat(),
@@ -200,19 +211,23 @@ async def get_recommendations(
     if in_progress_lesson_ids:
         in_progress_lessons = db.query(Lesson).filter(
             Lesson.id.in_(in_progress_lesson_ids)
-        ).order_by(Lesson.display_order).limit(2).all()
+        ).limit(2).all()
 
         for lesson in in_progress_lessons:
-            next_lessons.append({
-                "id": lesson.id,
-                "slug": lesson.slug,
-                "title_key": lesson.title_key,
-                "reason": "Continue your learning"
-            })
+            if lesson.topic:
+                topic = lesson.topic
+                title_trans = db.query(Translation).filter_by(
+                    locale='en', namespace='common', key=f'topics.{topic.slug}.title'
+                ).first()
+                next_lessons.append({
+                    "id": lesson.id,
+                    "slug": topic.slug,
+                    "title_key": title_trans.value if title_trans else topic.title_key,
+                    "reason": "Continue your learning"
+                })
 
     # Strategy 2: Next lessons in sequence after completed ones
     if completed_lesson_ids and len(next_lessons) < 5:
-        # Find the last completed lesson
         last_completed = db.query(LessonProgress).filter(
             LessonProgress.user_id == current_user.id,
             LessonProgress.status == ProgressStatus.completed
@@ -223,23 +238,28 @@ async def get_recommendations(
                 Lesson.id == last_completed.lesson_id
             ).first()
 
-            if last_lesson:
-                # Find next lessons in same topic
-                next_in_topic = db.query(Lesson).filter(
-                    Lesson.topic_id == last_lesson.topic_id,
-                    Lesson.display_order > last_lesson.display_order,
-                    Lesson.id.notin_(completed_lesson_ids + in_progress_lesson_ids)
-                ).order_by(Lesson.display_order).limit(3).all()
+            if last_lesson and last_lesson.topic:
+                last_topic = last_lesson.topic
+                # Find next topics in same domain after the completed one
+                from app.models.topic import Topic as TopicModel
+                next_topics = db.query(TopicModel).filter(
+                    TopicModel.domain_id == last_topic.domain_id,
+                    TopicModel.display_order > last_topic.display_order,
+                ).order_by(TopicModel.display_order).limit(3).all()
 
-                for lesson in next_in_topic:
+                for ntopic in next_topics:
                     if len(next_lessons) >= 5:
                         break
-                    next_lessons.append({
-                        "id": lesson.id,
-                        "slug": lesson.slug,
-                        "title_key": lesson.title_key,
-                        "reason": "Next in sequence"
-                    })
+                    if ntopic.lesson and ntopic.lesson.id not in (completed_lesson_ids + in_progress_lesson_ids):
+                        title_trans = db.query(Translation).filter_by(
+                            locale='en', namespace='common', key=f'topics.{ntopic.slug}.title'
+                        ).first()
+                        next_lessons.append({
+                            "id": ntopic.lesson.id,
+                            "slug": ntopic.slug,
+                            "title_key": title_trans.value if title_trans else ntopic.title_key,
+                            "reason": "Next in sequence"
+                        })
 
     # Strategy 3: Popular lessons not yet started
     if len(next_lessons) < 5:
@@ -275,20 +295,27 @@ async def get_recommendations(
         except Exception as e:
             logger.warning(f"Error fetching popular lessons: {str(e)}")
 
-    # Strategy 4: If still not enough, suggest first lessons from each topic
+    # Strategy 4: If still not enough, suggest first lessons from each domain
     if len(next_lessons) < 5:
-        first_lessons = db.query(Lesson).filter(
-            Lesson.display_order == 1,
-            Lesson.id.notin_(completed_lesson_ids + in_progress_lesson_ids + [l["id"] for l in next_lessons])
-        ).limit(5 - len(next_lessons)).all()
+        existing_ids = completed_lesson_ids + in_progress_lesson_ids + [l["id"] for l in next_lessons]
+        from app.models.topic import Topic as TopicModel
+        first_topics = db.query(TopicModel).filter(
+            TopicModel.display_order == 1,
+        ).limit(10).all()
 
-        for lesson in first_lessons:
-            next_lessons.append({
-                "id": lesson.id,
-                "slug": lesson.slug,
-                "title_key": lesson.title_key,
-                "reason": "Start a new topic"
-            })
+        for ftopic in first_topics:
+            if len(next_lessons) >= 5:
+                break
+            if ftopic.lesson and ftopic.lesson.id not in existing_ids:
+                title_trans = db.query(Translation).filter_by(
+                    locale='en', namespace='common', key=f'topics.{ftopic.slug}.title'
+                ).first()
+                next_lessons.append({
+                    "id": ftopic.lesson.id,
+                    "slug": ftopic.slug,
+                    "title_key": title_trans.value if title_trans else ftopic.title_key,
+                    "reason": "Start a new topic"
+                })
 
     log_info(f"Recommendations fetched", f"user_id={current_user.id}, count={len(next_lessons)}")
     return RecommendationResponse(next_lessons=next_lessons)

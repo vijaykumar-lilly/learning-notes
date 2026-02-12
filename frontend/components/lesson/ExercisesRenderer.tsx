@@ -10,13 +10,19 @@ import { getErrorMessage } from '@/lib/api-client-errors'
 
 interface Exercise {
   id: number
-  exercise_type: string
+  type?: string            // API returns "type"
+  exercise_type?: string   // Legacy field name
   difficulty: string
   question: string
-  data: any
+  // data_json is merged flat into the exercise object by the API
+  choices?: any[]          // multiple_choice
+  correctAnswer?: any      // multiple_choice / numeric_input
+  tolerance?: number       // numeric_input
+  unit?: string            // numeric_input
   hint?: string
   explanation?: string
   display_order: number
+  [key: string]: any       // allow any extra fields from data_json
 }
 
 interface ExercisesRendererProps {
@@ -149,17 +155,19 @@ function renderExercise(
   exercise: Exercise,
   onComplete: (exerciseId: number, userAnswer: any, isCorrect: boolean) => void
 ) {
-  const { exercise_type, data, question, hint, explanation } = exercise
+  // API returns "type", handle both field names
+  const exerciseType = exercise.type || exercise.exercise_type || 'unknown'
+  const { question, hint, explanation } = exercise
 
   const handleCorrect = (answer: any) => onComplete(exercise.id, answer, true)
   const handleIncorrect = (answer: any) => onComplete(exercise.id, answer, false)
 
-  switch (exercise_type) {
+  switch (exerciseType) {
     case 'multiple_choice':
       return (
         <MultipleChoiceExercise
           question={question}
-          choices={data.choices || []}
+          choices={exercise.choices || []}
           hint={hint}
           explanation={explanation}
           onCorrect={handleCorrect}
@@ -171,9 +179,9 @@ function renderExercise(
       return (
         <NumericInputExercise
           question={question}
-          correctAnswer={data.correctAnswer}
-          tolerance={data.tolerance || 0.001}
-          unit={data.unit}
+          correctAnswer={exercise.correctAnswer}
+          tolerance={exercise.tolerance || 0.001}
+          unit={exercise.unit}
           hint={hint}
           solution={explanation}
           onCorrect={handleCorrect}
@@ -184,7 +192,7 @@ function renderExercise(
     default:
       return (
         <div className="text-center text-gray-500 dark:text-gray-400">
-          Exercise type '{exercise_type}' not yet implemented
+          Exercise type &apos;{exerciseType}&apos; not yet implemented
         </div>
       )
   }

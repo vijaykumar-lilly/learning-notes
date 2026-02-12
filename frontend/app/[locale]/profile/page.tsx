@@ -1,24 +1,17 @@
+'use client'
+
+import AppLayout from '@/components/layout/AppLayout'
 import ProfileForm from '@/components/profile/ProfileForm'
+import { useLocale } from 'next-intl'
 
-interface ProfilePageProps {
-  params: Promise<{
-    locale: string
-  }>
-}
-
-export async function generateMetadata() {
-  return {
-    title: 'Profile Settings | LearningHub',
-    description: 'Manage your profile settings and preferences'
-  }
-}
-
-export default async function ProfilePage({ params }: ProfilePageProps) {
-  const { locale } = await params
+export default function ProfilePage() {
+  const locale = useLocale()
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <ProfileForm locale={locale} />
-    </div>
+    <AppLayout>
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <ProfileForm locale={locale} />
+      </div>
+    </AppLayout>
   )
 }

@@ -64,7 +64,8 @@ export default function ProfileForm({ locale }: ProfileFormProps) {
     setLoading(true)
 
     try {
-      const response = await apiFetch('http://localhost:8000/api/v1/auth/me', {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'
+      const response = await apiFetch(`${API_BASE}/auth/me`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

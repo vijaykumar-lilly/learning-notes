@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import AppLayout from '@/components/layout/AppLayout'
 import { getProgressOverview, getRecommendations, type ProgressOverview, type Recommendation } from '@/lib/progress-api'
 
 export default function ProgressPage() {
@@ -41,22 +42,26 @@ export default function ProgressPage() {
 
   if (loading) {
     return (
+      <AppLayout>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400">Loading your progress...</p>
         </div>
       </div>
+      </AppLayout>
     )
   }
 
   if (error || !overview) {
     return (
+      <AppLayout>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 dark:text-red-400">{error || 'Failed to load progress'}</p>
         </div>
       </div>
+      </AppLayout>
     )
   }
 
@@ -68,6 +73,7 @@ export default function ProgressPage() {
   const totalMinutes = Math.floor((overview.total_time_spent % 3600) / 60)
 
   return (
+    <AppLayout>
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
@@ -171,7 +177,7 @@ export default function ProgressPage() {
                       </div>
                     </div>
                     <a
-                      href={`/en/learn/domain/${lesson.slug}`}
+                      href={`/en/learn/${lesson.domain_slug || 'algebra'}/${lesson.slug}`}
                       className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm"
                     >
                       Continue
@@ -193,7 +199,7 @@ export default function ProgressPage() {
               {recommendations.next_lessons.map((lesson) => (
                 <a
                   key={lesson.id}
-                  href={`/en/learn/domain/${lesson.slug}`}
+                  href={`/en/learn/${(lesson as any).domain_slug || 'algebra'}/${lesson.slug}`}
                   className="p-4 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 hover:shadow-lg transition"
                 >
                   <div className="flex items-start gap-3">
@@ -216,5 +222,6 @@ export default function ProgressPage() {
         )}
       </div>
     </div>
+    </AppLayout>
   )
 }

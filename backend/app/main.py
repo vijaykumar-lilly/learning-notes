@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from app.config import settings
 from app.middleware.cors import setup_cors
-from app.api.v1 import curriculum, lessons, auth, exercises, progress, translations, admin
+from app.middleware.security import setup_security
+from app.api.v1 import curriculum, lessons, auth, exercises, progress, translations, admin, search
 
 # Create FastAPI application
 app = FastAPI(
@@ -13,8 +14,9 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Setup CORS
+# Setup CORS and Security
 setup_cors(app)
+setup_security(app)
 
 
 # Root endpoint
@@ -42,14 +44,24 @@ app.include_router(translations.router, prefix="/api/v1/translations", tags=["Tr
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(progress.router, prefix="/api/v1/progress", tags=["Progress"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
+app.include_router(search.router, prefix="/api/v1/search", tags=["Search"])
 
 
 # Global exception handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
+    import logging
+    logger = logging.getLogger(__name__)
+    request_id = getattr(request.state, 'request_id', 'unknown')
+    logger.error(f"Unhandled error [{request_id}]: {str(exc)}", exc_info=True)
+
+    # Don't expose internal error details to users
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal server error", "error": str(exc)}
+        content={
+            "detail": "Internal server error",
+            "request_id": request_id,
+        }
     )
 
 
