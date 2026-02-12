@@ -8,12 +8,9 @@ from app.models.lesson_content import LessonSection
 from app.models.exercise import Exercise
 from app.models.translation import Translation
 from app.models.domain import Domain
-from app.utils.errors import handle_errors, NotFoundError, log_info
 from typing import Dict, Any, List
-import logging
 
 router = APIRouter()
-logger = logging.getLogger(__name__)
 
 
 def get_translation(db: Session, locale: str, namespace: str, key: str) -> str:
@@ -48,7 +45,6 @@ def format_exercise(exercise: Exercise, locale: str, db: Session) -> Dict[str, A
 
 
 @router.get("/{topic_slug}", response_model=LessonResponse)
-@handle_errors
 async def get_lesson(
     topic_slug: str,
     locale: str = Query(default="en", description="Language locale (en, ta)"),
@@ -60,35 +56,34 @@ async def get_lesson(
 
     IMPORTANT: Only returns lessons for PUBLISHED domains
     """
-    log_info(f"Fetching lesson", f"topic={topic_slug}, locale={locale}")
-
     # Find topic by slug
     topic = db.query(Topic).filter(Topic.slug == topic_slug).first()
     if not topic:
-        raise NotFoundError("Topic", topic_slug)
+        raise HTTPException(status_code=404, detail="Topic not found")
 
     # Check if domain is published
     domain = db.query(Domain).filter(Domain.id == topic.domain_id).first()
     if not domain:
-        raise NotFoundError("Domain", topic.domain_id)
+        raise HTTPException(status_code=404, detail="Domain not found")
 
     from app.models.domain import ContentStatus
     if domain.status != ContentStatus.PUBLISHED:
         raise HTTPException(
             status_code=404,
-            detail=f"Lesson not available: domain '{domain.slug}' is not published"
+            detail="Lesson not available (domain not published)"
         )
 
     # Find lesson for this topic
     lesson = db.query(Lesson).filter(Lesson.topic_id == topic.id).first()
     if not lesson:
-        raise NotFoundError("Lesson", f"topic '{topic_slug}'")
+        raise HTTPException(status_code=404, detail="Lesson not found for this topic")
 
     # Get localized title
     title = get_translation(db, locale, "common", f"topics.{topic.slug}.title") or topic.slug
 
     # Get domain info
-    domain_slug = domain.slug
+    domain = db.query(Domain).filter(Domain.id == topic.domain_id).first()
+    domain_slug = domain.slug if domain else ""
 
     # Get sections with content
     sections = []
@@ -127,8 +122,6 @@ async def get_lesson(
                 }
             break
 
-    log_info(f"Lesson fetched successfully", f"topic={topic_slug}, sections={len(sections)}, exercises={len(exercises)}")
-
     return LessonResponse(
         id=lesson.id,
         slug=topic.slug,
@@ -143,34 +136,28 @@ async def get_lesson(
 
 
 @router.get("/{topic_slug}/exercises")
-@handle_errors
 async def get_lesson_exercises(
     topic_slug: str,
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
     """Get all exercises for a specific lesson"""
-    log_info(f"Fetching exercises", f"topic={topic_slug}")
-
     topic = db.query(Topic).filter(Topic.slug == topic_slug).first()
     if not topic:
-        raise NotFoundError("Topic", topic_slug)
+        raise HTTPException(status_code=404, detail="Topic not found")
 
     lesson = db.query(Lesson).filter(Lesson.topic_id == topic.id).first()
     if not lesson:
-        raise NotFoundError("Lesson", f"topic '{topic_slug}'")
+        raise HTTPException(status_code=404, detail="Lesson not found")
 
     exercises = []
     for exercise in lesson.exercises:
         exercises.append(format_exercise(exercise, locale, db))
 
-    log_info(f"Exercises fetched", f"topic={topic_slug}, count={len(exercises)}")
-
     return {"exercises": exercises}
 
 
 @router.get("/{topic_slug}/progress")
-@handle_errors
 async def get_lesson_progress(
     topic_slug: str,
     db: Session = Depends(get_db)

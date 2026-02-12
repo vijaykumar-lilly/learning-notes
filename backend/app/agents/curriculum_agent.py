@@ -7,7 +7,7 @@ This is a minimal implementation to demonstrate the agentic AI approach.
 import os
 import json
 from anthropic import Anthropic
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 
 class CurriculumAgent:
@@ -183,6 +183,119 @@ and well-defined learning objectives for each topic."""
         print(f"✅ Generated curriculum: {total_domains} domains, {total_topics} topics")
 
         return result
+
+    async def generate_lesson_content(
+        self,
+        topic_name: str,
+        topic_description: str,
+        learning_objectives: List[str],
+        subject: str,
+        num_sections: int = 5
+    ) -> List[Dict[str, Any]]:
+        """
+        Generate lesson section content for a specific topic
+
+        Returns a list of lesson sections with bilingual content (English & Tamil)
+        """
+
+        # Define tool for structured lesson output
+        tools = [{
+            "name": "create_lesson_sections",
+            "description": "Create structured lesson sections with bilingual content",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "sections": {
+                        "type": "array",
+                        "description": "List of lesson sections",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "section_type": {
+                                    "type": "string",
+                                    "enum": ["definition", "example", "visual_explanation", "note", "key_concept", "common_mistake", "step_by_step"],
+                                    "description": "Type of section"
+                                },
+                                "content": {
+                                    "type": "object",
+                                    "properties": {
+                                        "en": {"type": "string", "description": "English content"},
+                                        "ta": {"type": "string", "description": "Tamil content"}
+                                    },
+                                    "required": ["en", "ta"],
+                                    "description": "Bilingual content for this section"
+                                },
+                                "display_order": {
+                                    "type": "integer",
+                                    "description": "Order of display (1-based)"
+                                }
+                            },
+                            "required": ["section_type", "content", "display_order"]
+                        }
+                    }
+                },
+                "required": ["sections"]
+            }
+        }]
+
+        # System prompt with compact notation (Document 09 strategy)
+        system_prompt = """You are an educational content creator. Generate high-quality lesson content
+        in both English and Tamil.
+
+        Guidelines:
+        - Start with definitions/key concepts
+        - Include worked examples
+        - Add visual explanations where helpful
+        - Note common mistakes students make
+        - Provide step-by-step procedures
+        - Ensure Tamil translation is accurate and natural
+        - Use proper mathematical notation in both languages
+        - Keep content clear, concise, and engaging
+
+        Use the create_lesson_sections tool to structure your output."""
+
+        # User message
+        objectives_text = "\n".join(f"- {obj}" for obj in learning_objectives)
+        user_message = f"""Create lesson content for:
+
+Topic: {topic_name}
+Subject: {subject}
+Description: {topic_description}
+
+Learning Objectives:
+{objectives_text}
+
+Generate {num_sections} lesson sections covering the topic comprehensively.
+Include content in both English and Tamil."""
+
+        print(f"🤖 Agent: Generating lesson content for '{topic_name}'...")
+
+        # Call Claude with tool use
+        response = self.client.messages.create(
+            model=self.model,
+            max_tokens=8000,  # More tokens for detailed content
+            system=system_prompt,
+            messages=[{
+                "role": "user",
+                "content": user_message
+            }],
+            tools=tools
+        )
+
+        # Extract tool use from response
+        lesson_data = None
+        for content_block in response.content:
+            if content_block.type == "tool_use" and content_block.name == "create_lesson_sections":
+                lesson_data = content_block.input
+                break
+
+        if not lesson_data or 'sections' not in lesson_data:
+            raise ValueError("Agent did not return structured lesson data")
+
+        sections = lesson_data['sections']
+        print(f"✅ Generated {len(sections)} lesson sections (Tokens: {response.usage.input_tokens + response.usage.output_tokens})")
+
+        return sections
 
 
 # Sync wrapper for testing

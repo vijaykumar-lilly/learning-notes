@@ -8,7 +8,7 @@ import uuid
 from app.database import get_db
 from app.middleware.auth import get_current_admin_user, get_current_user
 from app.models.user import User
-from app.models import Subject, SubjectStatus, GenerationTask, TaskType, TaskStatus, Domain, Topic
+from app.models import Subject, SubjectStatus, GenerationTask, TaskType, TaskStatus, Domain, Topic, Lesson, LessonSection, DifficultyLevel
 from app.models.domain import ContentStatus
 from app.agents.curriculum_agent import CurriculumAgent
 
@@ -153,7 +153,7 @@ async def generate_curriculum(
                 level=domain_data['level'],
                 display_order=domain_order,
                 subject_id=subject.id,
-                status='draft',
+                status=ContentStatus.DRAFT,
                 created_by=current_user.id,
                 created_at=datetime.utcnow()
             )
@@ -170,6 +170,41 @@ async def generate_curriculum(
                     display_order=topic_order
                 )
                 db.add(topic)
+                db.flush()  # Get topic.id
+
+                # Create lesson for this topic
+                lesson = Lesson(
+                    topic_id=topic.id,
+                    estimated_time=topic_data.get('estimated_time_minutes', 20),
+                    difficulty=DifficultyLevel.beginner  # Default, can be adjusted
+                )
+                db.add(lesson)
+                db.flush()  # Get lesson.id
+
+                # Generate lesson content sections
+                try:
+                    sections_data = await agent.generate_lesson_content(
+                        topic_name=topic_data['name'],
+                        topic_description=domain_data['description'],
+                        learning_objectives=topic_data.get('learning_objectives', []),
+                        subject=request.subject,
+                        num_sections=5
+                    )
+
+                    # Create LessonSection records
+                    for section_data in sections_data:
+                        section = LessonSection(
+                            lesson_id=lesson.id,
+                            section_type=section_data['section_type'],
+                            display_order=section_data['display_order'],
+                            content_json=section_data['content']  # {en: "...", ta: "..."}
+                        )
+                        db.add(section)
+
+                    print(f"   ✅ Generated {len(sections_data)} sections for '{topic_data['name']}'")
+                except Exception as e:
+                    print(f"   ⚠️ Failed to generate content for '{topic_data['name']}': {str(e)}")
+                    # Continue with other topics even if one fails
 
         db.commit()
 
@@ -392,7 +427,7 @@ async def publish_subject(
 
     # Update all domains to published
     for domain in subject.domains:
-        domain.status = 'published'
+        domain.status = ContentStatus.PUBLISHED
 
     db.commit()
 

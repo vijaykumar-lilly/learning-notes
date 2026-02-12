@@ -6,9 +6,12 @@ from app.models.domain import Domain
 from app.models.topic import Topic
 from app.models.translation import Translation
 from app.models.subject import Subject
+from app.utils.errors import handle_errors, NotFoundError, log_info
 from typing import List
+import logging
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 
 def get_translation(db: Session, locale: str, namespace: str, key: str) -> str:
@@ -22,6 +25,7 @@ def get_translation(db: Session, locale: str, namespace: str, key: str) -> str:
 
 
 @router.get("", response_model=CurriculumResponse)
+@handle_errors
 async def get_curriculum(
     locale: str = Query(default="en", description="Language locale (en, ta)"),
     db: Session = Depends(get_db)
@@ -32,6 +36,8 @@ async def get_curriculum(
 
     IMPORTANT: Only returns PUBLISHED subjects and domains
     """
+    log_info(f"Fetching curriculum", f"locale={locale}")
+    
     from app.models.domain import ContentStatus
     from app.models.subject import SubjectStatus
 
@@ -39,6 +45,10 @@ async def get_curriculum(
     subjects = db.query(Subject).filter(
         Subject.status == SubjectStatus.PUBLISHED
     ).all()
+
+    if not subjects:
+        logger.warning("No published subjects found")
+        return CurriculumResponse(subjects=[])
 
     subjects_response = []
     for subject in subjects:
@@ -94,22 +104,30 @@ async def get_curriculum(
             domains=domains_response
         ))
 
+    log_info(f"Curriculum fetched", f"subjects={len(subjects_response)}")
     return CurriculumResponse(subjects=subjects_response)
 
 
 @router.get("/subjects")
+@handle_errors
 async def get_subjects(
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
     """Get all published subjects"""
+    log_info("Fetching subjects", f"locale={locale}")
+    
     from app.models.subject import SubjectStatus
 
     subjects = db.query(Subject).filter(
         Subject.status == SubjectStatus.PUBLISHED
     ).all()
 
-    return {
+    if not subjects:
+        logger.warning("No published subjects found")
+        return {"subjects": []}
+
+    result = {
         "subjects": [
             {
                 "id": subject.id,
@@ -122,15 +140,21 @@ async def get_subjects(
             for subject in subjects
         ]
     }
+    
+    log_info(f"Subjects fetched", f"count={len(subjects)}")
+    return result
 
 
 @router.get("/subjects/{subject_id}/domains")
+@handle_errors
 async def get_subject_domains(
     subject_id: int,
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
     """Get all domains for a specific subject"""
+    log_info(f"Fetching domains", f"subject_id={subject_id}")
+    
     from app.models.domain import ContentStatus
     from app.models.subject import SubjectStatus
 
@@ -140,7 +164,7 @@ async def get_subject_domains(
     ).first()
 
     if not subject:
-        raise HTTPException(status_code=404, detail="Subject not found")
+        raise NotFoundError("Subject", subject_id)
 
     domains = db.query(Domain).filter(
         Domain.subject_id == subject.id,
@@ -177,16 +201,20 @@ async def get_subject_domains(
             "topics": topics_response
         })
 
+    log_info(f"Domains fetched", f"subject={subject.name}, domains={len(domains_response)}")
     return {"subject": subject.name, "domains": domains_response}
 
 
 @router.get("/domains/{domain_slug}")
+@handle_errors
 async def get_domain(
     domain_slug: str,
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
     """Get a specific domain by slug (only if published)"""
+    log_info(f"Fetching domain", f"slug={domain_slug}")
+    
     from app.models.domain import ContentStatus
 
     domain = db.query(Domain).filter(
@@ -195,7 +223,7 @@ async def get_domain(
     ).first()
 
     if not domain:
-        raise HTTPException(status_code=404, detail="Domain not found")
+        raise NotFoundError("Domain", domain_slug)
 
     # Get localized domain info
     title = get_translation(db, locale, "common", f"domains.{domain.slug}.title") or domain.slug
@@ -211,12 +239,15 @@ async def get_domain(
 
 
 @router.get("/domains/{domain_slug}/topics")
+@handle_errors
 async def get_domain_topics(
     domain_slug: str,
     locale: str = Query(default="en"),
     db: Session = Depends(get_db)
 ):
     """Get all topics for a specific domain (only if published)"""
+    log_info(f"Fetching domain topics", f"slug={domain_slug}")
+    
     from app.models.domain import ContentStatus
 
     domain = db.query(Domain).filter(
@@ -225,7 +256,7 @@ async def get_domain_topics(
     ).first()
 
     if not domain:
-        raise HTTPException(status_code=404, detail="Domain not found")
+        raise NotFoundError("Domain", domain_slug)
 
     topics = db.query(Topic).filter(
         Topic.domain_id == domain.id
@@ -243,4 +274,5 @@ async def get_domain_topics(
             "has_lesson": topic.lesson is not None
         })
 
+    log_info(f"Domain topics fetched", f"domain={domain_slug}, topics={len(topics_response)}")
     return {"topics": topics_response}

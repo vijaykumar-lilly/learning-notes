@@ -5,6 +5,8 @@ import MultipleChoiceExercise from '@/components/interactive/MultipleChoiceExerc
 import NumericInputExercise from '@/components/interactive/NumericInputExercise'
 import DifficultyBadge from '@/components/ui/DifficultyBadge'
 import { submitExercise } from '@/lib/progress-api'
+import { useToast } from '@/components/Toast'
+import { getErrorMessage } from '@/lib/api-client-errors'
 
 interface Exercise {
   id: number
@@ -28,6 +30,7 @@ export default function ExercisesRenderer({ exercises, lessonSlug, lessonId, loc
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
   const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set())
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { warning } = useToast()
 
   if (!exercises || exercises.length === 0) {
     return null
@@ -47,6 +50,8 @@ export default function ExercisesRenderer({ exercises, lessonSlug, lessonId, loc
       await submitExercise(exerciseId, userAnswer, locale)
     } catch (error) {
       console.error('Failed to submit exercise:', error)
+      // Show warning toast but don't block user - they can still continue
+      warning('Your progress was not saved. Please check your connection.')
     } finally {
       setIsSubmitting(false)
     }

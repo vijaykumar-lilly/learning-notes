@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime
 from app.database import get_db
 from app.schemas.exercise import ExerciseSubmission, ExerciseSubmissionResponse
@@ -7,9 +8,12 @@ from app.models.exercise import Exercise
 from app.models.progress import ExerciseSubmission as ExerciseSubmissionModel
 from app.models.translation import Translation
 from app.models.user import User
+from app.utils.errors import handle_errors, NotFoundError, ValidationError, log_info, log_error
 from typing import Any, Optional
+import logging
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 
 # Optional auth dependency - returns None if no token provided
@@ -33,7 +37,8 @@ async def get_optional_current_user(request: Request, db: Session = Depends(get_
 
         user = db.query(User).filter(User.username == username).first()
         return user if user and user.is_active else None
-    except:
+    except Exception as e:
+        logger.warning(f"Error getting optional user: {str(e)}")
         return None
 
 
@@ -74,6 +79,7 @@ def validate_answer(exercise: Exercise, user_answer: Any) -> bool:
         return user_text == correct_answer
 
     # Default: false for unknown types
+    logger.warning(f"Unknown exercise type: {exercise_type}")
     return False
 
 
@@ -88,6 +94,7 @@ def get_translation(db: Session, locale: str, namespace: str, key: str) -> str:
 
 
 @router.post("/{exercise_id}/submit", response_model=ExerciseSubmissionResponse)
+@handle_errors
 async def submit_exercise(
     exercise_id: int,
     submission: ExerciseSubmission,
@@ -100,54 +107,84 @@ async def submit_exercise(
     Validates the answer and returns feedback.
     Records submission if user is authenticated.
     """
+    log_info(f"Exercise submission", f"exercise_id={exercise_id}, user={current_user.username if current_user else 'anonymous'}")
+
+    # Validate exercise_id
+    if exercise_id <= 0:
+        raise ValidationError("Invalid exercise ID")
+
+    # Validate answer is not None
+    if submission.answer is None:
+        raise ValidationError("Answer cannot be empty")
+
     # Find exercise
     exercise = db.query(Exercise).filter(Exercise.id == exercise_id).first()
     if not exercise:
-        raise HTTPException(status_code=404, detail="Exercise not found")
+        raise NotFoundError("Exercise", exercise_id)
 
-    # Validate answer
-    is_correct = validate_answer(exercise, submission.answer)
+    # Validate answer type based on exercise type
+    try:
+        is_correct = validate_answer(exercise, submission.answer)
+    except Exception as e:
+        log_error(e, f"Error validating answer for exercise {exercise_id}")
+        raise ValidationError("Invalid answer format for this exercise type")
 
     # Record submission if user is authenticated
     if current_user:
-        # Check if user has submitted this exercise before
-        existing_submission = db.query(ExerciseSubmissionModel).filter(
-            ExerciseSubmissionModel.user_id == current_user.id,
-            ExerciseSubmissionModel.exercise_id == exercise_id
-        ).first()
+        try:
+            # Check if user has submitted this exercise before
+            existing_submission = db.query(ExerciseSubmissionModel).filter(
+                ExerciseSubmissionModel.user_id == current_user.id,
+                ExerciseSubmissionModel.exercise_id == exercise_id
+            ).first()
 
-        if existing_submission:
-            # Update existing submission
-            existing_submission.user_answer = submission.answer
-            existing_submission.is_correct = is_correct
-            existing_submission.attempts += 1
-            existing_submission.submitted_at = datetime.utcnow()
-        else:
-            # Create new submission record
-            new_submission = ExerciseSubmissionModel(
-                user_id=current_user.id,
-                exercise_id=exercise_id,
-                user_answer=submission.answer,
-                is_correct=is_correct,
-                attempts=1
-            )
-            db.add(new_submission)
+            if existing_submission:
+                # Update existing submission
+                existing_submission.user_answer = submission.answer
+                existing_submission.is_correct = is_correct
+                existing_submission.attempts += 1
+                existing_submission.submitted_at = datetime.utcnow()
+                log_info(f"Updated submission", f"exercise={exercise_id}, attempt={existing_submission.attempts}")
+            else:
+                # Create new submission record
+                new_submission = ExerciseSubmissionModel(
+                    user_id=current_user.id,
+                    exercise_id=exercise_id,
+                    user_answer=submission.answer,
+                    is_correct=is_correct,
+                    attempts=1
+                )
+                db.add(new_submission)
+                log_info(f"Created submission", f"exercise={exercise_id}, user={current_user.username}")
 
-        db.commit()
+            db.commit()
+        except SQLAlchemyError as e:
+            db.rollback()
+            log_error(e, f"Database error saving submission for exercise {exercise_id}")
+            # Don't fail the request, just log the error
+            logger.warning("Submission not saved due to database error, but validation completed")
 
     # Get explanation if available
     explanation = None
     if exercise.explanation_key:
-        namespace = exercise.lesson.topic.slug
-        explanation = get_translation(db, locale, namespace, exercise.explanation_key)
+        try:
+            namespace = exercise.lesson.topic.slug
+            explanation = get_translation(db, locale, namespace, exercise.explanation_key)
+        except Exception as e:
+            logger.warning(f"Error fetching explanation: {str(e)}")
 
     # Find next exercise in the lesson
-    next_exercise = db.query(Exercise).filter(
-        Exercise.lesson_id == exercise.lesson_id,
-        Exercise.display_order > exercise.display_order
-    ).order_by(Exercise.display_order).first()
+    next_exercise_id = None
+    try:
+        next_exercise = db.query(Exercise).filter(
+            Exercise.lesson_id == exercise.lesson_id,
+            Exercise.display_order > exercise.display_order
+        ).order_by(Exercise.display_order).first()
+        next_exercise_id = next_exercise.id if next_exercise else None
+    except Exception as e:
+        logger.warning(f"Error fetching next exercise: {str(e)}")
 
-    next_exercise_id = next_exercise.id if next_exercise else None
+    log_info(f"Exercise validated", f"exercise_id={exercise_id}, correct={is_correct}")
 
     return ExerciseSubmissionResponse(
         is_correct=is_correct,
